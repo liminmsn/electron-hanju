@@ -1,13 +1,11 @@
-import './assets/main.css'
-
 import ReactDOM from 'react-dom/client'
+import App from './view/home/App';
 import { createBrowserRouter, RouterProvider } from 'react-router';
-import App from './App';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    Component: App,
   },
 ]);
 
