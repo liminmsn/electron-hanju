@@ -4,9 +4,9 @@ import './main.css'
 function App(): JSX.Element {
   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
   const ipcGET = (): void => {
-    window.electron.ipcRenderer.invoke('get', 'https://www.thanju.com/').then(val => {
-      console.log(val);
-    });
+    window.electron.ipcRenderer.invoke('get', 'https://www.thanju.com/').then((val) => {
+      console.log(val)
+    })
   }
 
   return (

@@ -1,5 +1,6 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron'
 import { get } from 'node:https'
+import { JSDOM } from 'jsdom'
 
 export class YNet {
   constructor() {
@@ -21,7 +22,25 @@ export class YNet {
           body += chunk.toString()
         })
 
-        res.on('end', () => resole(body))
+        res.on('end', () => {
+          // 创建一个虚拟的 DOM 环境
+          const dom = new JSDOM(body)
+          // 获取文档对象
+          const document = dom.window.document
+          // 操作 DOM
+          const arr = Array.from(document.querySelectorAll('.myui-panel_bd')).map((item) => item)
+          arr.forEach((item) => {
+            const item_ = item.getElementsByClassName('clearfix')[0]
+            if (item_ != null) {
+              resole(
+                JSON.stringify(
+                  Array.from(item_.getElementsByTagName('a')).map((a) => a.style.backgroundImage)
+                )
+              )
+            }
+          })
+          // resole(arr)
+        })
       })
       req.on('error', (e) => reject(e))
     })
