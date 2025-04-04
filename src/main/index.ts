@@ -1,7 +1,8 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { YNet } from './net/ynet'
 
 function createWindow(): void {
   // Create the browser window.
@@ -47,10 +48,8 @@ app.whenReady().then(() => {
   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
+    new YNet()
   })
-
-  // IPC test
-  ipcMain.on('ping', () => console.log('pong'))
 
   createWindow()
 
