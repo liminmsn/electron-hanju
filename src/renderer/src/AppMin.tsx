@@ -29,7 +29,7 @@ export default function AppMin() {
 
   const siderStyle: React.CSSProperties = {
     background: 'white',
-    boxShadow: '1px 1px 2pt #0000001f'
+    boxShadow: 'var(--border-show)'
   }
   return (
     <>

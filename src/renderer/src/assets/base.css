@@ -9,3 +9,6 @@ body {
   line-height: 1.6;
   margin: 0;
 }
+:root {
+  --border-show: 1px 1px 2pt #0000001f;
+}

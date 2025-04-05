@@ -35,9 +35,11 @@
     app-region: drag;
     height: inherit;
     display: flex;
+    justify-content: center;
 }
 
 .drop .not {
+    max-width: 600px;
     border-radius: 12pt;
     margin-inline: 20%;
     margin-block: 2pt;
