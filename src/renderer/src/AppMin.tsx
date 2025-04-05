@@ -1,9 +1,9 @@
 import { Header, Content } from 'antd/es/layout/layout'
 import { Route, Routes } from 'react-router'
 import { App, Layout } from 'antd'
-import Sider from 'antd/es/layout/Sider'
 import Home from './view/home/Home'
 import TitleBar from './components/TitleBar'
+import SiderArr from './components/SiderArr'
 
 export default function AppMin() {
   const contentStyle: React.CSSProperties = {
@@ -27,18 +27,15 @@ export default function AppMin() {
     background: '#00000000'
   }
 
-  const siderStyle: React.CSSProperties = {
-    background: 'white',
-    boxShadow: 'var(--border-show)'
-  }
   return (
     <>
       <App>
         <TitleBar />
         <Layout style={layoutStyle}>
-          <Sider width={140} style={siderStyle}>
+          {/* <Sider width={140} style={siderStyle}>
             Sider
-          </Sider>
+          </Sider> */}
+          <SiderArr />
           <Layout>
             <Header style={headerStyle}>Header</Header>
             <Content style={contentStyle}>

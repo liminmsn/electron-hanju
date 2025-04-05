@@ -9,6 +9,10 @@ body {
   line-height: 1.6;
   margin: 0;
 }
+
 :root {
   --border-show: 1px 1px 2pt #0000001f;
+  --color-one: rebeccapurple;
+    --color-two: rgb(58, 22, 95);
+    --color-opacity-02: rgba(102, 51, 153, 0.2);
 }

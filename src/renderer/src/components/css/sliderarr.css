@@ -1,0 +1,21 @@
+.sliderItem {
+    margin-top: 2pt;
+    margin-inline: 2pt;
+    padding-block: 2pt;
+    padding-left: 6px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.sliderItemSelect {
+    border-radius: 2pt;
+    /* color: whitesmoke; */
+    background-color: var(--color-opacity-02);
+}
+
+.sliderItem i {
+    width: 12pt;
+    height: 12pt;
+    text-align: center;
+    line-height: 1.2;
+}
