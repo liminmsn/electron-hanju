@@ -1,6 +1,8 @@
 import '@renderer/assets/app.css'
 import { IpcRendererEvent } from 'electron'
 import { useEffect, useState } from 'react'
+import { Route, Routes } from 'react-router'
+import Home from './view/home/Home'
 
 export default function App() {
   //更改标题栏的全屏小化按钮
@@ -41,6 +43,11 @@ export default function App() {
             )
           })}
         </div>
+      </div>
+      <div className="body">
+        <Routes>
+          <Route path="/" Component={Home} />
+        </Routes>
       </div>
     </>
   )

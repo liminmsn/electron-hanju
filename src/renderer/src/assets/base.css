@@ -4,7 +4,7 @@
   --ev-c-white-mute: #f2f2f2;
 
   --ev-c-black: #FFECDB;
-    --ev-c-black-soft: #AFDDFF;
+  --ev-c-black-soft: #AFDDFF;
     --ev-c-black-mute: #60B5FF;
 
   --ev-c-gray-1: #515c67;
@@ -24,7 +24,7 @@
 }
 
 :root {
-  --color-background: var(--ev-c-black);
+  --color-background: var(--ev-c-gray-1);
   --color-background-soft: var(--ev-c-black-soft);
   --color-background-mute: var(--ev-c-black-mute);
   --color-text: var(--ev-c-text-1);
@@ -37,9 +37,13 @@ ul {
 
 body {
   overflow: hidden;
-    margin: 0;
+  margin: 0;
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
   line-height: 1.6;
+}
+button {
+  border-color: transparent;
+  padding: 5pt 10pt;
 }

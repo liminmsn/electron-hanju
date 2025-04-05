@@ -7,7 +7,7 @@ import '@renderer/assets/base.css'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} />
+      <Route path="*" element={<App />} />
     </Routes>
   </BrowserRouter>
 )
