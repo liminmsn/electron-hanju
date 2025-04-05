@@ -1,6 +1,7 @@
 import { ReactNode, useState } from 'react'
 import Sider from 'antd/es/layout/Sider'
 import './css/sliderarr.css'
+import { Link } from 'react-router'
 
 export default function SiderArr() {
   const siderStyle: React.CSSProperties = {
@@ -11,23 +12,30 @@ export default function SiderArr() {
     new KeyItem(
       <i className="fa-solid fa-house"></i>,
       '首页',
+      '/',
       <i className="fa-solid fa-house" style={{ color: 'var(--color-two)' }}></i>
     ),
-    new KeyItem(<i className="fa-solid fa-circle-info"></i>, '关于')
+    new KeyItem(<i className="fa-solid fa-circle-info"></i>, '关于', '/about')
   ]
   const [selectIdx, setSelectIdx] = useState(keyArr[0].label)
+
+  //打开路由
+  function ondownItem(item: KeyItem) {
+    setSelectIdx(item.label)
+  }
   return (
     <Sider width={140} style={siderStyle}>
       {keyArr.map((item) => {
         return (
-          <div
-            key={item.label}
-            onClick={() => setSelectIdx(item.label)}
-            className={selectIdx == item.label ? 'sliderItem sliderItemSelect' : 'sliderItem'}
-          >
-            {selectIdx == item.label ? item.selectIcon : item.icon}&nbsp;
-            <span>{item.label}</span>
-          </div>
+          <Link key={item.label} to={item.path}>
+            <div
+              onClick={() => ondownItem(item)}
+              className={selectIdx == item.label ? 'sliderItem sliderItemSelect' : 'sliderItem'}
+            >
+              {selectIdx == item.label ? item.selectIcon : item.icon}&nbsp;
+              <span>{item.label}</span>
+            </div>
+          </Link>
         )
       })}
     </Sider>
@@ -38,9 +46,12 @@ class KeyItem {
   icon: ReactNode
   selectIcon: ReactNode
   label: string
-  constructor(icon: ReactNode, label: string, selectIcon?: ReactNode) {
+  path: string
+  constructor(icon: ReactNode, label: string, path: string, selectIcon?: ReactNode) {
     this.icon = icon
-    this.selectIcon = selectIcon
     this.label = label
+    this.path = path
+    this.selectIcon = icon
+    if (selectIcon != null) this.selectIcon = selectIcon
   }
 }

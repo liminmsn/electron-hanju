@@ -1,4 +1,3 @@
-import Versions from '@renderer/components/Versions'
 import './main.css'
 
 export default function Home(): JSX.Element {
@@ -12,7 +11,6 @@ export default function Home(): JSX.Element {
     <>
       <button onClick={ipcHandle}>ipc</button>
       <button onClick={ipcGET}>get</button>
-      <Versions></Versions>
     </>
   )
 }

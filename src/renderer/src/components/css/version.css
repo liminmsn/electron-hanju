@@ -1,7 +1,9 @@
 .versions {
-    max-width: 600px;
+    width: 50vw;
+        height: 40vw;
+        max-width: 500px;
+        max-height: 500px;
     margin-inline: auto;
-    width: 50%;
     padding: 12pt;
     border-radius: 12pt;
     box-shadow: var(--border-show);
