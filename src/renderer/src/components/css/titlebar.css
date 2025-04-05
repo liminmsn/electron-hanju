@@ -1,0 +1,49 @@
+.titleBar {
+    align-items: center;
+    user-select: none;
+    background-color: rebeccapurple;
+    color: white;
+    height: 20pt;
+}
+
+.btns span {
+    display: inline-block;
+    width: 20pt;
+    line-height: 2;
+    text-align: center;
+}
+
+.btns span:hover {
+    cursor: pointer;
+    background-color: rgb(58, 22, 95);
+
+    &:last-child {
+        background-color: red;
+    }
+}
+
+.btns {
+    height: inherit;
+}
+
+.title {
+    padding-left: 4pt;
+}
+
+.drop {
+    flex: 1;
+    app-region: drag;
+    height: inherit;
+    display: flex;
+}
+
+.drop .not {
+    border-radius: 12pt;
+    margin-inline: 20%;
+    margin-block: 2pt;
+    padding: 2pt;
+    font-size: 8pt;
+    flex: 1;
+    overflow: hidden;
+    background-color: rgb(58, 22, 95);
+}
