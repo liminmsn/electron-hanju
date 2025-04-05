@@ -22,6 +22,16 @@ function createWindow(): void {
     }
   })
 
+  mainWindow.on('maximize', () => {
+    // 窗口最大化事件
+    mainWindow.webContents.send('fa-expand', true)
+  })
+
+  mainWindow.on('unmaximize', () => {
+    // 窗口取消最大化事件
+    mainWindow.webContents.send('fa-expand', false)
+  })
+
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
     //扩展出去win对象的其它操作
