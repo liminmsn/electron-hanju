@@ -1,7 +1,7 @@
 import Versions from '@renderer/components/Versions'
 import './main.css'
 
-function App(): JSX.Element {
+function Home(): JSX.Element {
   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
   const ipcGET = (): void => {
     window.electron.ipcRenderer.invoke('get', 'https://www.thanju.com/').then((val) => {
@@ -18,4 +18,4 @@ function App(): JSX.Element {
   )
 }
 
-export default App
+export default Home

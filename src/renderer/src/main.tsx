@@ -1,15 +1,13 @@
 import ReactDOM from 'react-dom/client'
-import App from './view/home/App';
-import { createBrowserRouter, RouterProvider } from 'react-router';
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    Component: App,
-  },
-]);
-
+import { BrowserRouter, Route, Routes } from 'react-router'
+import App from './App'
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@renderer/assets/base.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <RouterProvider router={router} />
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />} />
+    </Routes>
+  </BrowserRouter>
 )

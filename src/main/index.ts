@@ -3,13 +3,17 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { YNet } from './net/ynet'
+import { TitleBar } from './titlebar'
 
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
+    // width: 900,
+    // height: 670,
+    minWidth: 900,
+    minHeight: 670,
     show: false,
+    frame: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -20,6 +24,10 @@ function createWindow(): void {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+    //扩展出去win对象的其它操作
+    new TitleBar(mainWindow)
+    //本地通讯网络请求
+    new YNet()
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -48,7 +56,6 @@ app.whenReady().then(() => {
   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
-    new YNet()
   })
 
   createWindow()
