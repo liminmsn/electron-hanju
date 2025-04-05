@@ -22,6 +22,5 @@ export class TitleBar {
           win.close()
           break
       }
-    console.log(_e)
   }
 }
