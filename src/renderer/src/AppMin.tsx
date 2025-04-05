@@ -18,21 +18,19 @@ export default function AppMin() {
   }
 
   return (
-    <>
-      <App>
-        <TitleBar />
-        <Layout style={layoutStyle}>
-          <SiderArr />
-          <Layout>
-            <Content style={contentStyle}>
-              <Routes>
-                <Route path="/" Component={Home}></Route>
-                <Route path="/about" Component={About}></Route>
-              </Routes>
-            </Content>
-          </Layout>
+    <App>
+      <TitleBar />
+      <Layout style={layoutStyle}>
+        <SiderArr />
+        <Layout>
+          <Content style={contentStyle}>
+            <Routes>
+              <Route path="/" Component={Home}></Route>
+              <Route path="/about" Component={About}></Route>
+            </Routes>
+          </Content>
         </Layout>
-      </App>
-    </>
+      </Layout>
+    </App>
   )
 }
