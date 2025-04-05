@@ -1,6 +1,5 @@
 import Versions from '@renderer/components/Versions'
 import './main.css'
-import { Button } from 'antd'
 
 export default function Home(): JSX.Element {
   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
@@ -9,13 +8,11 @@ export default function Home(): JSX.Element {
       console.log(val)
     })
   }
-
   return (
     <>
       <button onClick={ipcHandle}>ipc</button>
       <button onClick={ipcGET}>get</button>
       <Versions></Versions>
-      <Button type="primary">Primary</Button>
     </>
   )
 }
