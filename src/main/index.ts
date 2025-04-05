@@ -25,7 +25,7 @@ function createWindow(): void {
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
     //扩展出去win对象的其它操作
-    new TitleBar(mainWindow)
+    new TitleBar()
     //本地通讯网络请求
     new YNet()
   })

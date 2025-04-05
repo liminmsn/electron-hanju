@@ -6,8 +6,12 @@ export class YNet {
   constructor() {
     console.log('hello Ynet')
     // IPC test
-    ipcMain.on('ping', () => console.log('pong'))
-    ipcMain.handle('get', this.get)
+    try {
+      ipcMain.on('ping', () => console.log('pong'))
+      ipcMain.handle('get', this.get)
+    } catch (error) {
+      console.log('', error)
+    }
   }
 
   async get(_e: IpcMainInvokeEvent, url: string) {
