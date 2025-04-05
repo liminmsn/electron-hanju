@@ -7,7 +7,7 @@ export default function App() {
   const [expand, setExpand] = useState(false)
   useEffect(() => {
     //监听全名状态变化
-    window.electron.ipcRenderer.on('fa-expand', (e_: IpcRendererEvent, bol) => {
+    window.electron.ipcRenderer.on('fa-expand', (_e: IpcRendererEvent, bol) => {
       setExpand(bol)
     })
   })
