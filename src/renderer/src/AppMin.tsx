@@ -8,7 +8,7 @@ import About from './view/about/About'
 
 export default function AppMin() {
   const contentStyle: React.CSSProperties = {
-    padding: '2pt'
+    padding: '4pt'
     // paddingRight: '0'
   }
 

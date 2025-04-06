@@ -1,6 +1,6 @@
 import Card from '@renderer/components/Card'
 import GridView from '@renderer/components/GridView'
-import { NetHome } from '@renderer/net/net_home'
+// import { NetHome } from '@renderer/net/net_home'
 import { useEffect } from 'react'
 
 export default function Home(): JSX.Element {
@@ -11,53 +11,19 @@ export default function Home(): JSX.Element {
     })
   }
   useEffect(() => {
-    const netHome = new NetHome()
-    netHome.getData()
+    // const netHome = new NetHome()
+    // netHome.getData()
   }, [])
   return (
-    <>
-      <GridView>
-        <Card>
-          <button onClick={ipcHandle}>ipc</button>
-          <button onClick={ipcGET}>get</button>
-        </Card>
-        <Card>
-          <button onClick={ipcHandle}>ipc</button>
-          <button onClick={ipcGET}>get</button>
-        </Card>
-        <Card>
-          <button onClick={ipcHandle}>ipc</button>
-          <button onClick={ipcGET}>get</button>
-        </Card>
-        <Card>
-          <button onClick={ipcHandle}>ipc</button>
-          <button onClick={ipcGET}>get</button>
-        </Card>
-        <Card>
-          <button onClick={ipcHandle}>ipc</button>
-          <button onClick={ipcGET}>get</button>
-        </Card>
-        <Card>
-          <button onClick={ipcHandle}>ipc</button>
-          <button onClick={ipcGET}>get</button>
-        </Card>
-        <Card>
-          <button onClick={ipcHandle}>ipc</button>
-          <button onClick={ipcGET}>get</button>
-        </Card>
-        <Card>
-          <button onClick={ipcHandle}>ipc</button>
-          <button onClick={ipcGET}>get</button>
-        </Card>
-        <Card>
-          <button onClick={ipcHandle}>ipc</button>
-          <button onClick={ipcGET}>get</button>
-        </Card>
-        <Card>
-          <button onClick={ipcHandle}>ipc</button>
-          <button onClick={ipcGET}>get</button>
-        </Card>
-      </GridView>
-    </>
+    <GridView>
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => {
+        return (
+          <Card key={item}>
+            <button onClick={ipcHandle}>ipc</button>
+            <button onClick={ipcGET}>get</button>
+          </Card>
+        )
+      })}
+    </GridView>
   )
 }
