@@ -1,8 +1,7 @@
 import Card from '@renderer/components/Card'
-import './main.css'
 import GridView from '@renderer/components/GridView'
-import { useEffect } from 'react'
 import { NetHome } from '@renderer/net/net_home'
+import { useEffect } from 'react'
 
 export default function Home(): JSX.Element {
   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')

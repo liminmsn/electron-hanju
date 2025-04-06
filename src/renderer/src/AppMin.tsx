@@ -8,12 +8,11 @@ import About from './view/about/About'
 
 export default function AppMin() {
   const contentStyle: React.CSSProperties = {
-    padding: '2pt',
-    paddingRight: '0'
+    padding: '2pt'
+    // paddingRight: '0'
   }
 
   const layoutStyle: React.CSSProperties = {
-    overflow: 'hidden',
     width: '100%',
     height: '100vh'
   }

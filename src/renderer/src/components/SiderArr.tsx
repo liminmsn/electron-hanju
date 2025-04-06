@@ -44,7 +44,7 @@ export default function SiderArr() {
               onClick={() => ondownItem(item)}
               className={selectIdx == item.label ? 'sliderItem sliderItemSelect' : 'sliderItem'}
             >
-              {selectIdx == item.label ? item.selectIcon : item.icon}&nbsp;
+              {selectIdx == item.label ? item.selectIcon : item.icon}&nbsp;&nbsp;&nbsp;&nbsp;
               <span>{item.label}</span>
             </div>
           </Link>
