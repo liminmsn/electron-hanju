@@ -3,13 +3,13 @@
     user-select: none;
     background-color: var(--color-one);
     color: white;
-    height: 20pt;
+    height: 25pt;
 }
 
 .btns span {
     display: inline-block;
     width: 20pt;
-    line-height: 2;
+    line-height: 2.5;
     text-align: center;
 }
 
@@ -42,7 +42,7 @@
     max-width: 600px;
     border-radius: 12pt;
     margin-inline: 20%;
-    margin-block: 2pt;
+    margin-block: 4pt;
     padding: 2pt;
     font-size: 8pt;
     flex: 1;

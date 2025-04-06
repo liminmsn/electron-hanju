@@ -1,4 +1,6 @@
+import Card from '@renderer/components/Card'
 import './main.css'
+import GridView from '@renderer/components/GridView'
 
 export default function Home(): JSX.Element {
   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
@@ -9,8 +11,48 @@ export default function Home(): JSX.Element {
   }
   return (
     <>
-      <button onClick={ipcHandle}>ipc</button>
-      <button onClick={ipcGET}>get</button>
+      <GridView>
+        <Card>
+          <button onClick={ipcHandle}>ipc</button>
+          <button onClick={ipcGET}>get</button>
+        </Card>
+        <Card>
+          <button onClick={ipcHandle}>ipc</button>
+          <button onClick={ipcGET}>get</button>
+        </Card>
+        <Card>
+          <button onClick={ipcHandle}>ipc</button>
+          <button onClick={ipcGET}>get</button>
+        </Card>
+        <Card>
+          <button onClick={ipcHandle}>ipc</button>
+          <button onClick={ipcGET}>get</button>
+        </Card>
+        <Card>
+          <button onClick={ipcHandle}>ipc</button>
+          <button onClick={ipcGET}>get</button>
+        </Card>
+        <Card>
+          <button onClick={ipcHandle}>ipc</button>
+          <button onClick={ipcGET}>get</button>
+        </Card>
+        <Card>
+          <button onClick={ipcHandle}>ipc</button>
+          <button onClick={ipcGET}>get</button>
+        </Card>
+        <Card>
+          <button onClick={ipcHandle}>ipc</button>
+          <button onClick={ipcGET}>get</button>
+        </Card>
+        <Card>
+          <button onClick={ipcHandle}>ipc</button>
+          <button onClick={ipcGET}>get</button>
+        </Card>
+        <Card>
+          <button onClick={ipcHandle}>ipc</button>
+          <button onClick={ipcGET}>get</button>
+        </Card>
+      </GridView>
     </>
   )
 }

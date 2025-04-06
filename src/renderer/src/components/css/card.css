@@ -1,0 +1,10 @@
+.card {
+  min-height: 28vw;
+  max-height: 30vw;
+  padding: 6pt;
+  display: inline-block;
+  background-color: white;
+  border-radius: 8pt;
+  box-shadow: var(--border-show);
+  margin: 2pt;
+}
