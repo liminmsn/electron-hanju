@@ -1,22 +1,22 @@
 .sliderItem {
-    margin-top: 2pt;
-    margin-inline: 2pt;
-    padding-block: 2pt;
-    padding-left: 6px;
-    user-select: none;
-    cursor: pointer;
-    color: black;
+  margin-top: 2pt;
+  margin-inline: 2pt;
+  padding-block: 2pt;
+  padding-left: 6px;
+  user-select: none;
+  cursor: pointer;
+  color: black;
 }
 
 .sliderItemSelect {
-    border-radius: 2pt;
-    /* color: whitesmoke; */
-    background-color: var(--color-opacity-02);
+  border-radius: 2pt;
+  /* color: whitesmoke; */
+  background-color: var(--color-opacity-02);
 }
 
 .sliderItem i {
-    width: 12pt;
-    height: 12pt;
-    text-align: center;
-    line-height: 1.2;
+  width: 12pt;
+  height: 12pt;
+  text-align: center;
+  line-height: 1.2;
 }
