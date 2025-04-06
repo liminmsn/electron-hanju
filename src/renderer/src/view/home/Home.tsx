@@ -1,4 +1,4 @@
-import Card from '@renderer/components/Card'
+import CardImg from '@renderer/components/CardImg'
 import GridView from '@renderer/components/GridView'
 // import { NetHome } from '@renderer/net/net_home'
 import { useEffect } from 'react'
@@ -18,10 +18,10 @@ export default function Home(): JSX.Element {
     <GridView>
       {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => {
         return (
-          <Card key={item}>
+          <CardImg key={item} url="//pp.thanju.com/U/vod/67dae9fa26ff5.jpg">
             <button onClick={ipcHandle}>ipc</button>
             <button onClick={ipcGET}>get</button>
-          </Card>
+          </CardImg>
         )
       })}
     </GridView>
