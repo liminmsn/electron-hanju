@@ -10,10 +10,22 @@ export default function SiderArr() {
   }
   const keyArr: KeyItem[] = [
     new KeyItem(
-      <i className="fa-solid fa-house"></i>,
-      '首页',
+      <i className="fa-solid fa-circle-play"></i>,
+      '韩剧',
       '/',
-      <i className="fa-solid fa-house" style={{ color: 'var(--color-two)' }}></i>
+      <i className="fa-solid fa-circle-play" style={{ color: 'var(--color-two)' }}></i>
+    ),
+    new KeyItem(
+      <i className="fa-solid fa-film"></i>,
+      '电影',
+      '/',
+      <i className="fa-solid fa-film" style={{ color: 'var(--color-two)' }}></i>
+    ),
+    new KeyItem(
+      <i className="fa-solid fa-video"></i>,
+      '综艺',
+      '/',
+      <i className="fa-solid fa-video" style={{ color: 'var(--color-two)' }}></i>
     ),
     new KeyItem(<i className="fa-solid fa-circle-info"></i>, '关于', '/about')
   ]

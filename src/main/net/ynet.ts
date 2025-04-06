@@ -1,6 +1,7 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron'
 import { get } from 'node:https'
-import { JSDOM } from 'jsdom'
+// import { JSDOM } from 'jsdom'
+// import { writeFile } from 'node:fs'
 
 export class YNet {
   constructor() {
@@ -27,22 +28,31 @@ export class YNet {
         })
 
         res.on('end', () => {
-          // 创建一个虚拟的 DOM 环境
-          const dom = new JSDOM(body)
-          // 获取文档对象
-          const document = dom.window.document
-          // 操作 DOM
-          const arr = Array.from(document.querySelectorAll('.myui-panel_bd')).map((item) => item)
-          arr.forEach((item) => {
-            const item_ = item.getElementsByClassName('clearfix')[0]
-            if (item_ != null) {
-              resole(
-                JSON.stringify(
-                  Array.from(item_.getElementsByTagName('a')).map((a) => a.style.backgroundImage)
-                )
-              )
-            }
-          })
+          resole(body)
+          // writeFile('./test.html', body, (err) => {
+          //   if (err) {
+          //     console.error(err)
+          //     return
+          //   }
+          //   // file written successfully
+          //   console.log('file written successfully')
+          // })
+          // // 创建一个虚拟的 DOM 环境
+          // const dom = new JSDOM(body)
+          // // 获取文档对象
+          // const document = dom.window.document
+          // // 操作 DOM
+          // const arr = Array.from(document.querySelectorAll('.myui-panel_bd')).map((item) => item)
+          // arr.forEach((item) => {
+          //   const item_ = item.getElementsByClassName('clearfix')[0]
+          //   if (item_ != null) {
+          //     resole(
+          //       JSON.stringify(
+          //         Array.from(item_.getElementsByTagName('a')).map((a) => a.style.backgroundImage)
+          //       )
+          //     )
+          //   }
+          // })
           // resole(arr)
         })
       })
