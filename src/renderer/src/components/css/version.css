@@ -1,20 +1,20 @@
 .versions {
-    width: 50vw;
-        height: 40vw;
-        max-width: 500px;
-        max-height: 500px;
-    margin-inline: auto;
-    padding: 12pt;
-    border-radius: 12pt;
-    box-shadow: var(--border-show);
-    background-image: url('../../assets/wavy-lines.svg');
-    user-select: none;
+  width: 40vmax;
+  height: 30vmax;
+  max-width: 500px;
+  max-height: 400px;
+  margin-inline: auto;
+  padding: 12pt;
+  border-radius: 12pt;
+  box-shadow: var(--border-show);
+  background-image: url('../../assets/wavy-lines.svg');
+  user-select: none;
 }
 
 h4 {
-    font-size: 28px;
-    font-weight: bold;
-    background-image: linear-gradient(to right, #e06fad, #592bff);
-    background-clip: text;
-    color: transparent;
+  font-size: 28px;
+  font-weight: bold;
+  background-image: linear-gradient(to right, #e06fad, #592bff);
+  background-clip: text;
+  color: transparent;
 }
