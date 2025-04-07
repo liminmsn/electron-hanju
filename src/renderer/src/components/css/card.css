@@ -6,3 +6,23 @@
   box-shadow: var(--border-show);
   margin: 2pt;
 }
+
+.card_img {
+  width: 100%;
+  cursor: 'pointer';
+}
+.card_img .title {
+  font-size: 16pt;
+  line-height: 2;
+  font-weight: bold;
+  color: var(--text-color);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+.card_img .disc {
+  line-height: 1.5;
+  color: var(--text-color);
+  opacity: 0.7;
+  margin: 0;
+}

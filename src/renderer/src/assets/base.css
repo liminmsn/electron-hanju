@@ -10,9 +10,31 @@ body {
   margin: 0;
 }
 
+* {
+  color: var(--color-text-1);
+}
+
 :root {
   --border-show: 1px 1px 2pt #0000001f;
-  --color-one: rebeccapurple;
-    --color-two: rgb(58, 22, 95);
-    --color-opacity-02: rgba(102, 51, 153, 0.2);
+  --color-one: #328e6e;
+  --color-two: #67ae6e;
+  --color-opacity-02: 90C67C;
+  --color-text-1: #e1eebc;
+  /* 自定义滚动条的样式 */
+  /* WebKit浏览器 */
+  ::-webkit-scrollbar {
+    width: 4pt; /* 滚动条宽度 */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-opacity-02); /* 滚动条滑块的背景色 */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-one); /* 滚动条轨道的背景色 */
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-two); /* 滚动条滑块鼠标悬停时的背景色 */
+  }
 }

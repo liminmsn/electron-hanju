@@ -1,13 +1,14 @@
 .grid_view {
   display: grid;
   grid-template-rows: auto;
-  gap: 2pt;
+  gap: 1vmin;
   max-height: 100vh;
   overflow-y: scroll;
+  padding: 1vmin;
 }
 
 .grid_view_end {
-  opacity: 0.1;
+  color: var(--color-opacity-02);
   grid-column: 1 / -1;
   text-align: center;
   font-weight: bold;
@@ -21,25 +22,34 @@
 
 @media screen and (max-width: 1000px) {
   .grid_view {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(4, auto);
   }
-  .grid_view > .card {
-    height: calc(100vw / 2.6);
+  .grid_view img {
+    height: calc(100vw / 4);
   }
 }
+
 @media screen and (min-width: 1000px) {
   .grid_view {
     grid-template-columns: repeat(4, auto);
   }
-  .grid_view > .card {
-    height: calc(100vw / 3.4);
+  .grid_view img {
+    height: calc(100vw / 4);
+  }
+}
+@media screen and (min-width: 1200px) {
+  .grid_view {
+    grid-template-columns: repeat(5, auto);
+  }
+  .grid_view img {
+    height: calc(100vw / 4);
   }
 }
 @media screen and (min-width: 1400px) {
   .grid_view {
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(6, auto);
   }
-  .grid_view > .card {
-    height: calc(100vw / 3.8);
+  .grid_view img {
+    height: calc(100vw / 5);
   }
 }

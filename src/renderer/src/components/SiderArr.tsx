@@ -5,28 +5,13 @@ import { Link } from 'react-router'
 
 export default function SiderArr() {
   const siderStyle: React.CSSProperties = {
-    background: 'white',
+    background: 'var(--color-one)',
     boxShadow: 'var(--border-show)'
   }
   const keyArr: KeyItem[] = [
-    new KeyItem(
-      <i className="fa-solid fa-circle-play"></i>,
-      '韩剧',
-      '/',
-      <i className="fa-solid fa-circle-play" style={{ color: 'var(--color-two)' }}></i>
-    ),
-    new KeyItem(
-      <i className="fa-solid fa-film"></i>,
-      '电影',
-      '/',
-      <i className="fa-solid fa-film" style={{ color: 'var(--color-two)' }}></i>
-    ),
-    new KeyItem(
-      <i className="fa-solid fa-video"></i>,
-      '综艺',
-      '/',
-      <i className="fa-solid fa-video" style={{ color: 'var(--color-two)' }}></i>
-    ),
+    new KeyItem(<i className="fa-solid fa-circle-play"></i>, '韩剧', '/'),
+    new KeyItem(<i className="fa-solid fa-film"></i>, '电影', '/'),
+    new KeyItem(<i className="fa-solid fa-video"></i>, '综艺', '/'),
     new KeyItem(<i className="fa-solid fa-circle-info"></i>, '关于', '/about')
   ]
   const [selectIdx, setSelectIdx] = useState(keyArr[0].label)

@@ -8,10 +8,8 @@ import { TitleBar } from './titlebar'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    // width: 900,
-    // height: 670,
     minWidth: 900,
-    minHeight: 670,
+    minHeight: 800,
     show: false,
     frame: false,
     autoHideMenuBar: true,

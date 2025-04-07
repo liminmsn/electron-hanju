@@ -4,14 +4,15 @@
   padding-block: 2pt;
   padding-left: 6px;
   user-select: none;
+  -webkit-user-drag: none;
   cursor: pointer;
-  color: black;
+  color:var(--color-text-1);
 }
 
 .sliderItemSelect {
   border-radius: 2pt;
-  /* color: whitesmoke; */
-  background-color: var(--color-opacity-02);
+  color:var(--color-text-1);
+  background-color: var(--color-two);
 }
 
 .sliderItem i {

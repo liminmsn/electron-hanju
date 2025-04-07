@@ -7,6 +7,7 @@
   padding: 12pt;
   border-radius: 12pt;
   box-shadow: var(--border-show);
+  background-color: var(--color-one);
   background-image: url('../../assets/wavy-lines.svg');
   user-select: none;
 }

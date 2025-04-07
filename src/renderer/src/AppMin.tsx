@@ -8,8 +8,8 @@ import About from './view/about/About'
 
 export default function AppMin() {
   const contentStyle: React.CSSProperties = {
-    padding: '4pt'
-    // paddingRight: '0'
+    // backgroundColor: 'var(--color-two)',
+    background: 'linear-gradient(45deg, var(--color-one), var(--color-two))'
   }
 
   const layoutStyle: React.CSSProperties = {
