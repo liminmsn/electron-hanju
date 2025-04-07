@@ -1,12 +1,16 @@
 .grid_view {
   display: grid;
   grid-template-rows: auto;
-  gap: 1vmin;
   max-height: 100vh;
   overflow-y: scroll;
-  padding: 1vmin;
+  cursor: pointer;
+  gap: 1.5vh;
+  padding: 1.5vh;
 }
-
+.grid_view img:active {
+  -webkit-user-drag: none;
+  transform: scale(0.95);
+}
 .grid_view_end {
   color: var(--color-opacity-02);
   grid-column: 1 / -1;

@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react'
 
 interface CardProps {
   url: string
-  children: ReactNode
+  children?: ReactNode
 }
 
 export default function CardImg({ url, children }: CardProps): JSX.Element {
@@ -12,7 +12,7 @@ export default function CardImg({ url, children }: CardProps): JSX.Element {
     objectFit: 'cover',
     borderRadius: '8px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-    transition: 'transform 0.2s',
+    transition: 'transform 0.2s'
   }
   return (
     <div className="card_img">
