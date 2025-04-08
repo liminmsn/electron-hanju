@@ -6,13 +6,14 @@
   user-select: none;
   -webkit-user-drag: none;
   cursor: pointer;
-  color:var(--color-text-1);
+  color: var(--color-text-1);
 }
 
 .sliderItemSelect {
   border-radius: 2pt;
-  color:var(--color-text-1);
+  color: var(--color-text-1);
   background-color: var(--color-two);
+  box-shadow: var(--border-show-inset);
 }
 
 .sliderItem i {
@@ -20,4 +21,8 @@
   height: 12pt;
   text-align: center;
   line-height: 1.2;
+}
+.sliderItemSelect i,
+.sliderItemSelect span {
+  text-shadow: var(--border-show);
 }

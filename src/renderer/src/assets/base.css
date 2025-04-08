@@ -16,6 +16,7 @@ body {
 
 :root {
   --border-show: 1px 1px 2pt #0000001f;
+  --border-show-inset: 1px 1px 2pt #0000001f inset;
   --color-one: #328e6e;
   --color-two: #67ae6e;
   --color-opacity-02: 90C67C;

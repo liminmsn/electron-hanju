@@ -49,4 +49,6 @@
   flex: 1;
   overflow: hidden;
   background-color: var(--color-two);
+  box-shadow: var(--border-show-inset);
+  text-shadow: var(--border-show);
 }
