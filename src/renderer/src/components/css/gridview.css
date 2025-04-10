@@ -1,11 +1,12 @@
 .grid_view {
   display: grid;
-  grid-template-rows: auto;
+  grid-template-columns: auto auto auto auto;
   max-height: 100vh;
   overflow-y: scroll;
   cursor: pointer;
   gap: 1.5vh;
   padding: 1.5vh;
+  user-select: none;
 }
 .grid_view img:active {
   -webkit-user-drag: none;
@@ -26,34 +27,38 @@
 
 @media screen and (max-width: 1000px) {
   .grid_view {
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: auto auto auto auto;
   }
   .grid_view img {
+    width: 18vw;
     height: calc(100vw / 4);
   }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 901px) {
   .grid_view {
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: auto auto auto auto;
   }
   .grid_view img {
+    width: 20vw;
     height: calc(100vw / 4);
   }
 }
 @media screen and (min-width: 1200px) {
   .grid_view {
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: auto auto auto auto auto;
   }
   .grid_view img {
-    height: calc(100vw / 4);
+    width: 16vw;
+    height: calc(100vw / 5);
   }
 }
 @media screen and (min-width: 1400px) {
   .grid_view {
-    grid-template-columns: repeat(6, auto);
+    grid-template-columns: auto auto auto auto auto auto;
   }
   .grid_view img {
-    height: calc(100vw / 5);
+    width: 14vw !important;
+    height: calc(100vw / 5) !important;
   }
 }

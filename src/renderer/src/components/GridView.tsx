@@ -5,7 +5,9 @@ export default function GridView({ children }: { children: React.ReactNode }): J
   return (
     <div className="grid_view">
       {children}
-      <span className="grid_view_end">END</span>
+      <span className="grid_view_end">
+        <i className="fa-solid fa-atom" style={{ fontSize: '14pt' }}></i>
+      </span>
     </div>
   )
 }

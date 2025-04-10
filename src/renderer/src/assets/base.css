@@ -29,10 +29,12 @@ body {
 
   ::-webkit-scrollbar-track {
     background: var(--color-opacity-02); /* 滚动条滑块的背景色 */
+    box-shadow: var(--border-show-inset);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--color-one); /* 滚动条轨道的背景色 */
+    background: var(--color-text-1); /* 滚动条轨道的背景色 */
+    /* box-shadow: var(--border-show); */
   }
 
   ::-webkit-scrollbar-thumb:hover {

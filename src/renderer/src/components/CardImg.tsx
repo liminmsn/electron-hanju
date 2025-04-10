@@ -1,18 +1,19 @@
+import { VideItem } from '@renderer/net/net'
 import './css/card.css'
 import React, { ReactNode } from 'react'
 
 interface CardProps {
-  url: string
+  item: VideItem
   children?: ReactNode
 }
 
-export default function CardImg({ url, children }: CardProps): JSX.Element {
+export default function CardImg({ item, children }: CardProps): JSX.Element {
   const imgStyle: React.CSSProperties = {
-    width: '100%',
-    objectFit: 'cover',
-    borderRadius: '8px',
+    borderRadius: '0pt',
     boxShadow: 'var(--border-show)',
-    transition: 'transform 0.2s'
+    transition: 'transform 0.2s',
+    backgroundSize: '100%',
+    backgroundImage: item.bg
   }
   const labelStyle: React.CSSProperties = {
     textShadow: 'var(--border-show)'
@@ -20,9 +21,9 @@ export default function CardImg({ url, children }: CardProps): JSX.Element {
 
   return (
     <div className="card_img">
-      <img style={imgStyle} src={url} alt="" />
+      <img style={imgStyle} alt="" />
       <div className="title" style={labelStyle}>
-        我们的约定
+        {item.title}
       </div>
       <p className="disc" style={labelStyle}>
         导演、小杨、李妹

@@ -13,7 +13,7 @@ export class YNet {
       console.log('', error)
     }
   }
-  getData(url: string) {
+  private getData(url: string) {
     return new Promise((resole: (val: string) => void) => {
       let body = ''
       const req = get(url, (res) => {
@@ -31,6 +31,24 @@ export class YNet {
     const body = await this.getData(url)
     const dom = new JSDOM(body)
     const document = dom.window.document
-    return document.textContent
+    const ulBox = document.getElementsByClassName('myui-vodlist')[0]
+    const dataList: object[] = []
+    Array.from(ulBox.children).filter((item) => {
+      const obj = item.children[0].children[0]
+      const title = obj.getAttribute('title')
+      const bg = obj.getAttribute('style')?.replaceAll('background:', '').replaceAll(';', '')
+      const href = obj.getAttribute('href')
+      dataList.push({
+        title,
+        bg,
+        href,
+        pic: {
+          one: obj.getElementsByClassName('pic-tag')[0].textContent?.replaceAll(' ', ''),
+          two: obj.getElementsByClassName('pic-text')[0].textContent
+        }
+      })
+    })
+    // console.log('123')
+    return JSON.stringify(dataList)
   }
 }
