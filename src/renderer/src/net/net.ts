@@ -1,10 +1,11 @@
-import { NetBase } from './interface/net_base'
+import { NetBase } from './base/net_base'
 import { NetApi } from './net_api'
 
-export class NetHome implements NetBase {
-  getData() {
-    window.electron.ipcRenderer.invoke('get', NetApi.getURi(NetApi.HANJU)).then((val) => {
-      console.log(val)
+type PromisteRes = (val: object) => void
+export class NetHanJu extends NetBase {
+  start(): Promise<object> {
+    return new Promise((res: PromisteRes) => {
+      this.get(NetBase.HANJU, NetApi.getURi(NetApi.HANJU)).then((res_: object) => res(res_))
     })
   }
 }

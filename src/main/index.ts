@@ -6,6 +6,8 @@ import { YNet } from './net/ynet'
 import { TitleBar } from './titlebar'
 
 function createWindow(): void {
+  //本地通讯网络请求
+  new YNet()
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     minWidth: 900,
@@ -34,8 +36,6 @@ function createWindow(): void {
     mainWindow.show()
     //扩展出去win对象的其它操作
     new TitleBar()
-    //本地通讯网络请求
-    new YNet()
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {

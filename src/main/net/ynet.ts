@@ -1,7 +1,6 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron'
 import { get } from 'node:https'
-// import { JSDOM } from 'jsdom'
-// import { writeFile } from 'node:fs'
+import { JSDOM } from 'jsdom'
 
 export class YNet {
   constructor() {
@@ -9,54 +8,29 @@ export class YNet {
     // IPC test
     try {
       ipcMain.on('ping', () => console.log('pong'))
-      ipcMain.handle('get', this.get)
+      ipcMain.handle('get_hanju', this.getHanju.bind(this))
     } catch (error) {
       console.log('', error)
     }
   }
-
-  async get(_e: IpcMainInvokeEvent, url: string) {
-    return new Promise((resole, reject) => {
-      let body: string = ''
-
-      const req = get(url, async function (res) {
-        console.log('statusCode:', res.statusCode)
-        console.log('headers:', res.headers)
-
+  getData(url: string) {
+    return new Promise((resole: (val: string) => void) => {
+      let body = ''
+      const req = get(url, (res) => {
         res.on('data', (chunk: Uint8Array) => {
           body += chunk.toString()
         })
-
-        res.on('end', () => {
-          resole(body)
-          // writeFile('./test.html', body, (err) => {
-          //   if (err) {
-          //     console.error(err)
-          //     return
-          //   }
-          //   // file written successfully
-          //   console.log('file written successfully')
-          // })
-          // // 创建一个虚拟的 DOM 环境
-          // const dom = new JSDOM(body)
-          // // 获取文档对象
-          // const document = dom.window.document
-          // // 操作 DOM
-          // const arr = Array.from(document.querySelectorAll('.myui-panel_bd')).map((item) => item)
-          // arr.forEach((item) => {
-          //   const item_ = item.getElementsByClassName('clearfix')[0]
-          //   if (item_ != null) {
-          //     resole(
-          //       JSON.stringify(
-          //         Array.from(item_.getElementsByTagName('a')).map((a) => a.style.backgroundImage)
-          //       )
-          //     )
-          //   }
-          // })
-          // resole(arr)
-        })
+        res.on('end', () => resole(body.toString()))
+        res.on('error', (e) => resole(JSON.stringify(e)))
       })
-      req.on('error', (e) => reject(e))
+      req.end()
     })
+  }
+
+  async getHanju(_e: IpcMainInvokeEvent, url: string) {
+    const body = await this.getData(url)
+    const dom = new JSDOM(body)
+    const document = dom.window.document
+    return document.textContent
   }
 }
