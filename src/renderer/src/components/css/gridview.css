@@ -1,6 +1,6 @@
 .grid_view {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   max-height: 100vh;
   overflow-y: scroll;
   cursor: pointer;
@@ -8,10 +8,7 @@
   padding: 1.5vh;
   user-select: none;
 }
-.grid_view img:active {
-  -webkit-user-drag: none;
-  transform: scale(0.95);
-}
+
 .grid_view_end {
   color: var(--color-opacity-02);
   grid-column: 1 / -1;
@@ -27,38 +24,34 @@
 
 @media screen and (max-width: 1000px) {
   .grid_view {
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   .grid_view img {
-    width: 18vw;
     height: calc(100vw / 4);
   }
 }
 
 @media screen and (min-width: 901px) {
   .grid_view {
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   .grid_view img {
-    width: 20vw;
     height: calc(100vw / 4);
   }
 }
 @media screen and (min-width: 1200px) {
   .grid_view {
-    grid-template-columns: auto auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
   .grid_view img {
-    width: 16vw;
     height: calc(100vw / 5);
   }
 }
 @media screen and (min-width: 1400px) {
   .grid_view {
-    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
-  .grid_view img {
-    width: 14vw !important;
+  .grid_view .card_img_card {
     height: calc(100vw / 5) !important;
   }
 }

@@ -9,11 +9,10 @@ interface CardProps {
 
 export default function CardImg({ item, children }: CardProps): JSX.Element {
   const imgStyle: React.CSSProperties = {
-    borderRadius: '0pt',
+    borderRadius: '6pt',
     boxShadow: 'var(--border-show)',
     transition: 'transform 0.2s',
-    backgroundSize: '100%',
-    backgroundImage: item.bg
+    backgroundSize: '100% 100%'
   }
   const labelStyle: React.CSSProperties = {
     textShadow: 'var(--border-show)'
@@ -21,7 +20,11 @@ export default function CardImg({ item, children }: CardProps): JSX.Element {
 
   return (
     <div className="card_img">
-      <img style={imgStyle} alt="" />
+      <div className="card_img_card">
+        <span className="card_img_one">{item.pic.one}</span>
+        <span className="card_img_two">{item.pic.two}</span>
+        <img style={imgStyle} src={item.bg.replace('url(', '').replace(')', '')} alt="" />
+      </div>
       <div className="title" style={labelStyle}>
         {item.title}
       </div>
