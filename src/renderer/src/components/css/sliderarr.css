@@ -13,7 +13,8 @@
   border-radius: 2pt;
   color: var(--color-text-1);
   background-color: var(--color-two);
-  box-shadow: var(--border-show-inset);
+  box-shadow: var(--border-show);
+  animation: sliderItemSelect 250ms ease-in-out;
 }
 
 .sliderItem i {
@@ -25,4 +26,17 @@
 .sliderItemSelect i,
 .sliderItemSelect span {
   text-shadow: var(--border-show);
+}
+
+@keyframes sliderItemSelect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+  
 }
