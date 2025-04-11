@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react'
 import { NetBase } from './base/net_base'
 import { NetApi } from './net_api'
 
@@ -19,5 +20,8 @@ export class NetHanJu extends NetBase {
         res(JSON.parse(res_) as VideItem[])
       )
     })
+  }
+  static getData(setState: Dispatch<SetStateAction<VideItem[]>>) {
+    new NetHanJu().start().then((val) => setState(() => val))
   }
 }
