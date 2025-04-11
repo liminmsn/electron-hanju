@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from 'react'
 import { NetBase } from './base/net_base'
 import { NetApi } from './net_api'
 
@@ -12,16 +11,12 @@ export interface VideItem {
   }
 }
 
-type PromisteRes = (val: VideItem[]) => void
 export class NetHanJu extends NetBase {
-  start(): Promise<VideItem[]> {
-    return new Promise((res: PromisteRes) => {
+  start() {
+    return new Promise((res: (val: VideItem[]) => void) => {
       this.get(NetBase.HANJU, NetApi.getURi(NetApi.HANJU)).then((res_: string) =>
-        res(JSON.parse(res_) as VideItem[])
+        res(JSON.parse(res_))
       )
     })
-  }
-  static getData(setState: Dispatch<SetStateAction<VideItem[]>>) {
-    new NetHanJu().start().then((val) => setState(() => val))
   }
 }
