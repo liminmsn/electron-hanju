@@ -8,7 +8,7 @@ export class YNet {
     // IPC test
     try {
       ipcMain.on('ping', () => console.log('pong'))
-      ipcMain.handle('get_hanju', this.getHanju.bind(this))
+      ipcMain.handle('get_video', this.getHanju.bind(this))
     } catch (error) {
       console.log('', error)
     }

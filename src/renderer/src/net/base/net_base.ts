@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 
 export abstract class NetBase {
-  static HANJU = '_hanju'
+  static Video = '_video'
   async get(cmd: string, url: string) {
     const _cmd = String('get').concat(cmd)
     return await window.electron.ipcRenderer.invoke(_cmd, url)

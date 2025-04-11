@@ -12,11 +12,35 @@ export interface VideItem {
 }
 
 export class NetHanJu extends NetBase {
+  public data: string = ''
   start() {
     return new Promise((res: (val: VideItem[]) => void) => {
-      this.get(NetBase.HANJU, NetApi.getURi(NetApi.HANJU)).then((res_: string) =>
-        res(JSON.parse(res_))
-      )
+      this.get(NetBase.Video, NetApi.getURi(NetApi.HANJU)).then((res_: string) => {
+        this.data = res_
+        res(JSON.parse(this.data))
+      })
+    })
+  }
+}
+export class NetDianYin extends NetBase {
+  public data: string = ''
+  start() {
+    return new Promise((res: (val: VideItem[]) => void) => {
+      this.get(NetBase.Video, NetApi.getURi(NetApi.DIANYIN)).then((res_: string) => {
+        this.data = res_
+        res(JSON.parse(this.data))
+      })
+    })
+  }
+}
+export class NetZongYi extends NetBase {
+  public data: string = ''
+  start() {
+    return new Promise((res: (val: VideItem[]) => void) => {
+      this.get(NetBase.Video, NetApi.getURi(NetApi.ZONGYI)).then((res_: string) => {
+        this.data = res_
+        res(JSON.parse(this.data))
+      })
     })
   }
 }

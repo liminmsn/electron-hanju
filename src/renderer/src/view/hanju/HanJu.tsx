@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 ///韩剧
 export default function HanJu(): JSX.Element {
   const [list, setList] = useState<VideItem[]>([])
-  useEffect(() => NetHanJu.getData<VideItem[]>(setList), [])
+  useEffect(() => new NetHanJu().getData<VideItem[]>(setList), [])
   return (
     <Loading loding={list.length > 0}>
       <GridView>
