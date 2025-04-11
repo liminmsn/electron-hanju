@@ -1,10 +1,12 @@
 import { Content } from 'antd/es/layout/layout'
 import { Route, Routes } from 'react-router'
 import { App, Layout } from 'antd'
-import Home from './view/home/Home'
 import TitleBar from './components/TitleBar'
 import SiderArr from './components/SiderArr'
 import About from './view/about/About'
+import HanJu from './view/hanju/HanJu'
+import DianYin from './view/dianyin/DianYin'
+import ZongYi from './view/zongyi/ZongYi'
 
 export default function AppMin() {
   const contentStyle: React.CSSProperties = {
@@ -25,7 +27,9 @@ export default function AppMin() {
         <Layout>
           <Content style={contentStyle}>
             <Routes>
-              <Route path="/" Component={Home}></Route>
+              <Route path="/" Component={HanJu}></Route>
+              <Route path="/dy" Component={DianYin}></Route>
+              <Route path="/zy" Component={ZongYi}></Route>
               <Route path="/about" Component={About}></Route>
             </Routes>
           </Content>

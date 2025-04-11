@@ -3,8 +3,8 @@ import GridView from '@renderer/components/GridView'
 import Loading from '@renderer/components/Loading'
 import { NetHanJu, VideItem } from '@renderer/net/net'
 import { useEffect, useState } from 'react'
-
-export default function Home(): JSX.Element {
+///韩剧
+export default function HanJu(): JSX.Element {
   const [list, setList] = useState<VideItem[]>([])
   useEffect(() => NetHanJu.getData(setList), [])
   return (

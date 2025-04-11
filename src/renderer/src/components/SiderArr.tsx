@@ -10,8 +10,8 @@ export default function SiderArr() {
   }
   const keyArr: KeyItem[] = [
     new KeyItem(<i className="fa-solid fa-circle-play"></i>, '韩剧', '/'),
-    new KeyItem(<i className="fa-solid fa-film"></i>, '电影', '/'),
-    new KeyItem(<i className="fa-solid fa-video"></i>, '综艺', '/'),
+    new KeyItem(<i className="fa-solid fa-film"></i>, '电影', '/dy'),
+    new KeyItem(<i className="fa-solid fa-video"></i>, '综艺', '/zy'),
     new KeyItem(<i className="fa-solid fa-circle-info"></i>, '关于', '/about')
   ]
   const [selectIdx, setSelectIdx] = useState(keyArr[0].label)
