@@ -10,15 +10,21 @@
 }
 
 .grid_view_end {
-  color: var(--color-opacity-02);
   grid-column: 1 / -1;
   text-align: center;
   font-weight: bold;
-  padding-bottom: 5vh;
-  &::before,
-  &::after {
-    padding: 4pt;
-    content: '--';
+  padding-block-start: 2vh;
+  padding-block-end: 8vh;
+}
+.grid_view_end > i {
+  animation: grid_view_end 10s linear infinite;
+}
+@keyframes grid_view_end {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(-360deg);
   }
 }
 

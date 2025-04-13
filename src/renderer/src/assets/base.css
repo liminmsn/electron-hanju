@@ -15,13 +15,12 @@ body {
 }
 
 :root {
-  --border-show: 1px 1px 2pt #0000001f;
-  --border-show-inset: 1px 1px 2pt #0000001f inset;
   --color-one: #328e6e;
   --color-two: #67ae6e;
-  --color-opacity-02: 90C67C;
   --color-text-1: #e1eebc;
-  /* 自定义滚动条的样式 */
+  --border-show: 1px 1px 2pt #0000001f;
+  --border-show-inset: 1px 1px 2pt #0000001f inset;
+  --color-opacity-02: #90C67C;
   /* WebKit浏览器 */
   ::-webkit-scrollbar {
     width: 4pt; /* 滚动条宽度 */
@@ -39,5 +38,22 @@ body {
 
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-two); /* 滚动条滑块鼠标悬停时的背景色 */
+  }
+}
+/* 以下是重写andt组件样式 */
+.ant-segmented {
+  background-color: var(--color-two) !important;
+}
+
+.ant-segmented-thumb,
+.ant-segmented-item-selected {
+  background-color: var(--color-one) !important;
+}
+
+.ant-btn {
+  background-color: var(--color-one) !important;
+  border-color: var(--color-one);
+  &:hover {
+    border-color: var(--color-text-1) !important;
   }
 }

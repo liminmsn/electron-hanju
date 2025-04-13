@@ -6,12 +6,14 @@ import { Link } from 'react-router'
 export default function SiderArr() {
   const siderStyle: React.CSSProperties = {
     background: 'var(--color-one)',
-    boxShadow: 'var(--border-show)'
+    boxShadow: 'var(--border-show)',
+    position: 'relative'
   }
   const keyArr: KeyItem[] = [
     new KeyItem(<i className="fa-solid fa-circle-play"></i>, '韩剧', '/'),
     new KeyItem(<i className="fa-solid fa-film"></i>, '电影', '/dy'),
     new KeyItem(<i className="fa-solid fa-video"></i>, '综艺', '/zy'),
+    new KeyItem(<i className="fa-solid fa-gear"></i>, '设置', '/setting'),
     new KeyItem(<i className="fa-solid fa-circle-info"></i>, '关于', '/about')
   ]
   const [selectIdx, setSelectIdx] = useState(keyArr[0].label)

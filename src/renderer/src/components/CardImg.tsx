@@ -1,6 +1,6 @@
 import { VideItem } from '@renderer/net/net'
-import './css/card.css'
 import React, { ReactNode } from 'react'
+import './css/card.css'
 
 interface CardProps {
   item: VideItem
@@ -14,9 +14,6 @@ export default function CardImg({ item, children }: CardProps): JSX.Element {
     transition: 'transform 0.2s',
     backgroundSize: '100% 100%'
   }
-  const labelStyle: React.CSSProperties = {
-    textShadow: 'var(--border-show)'
-  }
 
   return (
     <div className="card_img">
@@ -25,12 +22,8 @@ export default function CardImg({ item, children }: CardProps): JSX.Element {
         <span className="card_img_two">{item.pic.two}</span>
         <img style={imgStyle} src={item.bg.replace('url(', '').replace(')', '')} alt="" />
       </div>
-      <div className="title" style={labelStyle}>
-        {item.title}
-      </div>
-      <p className="disc" style={labelStyle}>
-        导演、小杨、李妹
-      </p>
+      <div className="title">{item.title}</div>
+      <p className="disc">导演、小杨、李妹</p>
       {children}
     </div>
   )
