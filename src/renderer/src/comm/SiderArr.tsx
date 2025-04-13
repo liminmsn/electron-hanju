@@ -7,7 +7,7 @@ export default function SiderArr() {
   const siderStyle: React.CSSProperties = {
     background: 'var(--color-two)',
     boxShadow: 'var(--border-show)',
-    borderTopRightRadius: '4pt'
+    borderTopRightRadius: '8pt'
   }
   const keyArr: KeyItem[] = [
     new KeyItem(<i className="fa-solid fa-circle-play"></i>, '韩剧', '/'),

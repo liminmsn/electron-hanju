@@ -1,5 +1,11 @@
 import { Theme, ThemeColor } from '@renderer/theme/Theme'
 import { Segmented } from 'antd'
+import React from 'react'
+
+const labelStyle: React.CSSProperties = {
+  fontFamily: 'ZiKuXingQiuFeiYangTi',
+  textShadow: 'var(--border-show)'
+}
 
 export default function Setting() {
   function setCssProperty(key: string) {
@@ -8,7 +14,9 @@ export default function Setting() {
   const themeArr = {
     薄荷绿: ThemeColor.Green,
     活力黄: ThemeColor.Yellow,
-    蓝色: ThemeColor.Blue
+    蓝色: ThemeColor.Blue,
+    紫色: ThemeColor.Purple,
+    红色: ThemeColor.Red
   }
   //初始化idx值
   const index_key = (function () {
@@ -24,7 +32,7 @@ export default function Setting() {
   })()
   return (
     <div style={{ padding: '5vh' }}>
-      <span>主题颜色</span>&nbsp;&nbsp;
+      <span style={labelStyle}>主题颜色</span>&nbsp;&nbsp;
       <Segmented
         defaultValue={index_key}
         options={Object.keys(themeArr)}
