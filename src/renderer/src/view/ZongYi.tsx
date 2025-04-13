@@ -1,7 +1,7 @@
 import CardImg from '@renderer/components/CardImg'
 import GridView from '@renderer/components/GridView'
 import Loading from '@renderer/components/Loading'
-import { VideItem, NetZongYi } from '@renderer/net/net'
+import { VideItem, NetZongYi } from '@renderer/network/net'
 import { useState, useEffect } from 'react'
 
 export default function ZongYi() {

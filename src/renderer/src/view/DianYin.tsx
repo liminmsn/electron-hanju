@@ -1,7 +1,7 @@
 import CardImg from '@renderer/components/CardImg'
 import GridView from '@renderer/components/GridView'
 import Loading from '@renderer/components/Loading'
-import { VideItem, NetDianYin } from '@renderer/net/net'
+import { VideItem, NetDianYin } from '@renderer/network/net'
 import { useState, useEffect } from 'react'
 
 ///电影

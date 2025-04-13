@@ -1,4 +1,4 @@
-import { VideItem } from '@renderer/net/net'
+import { VideItem } from '@renderer/network/net'
 import React, { ReactNode } from 'react'
 import './css/card.css'
 

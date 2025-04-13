@@ -1,22 +1,25 @@
 import { IpcRendererEvent } from 'electron'
 import { useEffect, useState } from 'react'
 import './css/titlebar.css'
+import { GlobalEvents } from '@renderer/core/GlobalEvents'
 
 export default function TitleBar() {
   //更改标题栏的全屏小化按钮
   const [expand, setExpand] = useState(false)
-  useEffect(() => {
-    //监听全名状态变化
-    window.electron.ipcRenderer.on('fa-expand', (_e: IpcRendererEvent, bol) => {
-      setExpand(bol)
-    })
-  })
   //顶部右上方的按钮
   const btns: string[] = ['fa-minus', 'fa-expand', 'fa-xmark']
   //按钮点击调用electron
   function onitleBtnClick(key: string) {
     window.electron.ipcRenderer.send('titlebar', key)
   }
+  const [iptLabel, setIptLabel] = useState('...')
+  useEffect(() => {
+    //监听全名状态变化
+    window.electron.ipcRenderer.on('fa-expand', (_e: IpcRendererEvent, bol) => {
+      setExpand(bol)
+    })
+    GlobalEvents.on('titlebar_ipt_label', (label: string) => setIptLabel(label))
+  }, [])
 
   return (
     <div className="titleBar" style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -26,7 +29,7 @@ export default function TitleBar() {
       <div className="drop">
         <div className="not">
           <i className="fa-solid fa-magnifying-glass"></i>&nbsp;
-          <input type="text" placeholder="搜索韩剧" />
+          <input type="text" placeholder={String('搜索').concat(iptLabel)} />
         </div>
       </div>
       <div className="btns">

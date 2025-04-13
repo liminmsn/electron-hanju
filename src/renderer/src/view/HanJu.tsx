@@ -1,7 +1,7 @@
 import CardImg from '@renderer/components/CardImg'
 import GridView from '@renderer/components/GridView'
 import Loading from '@renderer/components/Loading'
-import { NetHanJu, VideItem } from '@renderer/net/net'
+import { NetHanJu, VideItem } from '@renderer/network/net'
 import { useEffect, useState } from 'react'
 ///韩剧
 export default function HanJu(): JSX.Element {

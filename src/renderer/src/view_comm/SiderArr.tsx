@@ -1,7 +1,8 @@
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import Sider from 'antd/es/layout/Sider'
 import './css/sliderarr.css'
 import { Link } from 'react-router'
+import { GlobalEvents } from '@renderer/core/GlobalEvents'
 
 export default function SiderArr() {
   const siderStyle: React.CSSProperties = {
@@ -17,11 +18,14 @@ export default function SiderArr() {
     new KeyItem(<i className="fa-solid fa-circle-info"></i>, '关于', '/about')
   ]
   const [selectIdx, setSelectIdx] = useState(keyArr[0].label)
-
   //打开路由
   function ondownItem(item: KeyItem) {
     setSelectIdx(item.label)
+    GlobalEvents.send('titlebar_ipt_label', item.label)
   }
+  useEffect(() => {
+    GlobalEvents.send('titlebar_ipt_label', selectIdx)
+  }, [])
   return (
     <div style={{ display: 'flex', background: 'var(--color-one)' }}>
       <Sider width={140} style={siderStyle}>
