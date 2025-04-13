@@ -14,16 +14,19 @@ export class YNet {
     }
   }
   private getData(url: string) {
-    return new Promise((resole: (val: string) => void) => {
+    return new Promise((resole: (val: string) => void, reject) => {
       let body = ''
-      const req = get(url, (res) => {
-        res.on('data', (chunk: Uint8Array) => {
-          body += chunk.toString()
+      try {
+        const req = get(url, (res) => {
+          res.on('data', (chunk: Uint8Array) => {
+            body += chunk.toString()
+          })
+          res.on('end', () => resole(body.toString()))
         })
-        res.on('end', () => resole(body.toString()))
-        res.on('error', (e) => resole(JSON.stringify(e)))
-      })
-      req.end()
+        req.end()
+      } catch (error) {
+        reject(error)
+      }
     })
   }
 
@@ -31,6 +34,7 @@ export class YNet {
     const body = await this.getData(url)
     const dom = new JSDOM(body)
     const document = dom.window.document
+    //视频列表
     const ulBox = document.getElementsByClassName('myui-vodlist')[0]
     const dataList: object[] = []
     Array.from(ulBox.children).filter((item) => {
@@ -52,7 +56,21 @@ export class YNet {
         })
       })
     })
-    // console.log('123')
-    return JSON.stringify(dataList)
+    //搜索热搜列表
+    const host = document.getElementsByClassName('search-dropdown-hot')[0].children[0]
+    const host_list: any[] = []
+    Array.from(host.children).forEach((item) => {
+      if (item.children.length > 0) {
+        host_list.push({
+          label: item.children[0].getAttribute('title'),
+          url: item.children[0].getAttribute('href')
+        })
+      }
+    })
+
+    return JSON.stringify({
+      video_list: dataList,
+      host_list: host_list
+    })
   }
 }

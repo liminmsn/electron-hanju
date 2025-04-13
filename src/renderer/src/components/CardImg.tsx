@@ -1,9 +1,9 @@
-import { VideItem } from '@renderer/network/net'
+import { VidoeList } from '@renderer/network/net'
 import React, { ReactNode } from 'react'
 import './css/card.css'
 
 interface CardProps {
-  item: VideItem
+  item: VidoeList
   children?: ReactNode
 }
 

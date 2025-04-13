@@ -1,12 +1,12 @@
 import CardImg from '@renderer/components/CardImg'
 import GridView from '@renderer/components/GridView'
 import Loading from '@renderer/components/Loading'
-import { VideItem, NetDianYin } from '@renderer/network/net'
+import { NetDianYin, VidoeList } from '@renderer/network/net'
 import { useState, useEffect } from 'react'
 
 ///电影
 export default function DianYin() {
-  const [list, setList] = useState<VideItem[]>([])
+  const [list, setList] = useState<VidoeList[]>([])
   useEffect(() => new NetDianYin().getData(setList), [])
   return (
     <Loading loding={list.length > 0}>

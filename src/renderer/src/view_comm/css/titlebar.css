@@ -41,6 +41,7 @@
   height: inherit;
   display: flex;
   justify-content: center;
+  position: relative;
 }
 
 .drop .not,
@@ -59,4 +60,55 @@
   text-shadow: var(--border-show);
   display: flex;
   align-items: center;
+}
+
+.drop .host_list {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: var(--color-one);
+  border-radius: 4pt;
+  top: 100%;
+  padding: 4pt;
+  width: 60%;
+  z-index: 2;
+  box-shadow: var(--border-show);
+}
+.drop .host_list_focus {
+  display: flex;
+  animation: host_list 250ms ease;
+}
+
+@keyframes host_list {
+  from {
+    opacity: 0;
+    top: 0;
+  }
+  to {
+    top: 100%;
+    opacity: 1;
+  }
+}
+
+.drop .host_list p {
+  margin-block: 2pt;
+  cursor: pointer;
+}
+.drop .host_list p:nth-child(1) span {
+  background-color: red;
+}
+.drop .host_list p:nth-child(2) span {
+  background-color: orange;
+}
+.drop .host_list p:nth-child(3) span {
+  background-color: yellow;
+}
+.drop .host_list p span {
+  display: inline-block;
+  min-width: 20pt;
+  margin-right: 4pt;
+  text-align: center;
+  border-radius: 2pt;
+  background-color: var(--color-two);
 }

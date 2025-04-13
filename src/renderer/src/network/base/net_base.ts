@@ -9,6 +9,8 @@ export abstract class NetBase {
   //子类实现
   abstract start(): Promise<any>
   getData<T>(setState: Dispatch<SetStateAction<T>>) {
-    this.start().then((val: T) => setState(() => val))
+    this.start().then((val: T) => {
+      setState(() => val)
+    })
   }
 }
