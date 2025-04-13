@@ -10,9 +10,11 @@ export default function Loading({ loding, children }: ParentComponentProps) {
     width: '100%',
     height: '80%',
     display: 'flex',
+    gap: '12pt',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    fontFamily: 'ZiKuXingQiuFeiYangTi'
   }
   return (
     <>
@@ -21,6 +23,7 @@ export default function Loading({ loding, children }: ParentComponentProps) {
       ) : (
         <div style={divStyle}>
           <Spin size="large" />
+          <span>加载中。。。</span>
         </div>
       )}
     </>
