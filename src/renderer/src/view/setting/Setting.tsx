@@ -4,7 +4,9 @@ import React from 'react'
 
 const labelStyle: React.CSSProperties = {
   fontFamily: 'ZiKuXingQiuFeiYangTi',
-  textShadow: 'var(--border-show)'
+  textShadow: 'var(--border-show)',
+  display: 'inline-block',
+  width: '6vw'
 }
 
 export default function Setting() {

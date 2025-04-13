@@ -63,21 +63,49 @@
 }
 
 .drop .host_list {
-  display: none;
   position: absolute;
-  flex-direction: column;
+  display: none;
   box-sizing: border-box;
   background-color: var(--color-one);
+  box-shadow: var(--border-show);
   border-radius: 4pt;
-  top: 100%;
   padding: 4pt;
   width: 60%;
+  top: 100%;
   z-index: 2;
-  box-shadow: var(--border-show);
 }
 .drop .host_list_focus {
   display: flex;
-  animation: host_list 250ms ease;
+  flex-direction: column;
+  animation: host_list 50ms ease-out;
+}
+
+.drop .host_list p {
+  margin-block: 2pt;
+  height: 16pt;
+  cursor: pointer;
+}
+.drop .host_list p span:first-child {
+  display: inline-block;
+  width: 20pt;
+  border-radius: 2pt;
+  text-align: center;
+  background-color: var(--color-two);
+}
+
+.drop .host_list p span:last-child {
+  height: 16pt;
+  margin-left: 4pt;
+}
+
+.drop .host_list p:nth-child(1) span:first-child {
+  background-color: red;
+}
+.drop .host_list p:nth-child(2) span:first-child {
+  background-color: orange;
+}
+.drop .host_list p:nth-child(3) span:first-child {
+  background-color: yellow;
 }
 
 @keyframes host_list {
@@ -86,29 +114,7 @@
     top: 0;
   }
   to {
-    top: 100%;
     opacity: 1;
+    top: 100%;
   }
-}
-
-.drop .host_list p {
-  margin-block: 2pt;
-  cursor: pointer;
-}
-.drop .host_list p:nth-child(1) span {
-  background-color: red;
-}
-.drop .host_list p:nth-child(2) span {
-  background-color: orange;
-}
-.drop .host_list p:nth-child(3) span {
-  background-color: yellow;
-}
-.drop .host_list p span {
-  display: inline-block;
-  min-width: 20pt;
-  margin-right: 4pt;
-  text-align: center;
-  border-radius: 2pt;
-  background-color: var(--color-two);
 }

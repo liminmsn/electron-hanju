@@ -1,5 +1,5 @@
 import { IpcRendererEvent } from 'electron'
-import { KeyboardEventHandler, SyntheticEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './css/titlebar.css'
 import { GlobalEvents } from '@renderer/core/GlobalEvents'
 import { HostList } from '@renderer/network/net'
@@ -45,16 +45,20 @@ export default function TitleBar() {
           />
         </div>
         {/* 下拉推荐列表 */}
-        <div className={down ? 'host_list host_list_focus' : 'host_list'}>
-          {hostList.map((item, idx) => {
-            return (
-              <p key={item.label}>
-                <span>{idx + 1}</span>
-                {item.label}
-              </p>
-            )
-          })}
-        </div>
+        {down && hostList.length > 0 ? (
+          <div className="host_list host_list_focus">
+            {hostList.map((item, idx) => {
+              return (
+                <p key={idx}>
+                  <span>{idx + 1}</span>
+                  <span>{item.label}</span>
+                </p>
+              )
+            })}
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
       {/* 小化全屏关闭 */}
       <div className="btns">
