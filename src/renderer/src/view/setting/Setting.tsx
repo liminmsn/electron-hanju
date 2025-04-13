@@ -33,18 +33,18 @@ export default function Setting() {
     return Object.keys(themeArr)[0]
   })()
   return (
-    <div style={{ padding: '5vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ paddingLeft: '2vh', display: 'flex', flexDirection: 'column' }}>
       <div>
-        <span style={labelStyle}>主题颜色</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span style={labelStyle}>主题颜色</span>&nbsp;
         <Segmented
           defaultValue={index_key}
           options={Object.keys(themeArr)}
           onChange={setCssProperty}
         />
       </div>
-      <br />
+      <div style={{ height: '8pt' }}></div>
       <div>
-        <span style={labelStyle}>储存</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span style={labelStyle}>储存</span>&nbsp;
         <Button>清空缓存</Button>
       </div>
     </div>

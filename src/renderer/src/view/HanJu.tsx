@@ -16,7 +16,7 @@ export default function HanJu(): JSX.Element {
   })
   return (
     <Loading loding={list.length > 0}>
-      {siftList.map((sift, idx) => {
+      {siftList.slice(1).map((sift, idx) => {
         return <SiftSeg key={idx} siftList={sift} />
       })}
       <GridView>
