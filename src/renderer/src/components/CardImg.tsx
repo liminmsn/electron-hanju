@@ -23,7 +23,13 @@ export default function CardImg({ item, children }: CardProps): JSX.Element {
         <img style={imgStyle} src={item.bg.replace('url(', '').replace(')', '')} />
       </div>
       <div className="title">{item.title}</div>
-      <p className="disc">导演、小杨、李妹</p>
+      {item.actor.map((item_) => {
+        return (
+          <span key={item_.url} className="disc">
+            {item_.name}
+          </span>
+        )
+      })}
       {children}
     </div>
   )

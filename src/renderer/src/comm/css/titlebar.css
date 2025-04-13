@@ -27,11 +27,12 @@
   height: inherit;
 }
 
-.title {
+.titleBar .title {
   padding-left: 8pt;
   font-size: 14pt;
   font-weight: bolder;
   text-shadow: var(--border-show);
+  font-family: 'ZiKuXingQiuFeiYangTi', sans-serif;
 }
 
 .drop {

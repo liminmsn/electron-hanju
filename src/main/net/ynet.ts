@@ -8,7 +8,7 @@ export class YNet {
     // IPC test
     try {
       ipcMain.on('ping', () => console.log('pong'))
-      ipcMain.handle('get_video', this.getHanju.bind(this))
+      ipcMain.handle('get_video', this.getVideo.bind(this))
     } catch (error) {
       console.log('', error)
     }
@@ -27,7 +27,7 @@ export class YNet {
     })
   }
 
-  async getHanju(_e: IpcMainInvokeEvent, url: string) {
+  async getVideo(_e: IpcMainInvokeEvent, url: string) {
     const body = await this.getData(url)
     const dom = new JSDOM(body)
     const document = dom.window.document
@@ -35,6 +35,7 @@ export class YNet {
     const dataList: object[] = []
     Array.from(ulBox.children).filter((item) => {
       const obj = item.children[0].children[0]
+      const obj_2 = item.children[0].children[1]
       const title = obj.getAttribute('title')
       const bg = obj.getAttribute('style')?.replaceAll('background:', '').replaceAll(';', '')
       const href = obj.getAttribute('href')
@@ -45,7 +46,10 @@ export class YNet {
         pic: {
           one: obj.getElementsByClassName('pic-tag')[0].textContent?.replaceAll(' ', ''),
           two: obj.getElementsByClassName('pic-text')[0].textContent
-        }
+        },
+        actor: Array.from(obj_2.children[1].children).map((item) => {
+          return { name: item.textContent, url: item.getAttribute('href') }
+        })
       })
     })
     // console.log('123')

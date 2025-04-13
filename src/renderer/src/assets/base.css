@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'ZiKuXingQiuFeiYangTi'; /* 自定义字体名称 */
+  src: url('./fonts/ZiKuXingQiuFeiYangTi-2.ttf') format('truetype'); /* 字体文件路径和格式 */
+}
+
 ul {
   list-style: none;
   padding-left: 0;

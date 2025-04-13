@@ -7,6 +7,7 @@
   -webkit-user-drag: none;
   cursor: pointer;
   color: var(--color-text-1);
+  font-family: 'ZiKuXingQiuFeiYangTi', sans-serif;
 }
 
 .sliderItemSelect {
@@ -20,7 +21,7 @@
 .sliderItem i {
   width: 12pt;
   height: 12pt;
-  text-align: center;
+  text-align: center; 
   line-height: 1.2;
 }
 .sliderItemSelect i,

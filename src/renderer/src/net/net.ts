@@ -9,6 +9,10 @@ export interface VideItem {
     one: string
     two: string
   }
+  actor: Array<{
+    name: string
+    url: string
+  }>
 }
 
 export class NetHanJu extends NetBase {

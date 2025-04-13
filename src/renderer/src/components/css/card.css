@@ -24,6 +24,7 @@
 
 .card_img_card img {
   width: 100% !important;
+  cursor: pointer;
 }
 
 .card_img_one,
@@ -31,15 +32,17 @@
   position: absolute;
   top: 6pt;
   left: 6pt;
-  padding: 2pt;
+  padding: 3pt;
   font-size: 8pt;
-  background-color: var(--color-one);
+  border-radius: 1pt;
+  background-color: var(--color-two);
 }
 .card_img_two {
+  font-weight: bolder;
   background-color: var(--color-two);
-  right: -10%;
+  right: -3vw;
   bottom: 4pt;
-  width: 40%;
+  width: 9vw;
   transform: rotate(-45deg);
   top: auto;
   left: auto;
@@ -47,13 +50,12 @@
 
 .card_img {
   width: 100% !important;
-  cursor: 'pointer';
   text-align: center;
 }
 
 .card_img .title {
   font-size: 14pt;
-  line-height: 2;
+  line-height: 1.8;
   font-weight: bold;
   color: var(--text-color);
   text-align: center;
@@ -62,9 +64,11 @@
   text-shadow: var(--border-show);
 }
 .card_img .disc {
-  line-height: 1.5;
+  cursor: pointer;
+  display: inline-block;
   color: var(--text-color);
-  opacity: 0.7;
-  margin: 0;
   text-shadow: var(--border-show);
+  font-size: 10pt;
+  opacity: 0.8;
+  margin-right: 2pt;
 }

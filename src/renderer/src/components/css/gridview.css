@@ -3,7 +3,6 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   max-height: 100vh;
   overflow-y: scroll;
-  cursor: pointer;
   gap: 1.5vh;
   padding: 1.5vh;
   user-select: none;
