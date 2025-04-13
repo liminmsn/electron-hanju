@@ -19,7 +19,7 @@ export default function Loading({ loding, children }: ParentComponentProps) {
   return (
     <>
       {loding ? (
-        children
+        <div style={{ display: 'flex', flexDirection: 'column' }}>{children}</div>
       ) : (
         <div style={divStyle}>
           <Spin size="large" />

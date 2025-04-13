@@ -3,6 +3,7 @@
   user-select: none;
   background-color: var(--color-two);
   box-shadow: var(--border-show);
+  margin-bottom: 8pt;
   height: 28pt;
 }
 

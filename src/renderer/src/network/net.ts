@@ -19,18 +19,25 @@ export interface HostList {
   label: string
   url: string
 }
+export interface SiftList {
+  value: string
+  label: string
+  active: boolean
+}
 export interface VideItem {
   video_list: VidoeList[]
   host_list: HostList[]
+  sift_list: SiftList[][]
 }
 
 export class NetHanJu extends NetBase {
   public data: string = ''
   start() {
-    return new Promise((res: (val: VideItem[]) => void) => {
+    return new Promise((res: (val: VideItem) => void) => {
       this.get(NetBase.Video, NetApi.getURi(NetApi.HANJU)).then((res_: string) => {
         this.data = res_
         GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list'])
+        GlobalEvents.send('view_sift_list', JSON.parse(this.data)['sift_list'])
         res(JSON.parse(this.data)['video_list'])
       })
     })
@@ -39,7 +46,7 @@ export class NetHanJu extends NetBase {
 export class NetDianYin extends NetBase {
   public data: string = ''
   start() {
-    return new Promise((res: (val: VideItem[]) => void) => {
+    return new Promise((res: (val: VidoeList[]) => void) => {
       this.get(NetBase.Video, NetApi.getURi(NetApi.DIANYIN)).then((res_: string) => {
         this.data = res_
         GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list'])
@@ -51,7 +58,7 @@ export class NetDianYin extends NetBase {
 export class NetZongYi extends NetBase {
   public data: string = ''
   start() {
-    return new Promise((res: (val: VideItem[]) => void) => {
+    return new Promise((res: (val: VidoeList[]) => void) => {
       this.get(NetBase.Video, NetApi.getURi(NetApi.ZONGYI)).then((res_: string) => {
         this.data = res_
         GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list'])

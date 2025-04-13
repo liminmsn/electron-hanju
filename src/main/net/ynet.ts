@@ -67,10 +67,23 @@ export class YNet {
         })
       }
     })
-
+    //年份
+    const siftList: any[] = []
+    Array.from(document.getElementsByClassName('myui-screen__list')).forEach((item) => {
+      const siftListItem: any[] = []
+      Array.from(item.getElementsByTagName('a')).forEach((item_) => {
+        siftListItem.push({
+          label: item_.textContent,
+          url: item_.getAttribute('href'),
+          active: item_.outerHTML
+        })
+      })
+      siftList.push(siftListItem)
+    })
     return JSON.stringify({
       video_list: dataList,
-      host_list: host_list
+      host_list: host_list,
+      sift_list: siftList
     })
   }
 }
