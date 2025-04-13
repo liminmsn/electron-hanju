@@ -74,8 +74,7 @@ export class YNet {
       Array.from(item.getElementsByTagName('a')).forEach((item_) => {
         siftListItem.push({
           label: item_.textContent,
-          url: item_.getAttribute('href'),
-          active: item_.outerHTML
+          value: item_.getAttribute('href')
         })
       })
       siftList.push(siftListItem)

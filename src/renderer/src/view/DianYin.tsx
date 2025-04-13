@@ -14,10 +14,16 @@ export default function DianYin() {
   GlobalEvents.on('view_sift_list', (val: any) => {
     setIftList(val)
   })
+  GlobalEvents.on('up_video_list', (val: any) => {
+    setList(val)
+  })
+  function onChange(val: string) {
+    return val
+  }
   return (
     <Loading loding={list.length > 0}>
       {siftList.slice(1).map((sift, idx) => {
-        return <SiftSeg key={idx} siftList={sift} />
+        return <SiftSeg key={idx} siftList={sift} onChange={onChange} />
       })}
       <GridView>
         {list.map((item) => {

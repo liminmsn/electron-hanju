@@ -14,16 +14,26 @@ export default function HanJu(): JSX.Element {
   GlobalEvents.on('view_sift_list', (val: any) => {
     setIftList(val)
   })
+  GlobalEvents.on('up_video_list', (val: any) => {
+    setList(val)
+  })
+  function onChange(val: string) {
+    setList([])
+    new NetHanJu().sift(val)
+    return val
+  }
   return (
-    <Loading loding={list.length > 0}>
+    <>
       {siftList.slice(1).map((sift, idx) => {
-        return <SiftSeg key={idx} siftList={sift} />
+        return <SiftSeg key={idx} siftList={sift} onChange={onChange} />
       })}
-      <GridView>
-        {list.map((item) => {
-          return <CardImg key={item.title} item={item} />
-        })}
-      </GridView>
-    </Loading>
+      <Loading loding={list.length > 0}>
+        <GridView>
+          {list.map((item) => {
+            return <CardImg key={item.title} item={item} />
+          })}
+        </GridView>
+      </Loading>
+    </>
   )
 }

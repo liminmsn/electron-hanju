@@ -28,7 +28,7 @@ export default function SiderArr() {
   }, [])
   return (
     <div style={{ display: 'flex', background: 'var(--color-two)' }}>
-      <Sider width={140} style={siderStyle}>
+      <Sider width={120} style={siderStyle}>
         {keyArr.map((item) => {
           return (
             <Link key={item.label} to={item.path}>
