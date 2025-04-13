@@ -13,7 +13,7 @@ import { Theme, ThemeColor } from './theme/Theme'
 
 export default function AppMain() {
   const contentStyle: React.CSSProperties = {
-    background: 'linear-gradient(var(--color-one), var(--color-two))'
+    background: 'linear-gradient(var(--color-two), var(--color-one))'
   }
 
   const layoutStyle: React.CSSProperties = {

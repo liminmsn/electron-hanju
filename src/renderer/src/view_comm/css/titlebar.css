@@ -52,11 +52,10 @@
   margin-inline: 20%;
   margin-block: 4pt;
   padding: 2pt 6pt;
-  /* font-size: 8pt; */
   flex: 1;
   overflow: hidden;
   background-color: var(--color-one);
-  box-shadow: var(--border-show-inset);
+  box-shadow: var(--border-show);
   text-shadow: var(--border-show);
   display: flex;
   align-items: center;

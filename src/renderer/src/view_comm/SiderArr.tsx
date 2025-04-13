@@ -8,7 +8,7 @@ export default function SiderArr() {
   const siderStyle: React.CSSProperties = {
     background: 'var(--color-two)',
     boxShadow: 'var(--border-show)',
-    borderTopRightRadius: '8pt'
+    borderTopRightRadius: '6pt'
   }
   const keyArr: KeyItem[] = [
     new KeyItem(<i className="fa-solid fa-circle-play"></i>, '韩剧', '/'),
@@ -27,7 +27,7 @@ export default function SiderArr() {
     GlobalEvents.send('titlebar_ipt_label', selectIdx)
   }, [])
   return (
-    <div style={{ display: 'flex', background: 'var(--color-one)' }}>
+    <div style={{ display: 'flex', background: 'var(--color-two)' }}>
       <Sider width={140} style={siderStyle}>
         {keyArr.map((item) => {
           return (
