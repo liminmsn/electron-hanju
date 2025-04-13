@@ -24,7 +24,10 @@ export default function TitleBar() {
         <span>好看韩剧3</span>
       </div>
       <div className="drop">
-        <div className="not">通知</div>
+        <div className="not">
+          <i className="fa-solid fa-magnifying-glass"></i>&nbsp;
+          <input type="text" placeholder="搜索韩剧" />
+        </div>
       </div>
       <div className="btns">
         {btns.map(function (item) {

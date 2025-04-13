@@ -11,7 +11,7 @@ import Setting from './view/setting/Setting'
 import { useEffect } from 'react'
 import { Theme, ThemeColor } from './theme/Theme'
 
-export default function AppMin() {
+export default function AppMain() {
   const contentStyle: React.CSSProperties = {
     background: 'linear-gradient(var(--color-one), var(--color-two))'
   }

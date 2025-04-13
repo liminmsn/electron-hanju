@@ -43,7 +43,9 @@
   justify-content: center;
 }
 
-.drop .not {
+.drop .not,
+.drop .not_two {
+  app-region: none;
   max-width: 600px;
   border-radius: 4pt;
   margin-inline: 20%;
@@ -55,4 +57,6 @@
   background-color: var(--color-one);
   box-shadow: var(--border-show-inset);
   text-shadow: var(--border-show);
+  display: flex;
+  align-items: center;
 }

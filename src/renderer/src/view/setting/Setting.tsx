@@ -1,5 +1,5 @@
 import { Theme, ThemeColor } from '@renderer/theme/Theme'
-import { Segmented } from 'antd'
+import { Button, Segmented } from 'antd'
 import React from 'react'
 
 const labelStyle: React.CSSProperties = {
@@ -31,13 +31,20 @@ export default function Setting() {
     return Object.keys(themeArr)[0]
   })()
   return (
-    <div style={{ padding: '5vh' }}>
-      <span style={labelStyle}>主题颜色</span>&nbsp;&nbsp;
-      <Segmented
-        defaultValue={index_key}
-        options={Object.keys(themeArr)}
-        onChange={setCssProperty}
-      />
+    <div style={{ padding: '5vh', display: 'flex', flexDirection: 'column' }}>
+      <div>
+        <span style={labelStyle}>主题颜色</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <Segmented
+          defaultValue={index_key}
+          options={Object.keys(themeArr)}
+          onChange={setCssProperty}
+        />
+      </div>
+      <br />
+      <div>
+        <span style={labelStyle}>储存</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <Button>清空缓存</Button>
+      </div>
     </div>
   )
 }

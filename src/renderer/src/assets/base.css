@@ -16,7 +16,7 @@ body {
   background: var(--color-one);
 }
 
-*{
+* {
   color: var(--color-text-1);
 }
 
@@ -46,6 +46,16 @@ body {
     background: var(--color-two); /* 滚动条滑块鼠标悬停时的背景色 */
   }
 }
+
+input {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+input::placeholder {
+  color: var(--color-two); /* 设置提示文本颜色为灰色 */
+}
 /* 以下是重写andt组件样式 */
 .ant-segmented {
   background-color: var(--color-two) !important;
@@ -57,7 +67,7 @@ body {
 }
 
 .ant-btn {
-  background-color: var(--color-one) !important;
+  background-color: var(--color-two) !important;
   border-color: var(--color-one);
   &:hover {
     border-color: var(--color-text-1) !important;

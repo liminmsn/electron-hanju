@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router'
-import App from './AppMin'
+import App from './AppMain'
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@renderer/assets/base.css'
 import { ConfigProvider } from 'antd'
