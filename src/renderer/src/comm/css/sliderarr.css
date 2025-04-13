@@ -10,9 +10,9 @@
 }
 
 .sliderItemSelect {
-  border-radius: 2pt;
+  border-radius: 4pt;
   color: var(--color-text-1);
-  background-color: var(--color-two);
+  background-color: var(--color-one);
   box-shadow: var(--border-show);
   animation: sliderItemSelect 250ms ease-in-out;
 }

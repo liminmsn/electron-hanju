@@ -13,7 +13,7 @@ import { Theme, ThemeColor } from './theme/Theme'
 
 export default function AppMin() {
   const contentStyle: React.CSSProperties = {
-    background: 'linear-gradient(45deg, var(--color-one), var(--color-two))'
+    background: 'linear-gradient(var(--color-one), var(--color-two))'
   }
 
   const layoutStyle: React.CSSProperties = {
@@ -21,7 +21,7 @@ export default function AppMin() {
     height: '100vh'
   }
 
-  useEffect(() => Theme.Init(ThemeColor.Yellow), [])
+  useEffect(() => Theme.Init(ThemeColor.Green), [])
 
   return (
     <App>

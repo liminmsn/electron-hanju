@@ -13,6 +13,8 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+  border-radius: 6pt;
+  box-shadow: var(--border-show);
   transition: all ease-out 250ms;
 }
 .card_img_card:active {
@@ -50,7 +52,7 @@
 }
 
 .card_img .title {
-  font-size: 16pt;
+  font-size: 14pt;
   line-height: 2;
   font-weight: bold;
   color: var(--text-color);

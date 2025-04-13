@@ -8,6 +8,7 @@ body {
   min-height: 100vh;
   line-height: 1.6;
   margin: 0;
+  background: var(--color-one);
 }
 
 * {
@@ -20,7 +21,7 @@ body {
   --color-text-1: #e1eebc;
   --border-show: 1px 1px 2pt #0000001f;
   --border-show-inset: 1px 1px 2pt #0000001f inset;
-  --color-opacity-02: #90C67C;
+  --color-opacity-02: #90c67c;
   /* WebKit浏览器 */
   ::-webkit-scrollbar {
     width: 4pt; /* 滚动条宽度 */

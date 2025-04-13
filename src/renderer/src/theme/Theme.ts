@@ -16,14 +16,12 @@ export class Theme {
     localStorage.removeItem(Theme.name)
   }
   static Init(theme: ThemeColor) {
-    window.onload = function () {
-      const theme_loc = localStorage.getItem(Theme.name)
-      //如果本地有了就跳过初始化的主题
-      if (theme_loc) {
-        new Theme(JSON.parse(theme_loc))
-      } else {
-        new Theme(theme)
-      }
+    const theme_loc = localStorage.getItem(Theme.name)
+    //如果本地有了就跳过初始化的主题
+    if (theme_loc) {
+      new Theme(JSON.parse(theme_loc))
+    } else {
+      new Theme(theme)
     }
   }
 }
@@ -41,9 +39,16 @@ export class ThemeColor {
   }
   static get Yellow() {
     const theme_color = new ThemeColor()
-    theme_color.one = '#A4B465'
-    theme_color.two = '#FFCF50'
+    theme_color.one = '#FFCF50'
+    theme_color.two = '#A4B465'
     theme_color.text_1 = '#626F47'
+    return theme_color
+  }
+  static get Blue() {
+    const theme_color = new ThemeColor()
+    theme_color.one = '#3A59D1'
+    theme_color.two = '#3D90D7'
+    theme_color.text_1 = '#7AC6D2'
     return theme_color
   }
 }

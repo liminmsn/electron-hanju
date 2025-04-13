@@ -6,15 +6,7 @@ import '@renderer/assets/base.css'
 import { ConfigProvider } from 'antd'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <ConfigProvider
-    theme={{
-      token: {
-        colorPrimary: '#00b96b',
-        borderRadius: 2,
-        colorBgContainer: '#f6ffed'
-      }
-    }}
-  >
+  <ConfigProvider>
     <BrowserRouter>
       <Routes>
         <Route path="*" element={<App />} />

@@ -5,9 +5,9 @@ import { Link } from 'react-router'
 
 export default function SiderArr() {
   const siderStyle: React.CSSProperties = {
-    background: 'var(--color-one)',
+    background: 'var(--color-two)',
     boxShadow: 'var(--border-show)',
-    position: 'relative'
+    borderTopRightRadius: '4pt'
   }
   const keyArr: KeyItem[] = [
     new KeyItem(<i className="fa-solid fa-circle-play"></i>, '韩剧', '/'),
@@ -23,21 +23,23 @@ export default function SiderArr() {
     setSelectIdx(item.label)
   }
   return (
-    <Sider width={140} style={siderStyle}>
-      {keyArr.map((item) => {
-        return (
-          <Link key={item.label} to={item.path}>
-            <div
-              onClick={() => ondownItem(item)}
-              className={selectIdx == item.label ? 'sliderItem sliderItemSelect' : 'sliderItem'}
-            >
-              {selectIdx == item.label ? item.selectIcon : item.icon}&nbsp;&nbsp;&nbsp;&nbsp;
-              <span>{item.label}</span>
-            </div>
-          </Link>
-        )
-      })}
-    </Sider>
+    <div style={{ display: 'flex', background: 'var(--color-one)' }}>
+      <Sider width={140} style={siderStyle}>
+        {keyArr.map((item) => {
+          return (
+            <Link key={item.label} to={item.path}>
+              <div
+                onClick={() => ondownItem(item)}
+                className={selectIdx == item.label ? 'sliderItem sliderItemSelect' : 'sliderItem'}
+              >
+                {selectIdx == item.label ? item.selectIcon : item.icon}&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>{item.label}</span>
+              </div>
+            </Link>
+          )
+        })}
+      </Sider>
+    </div>
   )
 }
 

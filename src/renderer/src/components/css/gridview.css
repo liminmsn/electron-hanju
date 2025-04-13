@@ -13,8 +13,8 @@
   grid-column: 1 / -1;
   text-align: center;
   font-weight: bold;
-  padding-block-start: 2vh;
-  padding-block-end: 8vh;
+  padding-block-start: 0vh;
+  padding-block-end: 4vh;
 }
 .grid_view_end > i {
   animation: grid_view_end 10s linear infinite;

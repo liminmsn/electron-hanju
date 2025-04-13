@@ -1,7 +1,8 @@
 .titleBar {
   align-items: center;
   user-select: none;
-  background-color: var(--color-one);
+  background-color: var(--color-two);
+  box-shadow: var(--border-show);
   height: 28pt;
 }
 
@@ -27,13 +28,15 @@
 }
 
 .title {
-  padding-left: 12pt;
-  font-size: 12pt;
+  padding-left: 8pt;
+  font-size: 14pt;
+  font-weight: bolder;
+  text-shadow: var(--border-show);
 }
 
 .drop {
-  flex: 1;
   app-region: drag;
+  flex: 1;
   height: inherit;
   display: flex;
   justify-content: center;
@@ -48,7 +51,7 @@
   /* font-size: 8pt; */
   flex: 1;
   overflow: hidden;
-  background-color: var(--color-two);
+  background-color: var(--color-one);
   box-shadow: var(--border-show-inset);
   text-shadow: var(--border-show);
 }
