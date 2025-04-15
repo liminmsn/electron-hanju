@@ -18,7 +18,7 @@ export default function SiftSeg({ onChange, siftList }: propType) {
     if (siftList[0].label == '排序') {
       const one = /order-(\w+)\.html/ //分类
       const order = value.match(one)
-      if (order != null) NetApi.body.order = `${order[1]}.html`
+      if (order != null) NetApi.body.order = `${order[1]}`
       onChange(value)
       return
     }

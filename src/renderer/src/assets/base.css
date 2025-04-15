@@ -73,3 +73,7 @@ input::placeholder {
     border-color: var(--color-text-1) !important;
   }
 }
+
+.ant-segmented-item{
+  user-select: none;
+}
