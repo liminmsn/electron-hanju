@@ -2,7 +2,7 @@
 export class NetApi {
   static body = {
     year: '',
-    order: ','
+    order: 'addtime.html'
   }
   private static baseUrl = 'https://www.thanju.com'
   static HANJU: string = '/list-select-id-1-type--area--year--star--state--order-addtime.html'
@@ -14,14 +14,12 @@ export class NetApi {
     return url_
   }
   static getBodyUrl(url: string) {
-    const one = /order-(\w+)\.html/ //分类
-    const two = /year-(\d{4})/ //年份
-    const order = url.match(one)
-    const year = url.match(two)
-    const bol = url.indexOf(this.body.order)
-    if (order != null && bol < 0) NetApi.body.order = `order-${order[1]}.html`
-    if (year != null) NetApi.body.year = `year-${year[1]}`
-    console.log(NetApi.body)
-    return this.baseUrl.concat(url)
+    const regex = /id-(\d+)-type/
+    const match = url.match(regex)
+    if (match) {
+      const idNumber = match[1]
+      return `${this.baseUrl}/list-select-id-${idNumber}-type--area--year-${this.body.year}-star--state--order-${this.body.order}`
+    }
+    throw Error('url地址错误')
   }
 }

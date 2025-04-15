@@ -66,8 +66,9 @@
   position: absolute;
   display: none;
   box-sizing: border-box;
-  background-color: var(--color-one);
   box-shadow: var(--border-show);
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4pt);
   border-radius: 4pt;
   padding: 4pt;
   width: 60%;

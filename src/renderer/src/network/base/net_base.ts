@@ -21,9 +21,8 @@ export abstract class NetBase {
   sift(url: string) {
     const url_ = NetApi.getBodyUrl(url)
     this.get(NetBase.Video, url_).then((res_: string) => {
-      this.data = res_
-      GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list'])
-      GlobalEvents.send('up_video_list', JSON.parse(this.data)['video_list'])
+      GlobalEvents.send('titlebar_host_list', JSON.parse(res_)['host_list'])
+      GlobalEvents.send('up_video_list', JSON.parse(res_)['video_list'])
     })
   }
 }

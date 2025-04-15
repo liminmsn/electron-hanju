@@ -17,18 +17,21 @@ export default function ZongYi() {
     setList(val)
   })
   function onChange(val: string) {
-    return val
+    setList([])
+    new NetZongYi().sift(val)
   }
   return (
-    <Loading loding={list.length > 0}>
+    <>
       {siftList.slice(1).map((sift, idx) => {
         return <SiftSeg key={idx} siftList={sift} onChange={onChange} />
       })}
-      <GridView>
-        {list.map((item) => {
-          return <CardImg key={item.title} item={item} />
-        })}
-      </GridView>
-    </Loading>
+      <Loading loding={list.length > 0}>
+        <GridView>
+          {list.map((item) => {
+            return <CardImg key={item.title} item={item} />
+          })}
+        </GridView>
+      </Loading>
+    </>
   )
 }

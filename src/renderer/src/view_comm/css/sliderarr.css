@@ -11,9 +11,9 @@
 }
 
 .sliderItemSelect {
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 4pt;
   color: var(--color-text-1);
-  background-color: var(--color-one);
   box-shadow: var(--border-show);
   animation: sliderItemSelect 250ms ease-in-out;
 }
@@ -21,7 +21,7 @@
 .sliderItem i {
   width: 12pt;
   height: 12pt;
-  text-align: center; 
+  text-align: center;
   line-height: 1.2;
 }
 .sliderItemSelect i,
@@ -39,5 +39,4 @@
   100% {
     transform: scale(1);
   }
-  
 }
