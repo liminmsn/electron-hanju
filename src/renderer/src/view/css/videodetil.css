@@ -1,0 +1,14 @@
+.videoDetil {
+  z-index: 1;
+  background: linear-gradient(var(--color-two), var(--color-two));
+  animation: videoDetil 250ms ease-out;
+  padding: 8pt;
+}
+@keyframes videoDetil {
+  from {
+    transform: translateX(-100vw);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

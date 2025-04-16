@@ -1,6 +1,6 @@
 import { Content } from 'antd/es/layout/layout'
 import { Route, Routes } from 'react-router'
-import { App, Layout } from 'antd'
+import { App, Button, Layout } from 'antd'
 import TitleBar from './view_comm/TitleBar'
 import SiderArr from './view_comm/SiderArr'
 import About from './view/about/About'
@@ -8,20 +8,31 @@ import HanJu from './view/HanJu'
 import DianYin from './view/DianYin'
 import ZongYi from './view/ZongYi'
 import Setting from './view/setting/Setting'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Theme, ThemeColor } from './theme/Theme'
+import VideoDetil from './view/VideoDetil'
+import { YElement, YRouter, YRouterItem } from './router'
+
+const contentStyle: React.CSSProperties = {
+  background: 'linear-gradient(var(--color-two), var(--color-one))'
+}
+
+const layoutStyle: React.CSSProperties = {
+  width: '100%',
+  height: '100vh',
+  position: 'relative'
+}
 
 export default function AppMain() {
-  const contentStyle: React.CSSProperties = {
-    background: 'linear-gradient(var(--color-two), var(--color-one))'
-  }
-
-  const layoutStyle: React.CSSProperties = {
-    width: '100%',
-    height: '100vh'
-  }
-
-  useEffect(() => Theme.Init(ThemeColor.Green), [])
+  //初始化路由
+  // const [View, setView] = useState<YElement>(() => <div></div>)
+  //设置主题色
+  useEffect(() => {
+    Theme.Init(ThemeColor.Green)
+    // new YRouter([new YRouterItem('vide_detil', VideoDetil)], (wideget: YElement) => {
+    //   // setView(() => wideget)
+    // })
+  }, [])
 
   return (
     <App>
@@ -29,6 +40,7 @@ export default function AppMain() {
       <Layout style={layoutStyle}>
         <SiderArr />
         <Layout>
+          <Button onClick={() => YRouter.I.go('vide_detil')}>go</Button>
           <Content style={contentStyle}>
             <Routes>
               <Route path="/" Component={HanJu}></Route>

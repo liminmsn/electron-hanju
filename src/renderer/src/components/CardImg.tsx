@@ -15,8 +15,13 @@ export default function CardImg({ item, children }: CardProps): JSX.Element {
     backgroundSize: '100% 100%'
   }
 
+  function onClick() {
+    console.log(item.href)
+    return item
+  }
+
   return (
-    <div className="card_img">
+    <div className="card_img" onClick={onClick}>
       <div className="card_img_card">
         <span className="card_img_one">{item.pic.one}</span>
         <span className="card_img_two">{item.pic.two}</span>
