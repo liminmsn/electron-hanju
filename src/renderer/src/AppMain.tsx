@@ -8,10 +8,10 @@ import HanJu from './view/HanJu'
 import DianYin from './view/DianYin'
 import ZongYi from './view/ZongYi'
 import Setting from './view/setting/Setting'
-import { useEffect, useState } from 'react'
 import { Theme, ThemeColor } from './theme/Theme'
 import VideoDetil from './view/VideoDetil'
-import { YRouter, YRouterItem } from './router'
+import React, { useEffect, useState } from 'react'
+import { GlobalEvents } from './core/GlobalEvents'
 
 const contentStyle: React.CSSProperties = {
   background: 'linear-gradient(var(--color-two), var(--color-one))'
@@ -24,25 +24,19 @@ const layoutStyle: React.CSSProperties = {
 }
 
 export default function AppMain() {
-  //初始化路由
-  const [view, setView] = useState<JSX.Element>(<></>)
   //设置主题色
+  Theme.Init(ThemeColor.Green)
+  const [show, showVideoDetil] = useState(false)
   useEffect(() => {
-    Theme.Init(ThemeColor.Green)
-    new YRouter(
-      [new YRouterItem(YRouterItem.VIEODETIL, VideoDetil)],
-      (wideget: () => JSX.Element) => {
-        setView(() => wideget())
-      }
-    )
+    GlobalEvents.on('video_detil_open', () => showVideoDetil(true))
+    GlobalEvents.on('video_detil_close', () => showVideoDetil(false))
   }, [])
-
   return (
     <App>
       <TitleBar />
       <Layout style={layoutStyle}>
         <SiderArr />
-        {view}
+        {show ? <VideoDetil /> : <></>}
         <Layout>
           <Content style={contentStyle}>
             <Routes>

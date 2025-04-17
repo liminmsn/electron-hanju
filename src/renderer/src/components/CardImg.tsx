@@ -1,7 +1,7 @@
+import { GlobalEvents } from '@renderer/core/GlobalEvents'
 import { VidoeList } from '@renderer/network/net'
 import React, { ReactNode } from 'react'
 import './css/card.css'
-import { YRouter, YRouterItem } from '@renderer/router'
 
 interface CardProps {
   item: VidoeList
@@ -16,14 +16,14 @@ export default function CardImg({ item, children }: CardProps): JSX.Element {
     backgroundSize: '100% 100%'
   }
 
-  function onClick() {
-    YRouter.I.go(YRouterItem.VIEODETIL, { args: item })
-    YRouter.I.go(YRouterItem.VIEODETIL, { args: item })
-    return item
+  function onclick() {
+    //本地存一个
+    localStorage.setItem('video_detil_args', JSON.stringify(item))
+    GlobalEvents.send('video_detil_open', null)
   }
 
   return (
-    <div className="card_img" onClick={onClick}>
+    <div className="card_img" onClick={onclick}>
       <div className="card_img_card">
         <span className="card_img_one">{item.pic.one}</span>
         <span className="card_img_two">{item.pic.two}</span>

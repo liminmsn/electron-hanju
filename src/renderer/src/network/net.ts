@@ -41,18 +41,18 @@ export class NetZongYi extends NetBase {
   }
 }
 
-export interface VidoeList {
-  title: string
-  bg: string
-  href: string
+export class VidoeList {
+  title: string = '--'
+  bg: string = ''
+  href: string = ''
   pic: {
     one: string
     two: string
-  }
+  } = { one: '', two: '' }
   actor: Array<{
     name: string
     url: string
-  }>
+  }> = []
 }
 export interface HostList {
   label: string

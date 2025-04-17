@@ -1,7 +1,7 @@
 .videoDetil {
   z-index: 1;
   background: linear-gradient(var(--color-two), var(--color-two));
-  animation: videoDetil 250ms ease-out;
+  animation: fadeInUpBig 250ms ease-out;
   padding: 8pt;
 }
 .videoDetil .title {
@@ -13,11 +13,33 @@
   font-size: 16pt;
   font-family: 'ZiKuXingQiuFeiYangTi';
 }
-@keyframes videoDetil {
+
+@keyframes fadeInUpBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2000px, 0);
+    transform: translate3d(0, 2000px, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.animate__fadeInUpBig {
+  -webkit-animation-name: fadeInUpBig;
+  animation-name: fadeInUpBig;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+/* @keyframes videoDetil {
   from {
     transform: translateX(-100vw);
   }
   to {
     transform: translateX(0);
   }
-}
+} */
