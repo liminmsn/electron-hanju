@@ -7,9 +7,7 @@ import { VidoeList } from '@renderer/network/net'
 const videoStyle: React.CSSProperties = {
   width: '100%',
   height: '100vh',
-  position: 'absolute',
-  zIndex: '2',
-  backgroundColor: 'red'
+  position: 'absolute'
 }
 export default function VideoDetil(obj?: YRouterProp) {
   const { title, href } = obj?.args as VidoeList

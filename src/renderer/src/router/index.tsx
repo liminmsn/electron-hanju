@@ -1,5 +1,7 @@
+import React from 'react'
+
 export type YElement = (obj?: YRouterProp) => JSX.Element
-export type YRouterCall = (widget: YElement, obj?: YRouterProp) => void
+export type YRouterCall = (widget: () => JSX.Element) => void
 
 /**路由参数 */
 export class YRouterProp {
@@ -21,28 +23,44 @@ export class YRouterItem {
 export class YRouter {
   static I: YRouter
   router: Map<string, YElement> = new Map()
-  routerAll: YElement[] = []
+  routerView: JSX.Element[] = []
   call: YRouterCall
   constructor(routers: YRouterItem[], call: YRouterCall) {
     routers.forEach((item) => this.router.set(item.key, item.view))
     this.call = call
     YRouter.I = this
   }
-  rerurnView(obj?: YRouterProp) {
-    const view = this.routerAll[this.routerAll.length - 1]
-    if (view != null) this.call(view, obj)
-    else this.call(() => <></>, obj)
+  rerurnView() {
+    this.call(() => (
+      <>
+        {this.routerView.map((item, idx) => {
+          const divStyle: React.CSSProperties = {
+            position: 'absolute',
+            left: '0',
+            right: '0',
+            top: '0',
+            bottom: '0',
+            zIndex: idx + 1
+          }
+          return (
+            <div key={idx} style={divStyle}>
+              {item}
+            </div>
+          )
+        })}
+      </>
+    ))
   }
   /**打开页面 */
-  go(key: string, args?: YRouterProp) {
+  go(key: string, obj?: YRouterProp) {
     const view = this.router.get(key)
     if (view) {
-      this.routerAll.push(view)
+      this.routerView.push(view(obj))
     }
-    this.rerurnView(args)
+    this.rerurnView()
   }
   break() {
-    this.routerAll.pop()
+    this.routerView.pop()
     this.rerurnView()
   }
 }

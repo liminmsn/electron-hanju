@@ -18,6 +18,7 @@ export default function CardImg({ item, children }: CardProps): JSX.Element {
 
   function onClick() {
     YRouter.I.go(YRouterItem.VIEODETIL, { args: item })
+    YRouter.I.go(YRouterItem.VIEODETIL, { args: item })
     return item
   }
 

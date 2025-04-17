@@ -11,7 +11,7 @@ import Setting from './view/setting/Setting'
 import { useEffect, useState } from 'react'
 import { Theme, ThemeColor } from './theme/Theme'
 import VideoDetil from './view/VideoDetil'
-import { YElement, YRouter, YRouterItem, YRouterProp } from './router'
+import { YRouter, YRouterItem } from './router'
 
 const contentStyle: React.CSSProperties = {
   background: 'linear-gradient(var(--color-two), var(--color-one))'
@@ -31,9 +31,8 @@ export default function AppMain() {
     Theme.Init(ThemeColor.Green)
     new YRouter(
       [new YRouterItem(YRouterItem.VIEODETIL, VideoDetil)],
-      (wideget: YElement, obj?: YRouterProp) => {
-        if (obj != null) setView(() => wideget(obj))
-        else setView(() => wideget())
+      (wideget: () => JSX.Element) => {
+        setView(() => wideget())
       }
     )
   }, [])
