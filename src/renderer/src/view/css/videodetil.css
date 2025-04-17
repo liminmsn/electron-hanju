@@ -4,6 +4,15 @@
   animation: videoDetil 250ms ease-out;
   padding: 8pt;
 }
+.videoDetil .title {
+  display: flex;
+  align-items: center;
+}
+.videoDetil .title .label {
+  margin-left: 14pt;
+  font-size: 16pt;
+  font-family: 'ZiKuXingQiuFeiYangTi';
+}
 @keyframes videoDetil {
   from {
     transform: translateX(-100vw);

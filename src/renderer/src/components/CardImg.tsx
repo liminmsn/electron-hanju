@@ -1,6 +1,7 @@
 import { VidoeList } from '@renderer/network/net'
 import React, { ReactNode } from 'react'
 import './css/card.css'
+import { YRouter, YRouterItem } from '@renderer/router'
 
 interface CardProps {
   item: VidoeList
@@ -16,7 +17,7 @@ export default function CardImg({ item, children }: CardProps): JSX.Element {
   }
 
   function onClick() {
-    console.log(item.href)
+    YRouter.I.go(YRouterItem.VIEODETIL, { args: item })
     return item
   }
 

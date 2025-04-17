@@ -1,7 +1,8 @@
 import React from 'react'
 import './css/videodetil.css'
 import { Button } from 'antd'
-import { YRouter } from '@renderer/router'
+import { YRouter, YRouterProp } from '@renderer/router'
+import { VidoeList } from '@renderer/network/net'
 
 const videoStyle: React.CSSProperties = {
   width: '100%',
@@ -10,11 +11,15 @@ const videoStyle: React.CSSProperties = {
   zIndex: '2',
   backgroundColor: 'red'
 }
-export default function VideoDetil() {
+export default function VideoDetil(obj?: YRouterProp) {
+  const { title, href } = obj?.args as VidoeList
   return (
     <div style={videoStyle} className="videoDetil">
-      <div>标题</div>
-      <Button onClick={() => YRouter.I.break()}>返回</Button>
+      <div className="title">
+        <Button onClick={() => YRouter.I.break()}>返回123</Button>
+        <span className="label">{title}</span>
+      </div>
+      {href}
     </div>
   )
 }
