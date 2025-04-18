@@ -14,7 +14,7 @@ function onClose() {
 }
 export default function VideoDetil() {
   const [item, setItem] = useState<VidoeList>(new VidoeList())
-  const { title } = item
+  const { title, actor } = item
   useEffect(() => {
     //从本地读取传参
     const val = localStorage.getItem('video_detil_args')
@@ -26,11 +26,17 @@ export default function VideoDetil() {
     <div style={videoStyle} className="videoDetil">
       <div className="title">
         <Button onClick={onClose}>返回</Button>
-        <span className="label">{title}</span>
       </div>
       <div className="center">
+        <div>
         <img src={item.bg.replace('url(', '').replace(')', '')} />
-        {JSON.stringify(item)}
+          <div>{item.pic.two}</div>
+        </div>
+        <div className="right">
+          <div>{title}</div>
+          <div>演员:{actor.map((item) => item.name).join('\t')}</div>
+          <Button style={{ marginTop: '10vh' }}>立即播放</Button>
+        </div>
       </div>
     </div>
   )

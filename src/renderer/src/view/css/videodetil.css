@@ -1,17 +1,34 @@
 .videoDetil {
   z-index: 1;
-  background: linear-gradient(var(--color-two), var(--color-two));
   animation: fadeInUpBig 250ms ease-out;
-  padding: 8pt;
+  padding: 10vh;
+  box-sizing: border-box;
+  backdrop-filter: blur(10px);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .videoDetil .title {
-  display: flex;
-  align-items: center;
+  position: absolute;
+  right: 10vh;
 }
-.videoDetil .title .label {
-  margin-left: 14pt;
-  font-size: 16pt;
-  font-family: 'ZiKuXingQiuFeiYangTi';
+
+.videoDetil .center {
+  display: flex;
+  /* padding: 4vh; */
+  /* background-color: rebeccapurple; */
+}
+.videoDetil .center img {
+  width: 25vh;
+  border-radius: 4pt;
+  box-shadow: var(--border-show);
+}
+.videoDetil .center .right {
+  margin-left: 2vw;
+}
+.videoDetil .center .right {
+  font-family: 'ZiKuXingQiuFeiYangTi'; /* 自定义字体名称 */
+}
+.videoDetil .center .right div:nth-child(1) {
+  font-size: 4vh;
 }
 
 @keyframes fadeInUpBig {
@@ -27,19 +44,3 @@
     transform: translate3d(0, 0, 0);
   }
 }
-.animate__fadeInUpBig {
-  -webkit-animation-name: fadeInUpBig;
-  animation-name: fadeInUpBig;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-}
-/* @keyframes videoDetil {
-  from {
-    transform: translateX(-100vw);
-  }
-  to {
-    transform: translateX(0);
-  }
-} */

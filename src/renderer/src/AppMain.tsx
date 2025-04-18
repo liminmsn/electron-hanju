@@ -33,10 +33,10 @@ export default function AppMain() {
   }, [])
   return (
     <App>
+      {show ? <VideoDetil /> : <></>}
       <TitleBar />
       <Layout style={layoutStyle}>
         <SiderArr />
-        {show ? <VideoDetil /> : <></>}
         <Layout>
           <Content style={contentStyle}>
             <Routes>
