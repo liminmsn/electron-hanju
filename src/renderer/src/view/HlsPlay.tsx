@@ -16,7 +16,7 @@ export default function HlsPlyr({ src, poster }: Props) {
 
     if (video) {
       const player = new Plyr(video, {
-        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen']
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
       })
 
       if (Hls.isSupported()) {

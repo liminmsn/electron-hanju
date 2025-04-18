@@ -19,8 +19,13 @@ body {
 * {
   color: var(--color-text-1);
 }
-
+.plyr__controls__item.plyr__time,svg{
+  color: white;
+  fill: white !important;
+}
 :root {
+  --plyr-color-main:var(--color-two);
+  --plyr-range-fill-background:var(var(--color-text-1));
   --color-one: #328e6e;
   --color-two: #67ae6e;
   --color-text-1: #e1eebc;
