@@ -29,6 +29,7 @@
     "jsdom": "^26.0.0",
     "jsdom-global": "^3.0.2",
     "plyr-react": "^5.3.0",
+    "react-player": "^2.16.0",
     "react-router": "^7.5.0"
   },
   "devDependencies": {
