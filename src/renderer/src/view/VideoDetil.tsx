@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from 'antd'
 import './css/videodetil.css'
 import { GlobalEvents } from '@renderer/core/GlobalEvents'
 import { VidoeList } from '@renderer/network/net'
-import ReactPlayer from 'react-player'
+import HlsPlyr from './HlsPlay'
 
 const videoStyle: React.CSSProperties = {
   width: '100%',
@@ -40,13 +40,14 @@ export default function VideoDetil() {
           <div>演员:{actor.map((item) => item.name).join('\t')}</div>
           <Button style={{ marginTop: '10vh' }}>立即播放</Button>
         </div>
-        <ReactPlayer
+        {/* <ReactPlayer
           url="https://v5.tlkqc.com/wjv5/202503/29/fcjnM5g8ct77/video/index.m3u8"
           controls
           playing
           width="100%"
           height="100%"
-        />
+        /> */}
+        <HlsPlyr src="https://v5.tlkqc.com/wjv5/202503/29/fcjnM5g8ct77/video/index.m3u8" />
       </div>
     </div>
   )
