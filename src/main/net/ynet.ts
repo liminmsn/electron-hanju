@@ -68,7 +68,7 @@ export class YNet {
         }
       }),
       update: String(labelArr[4].childNodes[1].textContent).concat(
-        String(labelArr[4].childNodes[3].textContent)
+        String(labelArr[4].childNodes[3]?.textContent ?? '')
       ),
       tag: labelArr[5].childNodes[2].textContent,
       disc: labelArr[6].childNodes[2].textContent,
