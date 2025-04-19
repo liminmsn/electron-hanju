@@ -19,21 +19,6 @@ body {
 * {
   color: var(--color-text-1);
 }
-.plyr__controls__item.plyr__time,
-svg {
-  color: white;
-  fill: white !important;
-}
-.plyr__menu__container .plyr__control--back:before{
-  background-color: var(--color-one);
-  box-shadow: var(--border-show);
-}
-.plyr__control[role='menuitemradio'][aria-checked='true']:before {
-  background-color: var(--color-one) !important;
-}
-.plyr__menu__container {
-  background-color: var(--color-two);
-}
 :root {
   --plyr-color-main: var(--color-two);
   --plyr-range-fill-background: var(var(--color-text-1));
@@ -43,10 +28,6 @@ svg {
   --border-show: 1px 1px 2pt #0000001f;
   --border-show-inset: 1px 1px 2pt #0000001f inset;
   --color-opacity-02: #90c67c;
-  /* WebKit浏览器 */
-  ::-webkit-scrollbar {
-    width: 4pt; /* 滚动条宽度 */
-  }
 
   ::-webkit-scrollbar-track {
     background: var(--color-opacity-02); /* 滚动条滑块的背景色 */
@@ -61,6 +42,28 @@ svg {
   ::-webkit-scrollbar-thumb:hover {
     background: var(--color-two); /* 滚动条滑块鼠标悬停时的背景色 */
   }
+}
+/* 重写plyr */
+.plyr__controls__item.plyr__time,
+svg {
+  color: white;
+  fill: white !important;
+}
+.plyr__menu__container .plyr__control--back:before{
+  background-color: var(--color-one);
+  box-shadow: var(--border-show);
+}
+.plyr__control[role='menuitemradio'][aria-checked='true']:before {
+  background-color: var(--color-one) !important;
+}
+.plyr__menu__container {
+  background-color: var(--color-two);
+  &::after{
+    border-top-color: var(--color-two);
+  }
+}
+.plyr__control .plyr__control--forward::after {
+ border-left-color: #328e6e !important;
 }
 
 input {

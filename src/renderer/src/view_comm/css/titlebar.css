@@ -13,11 +13,12 @@
   line-height: 2.8;
   /* font-size: 14pt; */
   text-align: center;
+  /* transition: all 250ms ease-out; */
 }
 
 .btns span:hover {
   cursor: pointer;
-  background-color: var(--color-two);
+  background-color: var(--color-one);
 
   &:last-child {
     background-color: red;
