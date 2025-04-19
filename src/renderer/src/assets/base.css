@@ -29,6 +29,11 @@ body {
   --border-show-inset: 1px 1px 2pt #0000001f inset;
   --color-opacity-02: #90c67c;
 
+   /* WebKit浏览器 */
+  ::-webkit-scrollbar {
+    width: 4pt; /* 滚动条宽度 */
+  }
+
   ::-webkit-scrollbar-track {
     background: var(--color-opacity-02); /* 滚动条滑块的背景色 */
     box-shadow: var(--border-show-inset);
