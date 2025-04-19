@@ -18,10 +18,10 @@ function createWindow(): void {
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
-      sandbox: false
+      sandbox: false,
+      webSecurity: false
     }
   })
-
   mainWindow.on('maximize', () => {
     // 窗口最大化事件
     mainWindow.webContents.send('fa-expand', true)

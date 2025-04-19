@@ -28,8 +28,7 @@ export default function AppMain() {
   Theme.Init(ThemeColor.Green)
   const [show, showVideoDetil] = useState(false)
   useEffect(() => {
-    GlobalEvents.on('video_detil_open', () => showVideoDetil(true))
-    GlobalEvents.on('video_detil_close', () => showVideoDetil(false))
+    GlobalEvents.on('video_detil_show', (bol) => showVideoDetil(bol))
   }, [])
   return (
     <App>

@@ -19,7 +19,7 @@ export default function CardImg({ item, children }: CardProps): JSX.Element {
   function onclick() {
     //本地存一个
     localStorage.setItem('video_detil_args', JSON.stringify(item))
-    GlobalEvents.send('video_detil_open', null)
+    GlobalEvents.send('video_detil_show', true)
   }
 
   return (

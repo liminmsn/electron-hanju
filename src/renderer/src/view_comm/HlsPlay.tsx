@@ -26,12 +26,10 @@ export default function HlsPlyr({ src, poster }: Props) {
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = src
       }
-
       return () => {
         player.destroy()
       }
     }
-    return () => {}
   }, [src])
 
   return (

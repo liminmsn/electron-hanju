@@ -15,7 +15,6 @@ export default function HanJu(): JSX.Element {
     setIftList(val)
   })
   GlobalEvents.on('up_video_list', (val: any) => {
-    console.log(val)
     setList(val)
   })
   function onChange(val: string) {

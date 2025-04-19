@@ -1,0 +1,52 @@
+.video_play {
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  display: flex;
+  animation: fadeInUpBig 250ms ease-out;
+  /* flex-direction: column;
+  justify-content: center; */
+}
+
+.video_play:hover > .video_play_title {
+  opacity: 1;
+  transition: 280ms all ease-in;
+}
+.video_play_title {
+  transition: 280ms all ease-in;
+  position: absolute;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  z-index: 2;
+  padding-left: 10px;
+}
+.video_play_title .btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.videoDetil .center img {
+  width: 25vw;
+  min-width: 25vw;
+  height: 35vw;
+}
+
+@keyframes fadeInUpBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2000px, 0);
+    transform: translate3d(0, 2000px, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}

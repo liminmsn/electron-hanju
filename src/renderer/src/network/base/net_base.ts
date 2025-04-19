@@ -4,6 +4,8 @@ import { GlobalEvents } from '@renderer/core/GlobalEvents'
 
 export abstract class NetBase {
   static Video = '_video'
+  static VideoUrl = '_video_url'
+  static Detil = '_detil'
   //子类实现
   abstract start(): Promise<any>
   abstract data: string
