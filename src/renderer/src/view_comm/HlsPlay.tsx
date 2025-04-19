@@ -13,7 +13,6 @@ export default function HlsPlyr({ src, poster }: Props) {
 
   useEffect(() => {
     const video = videoRef.current
-
     if (video) {
       const player = new Plyr(video, {
         controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
@@ -26,10 +25,15 @@ export default function HlsPlyr({ src, poster }: Props) {
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = src
       }
-      return () => {
+      player.on('error', (error) => {
+        console.error('Error:', error)
         player.destroy()
+      })
+      return () => {
+        player?.destroy()
       }
     }
+    return () => null
   }, [src])
 
   return (

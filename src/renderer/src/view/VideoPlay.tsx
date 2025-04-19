@@ -31,11 +31,9 @@ export default function VideoPlay({ item, title }: { item: Starring; title: stri
     <div className="video_play">
       <div className="video_play_title">
         <h3>
-          {title} 第{item.label}集
+          {title}&nbsp;{item.label}
         </h3>
-        <div className="btn">
-          <Button onClick={onClose}>返回</Button>
-        </div>
+        <Button onClick={onClose}>返回</Button>
       </div>
       {url != '' ? <HlsPlyr src={url} /> : <></>}
     </div>

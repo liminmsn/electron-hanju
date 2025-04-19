@@ -52,6 +52,9 @@
   width: 100% !important;
   text-align: center;
 }
+img {
+  background-color: var(--color-text-1);
+}
 
 .card_img .title {
   font-size: 14pt;
