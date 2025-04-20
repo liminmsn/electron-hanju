@@ -25,6 +25,9 @@ export default function HlsPlyr({ src, poster }: Props) {
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = src
       }
+      player.once('timeupdate', function (e) {
+        console.log('Time update:', e)
+      })
       player.on('error', (error) => {
         console.error('Error:', error)
         player.destroy()

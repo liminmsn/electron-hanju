@@ -55,11 +55,19 @@
     height: calc(100vw / 4.8);
   }
 }
+@media screen and (min-width: 1200px) {
+  .grid_view {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .grid_view img {
+    height: calc(100vw / 4.5);
+  }
+}
 @media screen and (min-width: 1400px) {
   .grid_view {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
   .grid_view .card_img_card {
-    height: calc(100vw / 5) !important;
+    height: calc(100vw / 5.2) !important;
   }
 }
