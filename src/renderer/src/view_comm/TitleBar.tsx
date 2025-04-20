@@ -26,6 +26,11 @@ export default function TitleBar() {
     e.stopPropagation()
   }
 
+  function onclick(item: any) {
+    //本地存一个
+    localStorage.setItem('video_detil_args', JSON.stringify(item))
+    GlobalEvents.send('video_detil_show', true)
+  }
   return (
     <div className="titleBar" style={{ display: 'flex', justifyContent: 'space-between' }}>
       {/* App名称 */}
@@ -39,8 +44,16 @@ export default function TitleBar() {
           <input
             type="text"
             placeholder={String('搜索').concat(iptLabel)}
-            onFocus={() => setdown(true)}
-            onBlur={() => setdown(false)}
+            onFocus={() => {
+              setTimeout(() => {
+                setdown(true)
+              }, 250)
+            }}
+            onBlur={() => {
+              setTimeout(() => {
+                setdown(false)
+              }, 250)
+            }}
             onKeyDown={onKeyDown}
           />
         </div>
@@ -49,7 +62,7 @@ export default function TitleBar() {
           <div className="host_list host_list_focus">
             {hostList.map((item, idx) => {
               return (
-                <p key={idx}>
+                <p key={idx} onClick={() => onclick(item)}>
                   <span>{idx + 1}</span>
                   <span>{item.label}</span>
                 </p>

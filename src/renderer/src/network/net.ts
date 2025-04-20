@@ -32,6 +32,9 @@ export class NetVideoDetil extends NetBase {
   }
 }
 export class NetVideoDetilItem {
+  title: string = '--'
+  bg: string = '--'
+  pic: string = '--'
   alias: string = '--'
   year: NetVideoDetilItemYear = { label: '--', href: '--' }
   director: NetVideoDetilItemDirector = { label: '--', href: '--' }
@@ -120,7 +123,7 @@ export class VidoeList {
 }
 export interface HostList {
   label: string
-  url: string
+  href: string
 }
 export interface SiftList {
   value: string

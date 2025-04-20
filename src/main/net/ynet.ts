@@ -52,6 +52,16 @@ export class YNet {
       document.getElementsByClassName('myui-content__detail')[0].getElementsByTagName('p')
     ).filter((item) => item.children.length > 0)
     return {
+      title: document
+        .getElementsByClassName('myui-content__detail')[0]
+        .getElementsByTagName('h1')[0].textContent,
+      bg: document
+        .getElementsByClassName('myui-content__thumb')[0]
+        .getElementsByTagName('img')[0]
+        .getAttribute('src'),
+      pic: document
+        .getElementsByClassName('myui-content__detail')[0]
+        .getElementsByClassName('branch')[0].textContent,
       alias: labelArr[0].childNodes[1].textContent,
       year: {
         label: labelArr[1].children[1].textContent,
@@ -129,7 +139,7 @@ export class YNet {
       if (item.children.length > 0) {
         host_list.push({
           label: item.children[0].getAttribute('title'),
-          url: item.children[0].getAttribute('href')
+          href: item.children[0].getAttribute('href')
         })
       }
     })
