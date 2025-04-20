@@ -25,6 +25,7 @@ export abstract class NetBase {
     this.get(NetBase.Video, url_).then((res_: string) => {
       GlobalEvents.send('titlebar_host_list', JSON.parse(res_)['host_list'])
       GlobalEvents.send('up_video_list', JSON.parse(res_)['video_list'])
+      GlobalEvents.send('vide_page_list', JSON.parse(res_)['page_list'])
     })
   }
 }

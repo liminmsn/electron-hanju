@@ -74,8 +74,9 @@ export class NetHanJu extends NetBase {
     return new Promise((res: (val: VideItem) => void) => {
       this.get(NetBase.Video, NetApi.getURi(NetApi.HANJU)).then((res_: string) => {
         this.data = res_
-        GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list'])
-        GlobalEvents.send('view_sift_list', JSON.parse(this.data)['sift_list'])
+        GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list']) //🔥搜
+        GlobalEvents.send('view_sift_list', JSON.parse(this.data)['sift_list']) //筛选
+        GlobalEvents.send('vide_page_list', JSON.parse(this.data)['page_list']) //分页
         res(JSON.parse(this.data)['video_list'])
       })
     })
@@ -87,8 +88,9 @@ export class NetDianYin extends NetBase {
     return new Promise((res: (val: VidoeList[]) => void) => {
       this.get(NetBase.Video, NetApi.getURi(NetApi.DIANYIN)).then((res_: string) => {
         this.data = res_
-        GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list'])
-        GlobalEvents.send('view_sift_list', JSON.parse(this.data)['sift_list'])
+        GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list']) //🔥搜
+        GlobalEvents.send('view_sift_list', JSON.parse(this.data)['sift_list']) //筛选
+        GlobalEvents.send('vide_page_list', JSON.parse(this.data)['page_list']) //分页
         res(JSON.parse(this.data)['video_list'])
       })
     })
@@ -100,8 +102,9 @@ export class NetZongYi extends NetBase {
     return new Promise((res: (val: VidoeList[]) => void) => {
       this.get(NetBase.Video, NetApi.getURi(NetApi.ZONGYI)).then((res_: string) => {
         this.data = res_
-        GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list'])
-        GlobalEvents.send('view_sift_list', JSON.parse(this.data)['sift_list'])
+        GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list']) //🔥搜
+        GlobalEvents.send('view_sift_list', JSON.parse(this.data)['sift_list']) //筛选
+        GlobalEvents.send('vide_page_list', JSON.parse(this.data)['page_list']) //分页
         res(JSON.parse(this.data)['video_list'])
       })
     })
@@ -120,6 +123,11 @@ export class VidoeList {
     name: string
     url: string
   }> = []
+}
+export interface PageList {
+  label: string
+  href: string
+  select: boolean
 }
 export interface HostList {
   label: string

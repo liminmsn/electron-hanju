@@ -143,7 +143,7 @@ export class YNet {
         })
       }
     })
-    //年份
+    //筛选列表
     const siftList: any[] = []
     Array.from(document.getElementsByClassName('myui-screen__list')).forEach((item) => {
       const siftListItem: any[] = []
@@ -155,10 +155,21 @@ export class YNet {
       })
       siftList.push(siftListItem)
     })
+    //分页
+    const pageList: any[] = []
+    Array.from(document.getElementsByClassName('myui-page')[0].children).forEach((item) => {
+      pageList.push({
+        label: item.children[0].textContent,
+        href: item.children[0].getAttribute('href'),
+        select: item.classList.contains('disabled') ? true : false
+      })
+    })
+
     return JSON.stringify({
       video_list: dataList,
       host_list: host_list,
-      sift_list: siftList
+      sift_list: siftList,
+      page_list: pageList
     })
   }
 }

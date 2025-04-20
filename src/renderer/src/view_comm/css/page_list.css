@@ -1,0 +1,20 @@
+.page_list{
+    display: flex;
+    justify-content: start;
+    gap: 2pt;
+}
+.page_list_item{
+    user-select: none;
+    cursor: pointer;
+    padding-inline: 2vw;
+    border-radius: 4px;
+    background-color: var(--color-one);
+}
+.page_list_item_select{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-sizing:var(--border-show);
+}
+.page_list_fy{
+    padding-inline: 6px;
+}
