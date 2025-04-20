@@ -6,10 +6,14 @@ import GridView from '@renderer/components/GridView'
 import Loading from '@renderer/components/Loading'
 import SiftSeg from '@renderer/view_comm/SiftSeg'
 import PageArr from '@renderer/view_comm/PageArr'
+import { NetApi } from '@renderer/network/net_api'
 
 ///电影
 export default function DianYin() {
-  useEffect(() => new NetDianYin().getData(setList), [])
+  useEffect(() => {
+    new NetDianYin().getData(setList)
+    NetApi.body.page = 1
+  }, [])
   const onChange = (val: string) => {
     setList([])
     new NetDianYin().sift(val)

@@ -7,9 +7,13 @@ import GridView from '@renderer/components/GridView'
 import Loading from '@renderer/components/Loading'
 import SiftSeg from '@renderer/view_comm/SiftSeg'
 import PageArr from '@renderer/view_comm/PageArr'
+import { NetApi } from '@renderer/network/net_api'
 ///韩剧
 export default function HanJu(): JSX.Element {
-  useEffect(() => new NetHanJu().getData<VidoeList[]>(setList), [])
+  useEffect(() => {
+    new NetHanJu().getData<VidoeList[]>(setList)
+    NetApi.body.page = 1
+  }, [])
   const onChange = (val: string) => {
     setList([])
     new NetHanJu().sift(val)

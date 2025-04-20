@@ -6,9 +6,13 @@ import GridView from '@renderer/components/GridView'
 import Loading from '@renderer/components/Loading'
 import PageArr from '@renderer/view_comm/PageArr'
 import SiftSeg from '@renderer/view_comm/SiftSeg'
+import { NetApi } from '@renderer/network/net_api'
 
 export default function ZongYi() {
-  useEffect(() => new NetZongYi().getData<VidoeList[]>(setList), [])
+  useEffect(() => {
+    new NetZongYi().getData<VidoeList[]>(setList)
+    NetApi.body.page = 1
+  }, [])
   const onChange = (val: string) => {
     setList([])
     new NetZongYi().sift(val)
