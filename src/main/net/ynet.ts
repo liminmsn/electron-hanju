@@ -52,36 +52,37 @@ export class YNet {
       document.getElementsByClassName('myui-content__detail')[0].getElementsByTagName('p')
     ).filter((item) => item.children.length > 0)
     return {
-      title: document
-        .getElementsByClassName('myui-content__detail')[0]
-        .getElementsByTagName('h1')[0].textContent,
+      title:
+        document.getElementsByClassName('myui-content__detail')[0].getElementsByTagName('h1')[0]
+          .textContent ?? '未知',
       bg: document
         .getElementsByClassName('myui-content__thumb')[0]
         .getElementsByTagName('img')[0]
         .getAttribute('src'),
-      pic: document
-        .getElementsByClassName('myui-content__detail')[0]
-        .getElementsByClassName('branch')[0].textContent,
-      alias: labelArr[0].childNodes[1].textContent,
+      pic:
+        document
+          .getElementsByClassName('myui-content__detail')[0]
+          .getElementsByClassName('branch')[0].textContent ?? '未知',
+      alias: labelArr[0].childNodes[1].textContent ?? '未知',
       year: {
-        label: labelArr[1].children[1].textContent,
+        label: labelArr[1].children[1].textContent ?? '未知',
         href: labelArr[1].children[1].getAttribute('href')
       },
       director: {
-        label: labelArr[2].children[1].textContent,
+        label: labelArr[2].children[1].textContent ?? '未知',
         href: labelArr[2].children[1].getAttribute('href')
       },
       starring: Array.from(labelArr[3].getElementsByTagName('a')).map((item) => {
         return {
-          label: item.textContent,
+          label: item.textContent ?? '未知',
           href: item.getAttribute('href')
         }
       }),
       update: String(labelArr[4].childNodes[1].textContent).concat(
         String(labelArr[4].childNodes[3]?.textContent ?? '')
       ),
-      tag: labelArr[5].childNodes[2].textContent,
-      disc: labelArr[6].childNodes[2].textContent,
+      tag: labelArr[5].childNodes[2].textContent ?? '未知',
+      disc: labelArr[6].childNodes[2].textContent ?? '未知',
       movieClips: (function () {
         const videoList: any[] = []
         const tb = Array.from(document.getElementsByClassName('myui-panel-box')[0].children)
@@ -92,7 +93,7 @@ export class YNet {
               const arr = Array.from(Array.from(tb[1].children)[idx].getElementsByTagName('a')).map(
                 (item) => {
                   return {
-                    label: item.textContent,
+                    label: item.textContent ?? '未知',
                     href: item.getAttribute('href')
                   }
                 }
@@ -128,7 +129,7 @@ export class YNet {
           two: obj.getElementsByClassName('pic-text')[0].textContent
         },
         actor: Array.from(obj_2.children[1].children).map((item) => {
-          return { name: item.textContent, url: item.getAttribute('href') }
+          return { name: item.textContent ?? '未知', url: item.getAttribute('href') }
         })
       })
     })
@@ -149,7 +150,7 @@ export class YNet {
       const siftListItem: any[] = []
       Array.from(item.getElementsByTagName('a')).forEach((item_) => {
         siftListItem.push({
-          label: item_.textContent,
+          label: item_.textContent ?? '未知',
           value: item_.getAttribute('href')
         })
       })
@@ -159,7 +160,7 @@ export class YNet {
     const pageList: any[] = []
     Array.from(document.getElementsByClassName('myui-page')[0].children).forEach((item) => {
       pageList.push({
-        label: item.children[0].textContent,
+        label: item.children[0].textContent ?? '未知',
         href: item.children[0].getAttribute('href'),
         select: item.classList.contains('disabled') ? true : false
       })
