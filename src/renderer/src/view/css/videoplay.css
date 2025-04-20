@@ -31,7 +31,16 @@
   padding-left: 10px;
 }
 .video_play_title h3 {
+  color: white;
   app-region: drag;
+}
+.video_play_title i{
+  color: white;
+}
+.video_play_close{
+  margin-right: 10px;
+  font-size: 16pt;
+  cursor: pointer;
 }
 
 .videoDetil .center img {
@@ -39,6 +48,7 @@
   min-width: 25vw;
   height: 35vw;
 }
+
 
 @keyframes fadeInUpBig {
   from {

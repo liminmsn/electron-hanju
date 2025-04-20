@@ -62,9 +62,9 @@ svg {
   background-color: var(--color-one) !important;
 }
 .plyr__menu__container {
-  background-color: var(--color-two);
+  background-color: var(--color-one);
   &::after{
-    border-top-color: var(--color-two);
+    border-top-color: var(--color-one);
   }
 }
 .plyr__control .plyr__control--forward::after {

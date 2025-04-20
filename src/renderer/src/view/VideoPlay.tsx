@@ -3,7 +3,6 @@ import { NetCheck } from '@renderer/network/base/net_check'
 import HlsPlyr from '@renderer/view_comm/HlsPlay'
 import { Starring } from '@renderer/network/net'
 import { useEffect, useState } from 'react'
-import { Button } from 'antd'
 import './css/videoplay.css'
 
 function onClose() {
@@ -44,7 +43,10 @@ export default function VideoPlay({ item, title }: { item: Starring; title: stri
         <h3>
           {title}&nbsp;{item.label}
         </h3>
-        <Button onClick={onClose}>返回</Button>
+        {/* <Button onClick={onClose}>返回</Button> */}
+        <div onClick={onClose} className="video_play_close">
+          <i className="fa-solid fa-xmark"></i>
+        </div>
       </div>
       {url != '' ? <HlsPlyr src={url} /> : <></>}
     </div>

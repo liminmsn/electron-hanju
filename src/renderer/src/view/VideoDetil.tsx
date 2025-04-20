@@ -65,7 +65,9 @@ export default function VideoDetil() {
       {showVideoPlay ? <VideoPlay item={selectVideo} title={item.title} /> : <></>}
       <Loading loding={isLoding}>
         <div className="title">
-          <Button onClick={onClose}>返回</Button>
+          <Button onClick={onClose}>
+            <i className="fa-solid fa-xmark"></i>
+          </Button>
         </div>
         <div className="center">
           <img src={netVideoDetilItem.bg} />
