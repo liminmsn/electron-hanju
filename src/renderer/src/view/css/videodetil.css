@@ -41,6 +41,7 @@
   margin-top: 2vh;
 }
 .video_detal_list {
+  flex: 0.7;
   margin-top: 1vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
