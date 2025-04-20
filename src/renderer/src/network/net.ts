@@ -3,23 +3,6 @@ import { NetBase } from './base/net_base'
 import { NetApi } from './net_api'
 import { NetCheck } from './base/net_check'
 
-//视频m3u8地址
-export class NetVideoM3u8 extends NetBase {
-  public data: string = ''
-  public url: string
-  constructor(url: string) {
-    super()
-    this.url = url
-  }
-  start() {
-    return new Promise((res: (val: any) => void) => {
-      this.get(NetBase.VideoUrl, NetApi.getURi(this.url)).then((res_) => {
-        res(res_)
-      })
-    })
-  }
-}
-
 //视频详情页
 export class NetVideoDetil extends NetBase {
   public data: string = ''
@@ -30,9 +13,16 @@ export class NetVideoDetil extends NetBase {
   }
   start() {
     return new Promise<NetVideoDetilItem>((res: (val: NetVideoDetilItem) => void) => {
-      this.get(NetBase.Detil, NetApi.getURi(this.url)).then((res_) => {
-        new NetCheck().init().saveData('_detil', this.url, res_) //缓存数据
-        res(res_)
+      new NetCheck().init().getData('_detil', this.url, (data) => {
+        if (data != null) {
+          //如果本地有缓存数据，就直接使用
+          res(data as any)
+        } else {
+          this.get(NetBase.Detil, NetApi.getURi(this.url)).then((res_) => {
+            new NetCheck().init().saveData('_detil', this.url, res_) //缓存数据
+            res(res_)
+          })
+        }
       })
     })
   }
