@@ -31,12 +31,10 @@ export default function PageArr({ list, onChange }: propType): JSX.Element {
       {pageList.length > 0 && <div className="page_list_fy">页数</div>}
       {pageList.map((item, idx) => {
         return (
-          <div
-            key={idx}
-            onClick={() => onChange_(item)}
-            className={`page_list_item ${item.select ? 'page_list_item_select' : ''}`}
-          >
-            {item.label}
+          <div key={idx} onClick={() => onChange_(item)} className="page_list_item">
+            <div className={`page_list_item_label ${item.select ? 'page_list_item_select' : ''}`}>
+              {item.label}
+            </div>
           </div>
         )
       })}

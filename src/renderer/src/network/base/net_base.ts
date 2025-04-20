@@ -9,6 +9,7 @@ export abstract class NetBase {
   //子类实现
   abstract start(): Promise<any>
   abstract data: string
+  /**缓存判断 */
   async get(cmd: string, url: string) {
     const _cmd = String('get').concat(cmd)
     return await window.electron.ipcRenderer.invoke(_cmd, url)

@@ -4,6 +4,7 @@ import { Button } from 'antd'
 import HlsPlyr from '@renderer/view_comm/HlsPlay'
 import './css/videoplay.css'
 import { Starring } from '@renderer/network/net'
+import { NetCheck } from '@renderer/network/base/net_check'
 
 function onClose() {
   GlobalEvents.send('video_play_show', false)
@@ -14,15 +15,25 @@ export default function VideoPlay({ item, title }: { item: Starring; title: stri
     // new NetVideoM3u8(item.href).start().then((res) => {
     //   console.log(res)
     // })
-    fetch(String('https://www.thanju.com/').concat(item.href))
-      .then((res) => res.text())
-      .then((body) => {
-        const match = body.match(/var\s+cms_player\s*=\s*(\{.*?\});/s)
-        if (match != null) {
-          console.log(JSON.parse(match[1]))
-          setUrl(JSON.parse(match[1])['url'])
-        }
-      })
+    //如果本地没有缓存数据，就去请求
+    new NetCheck().init().getData('_video_url', item.href, (data) => {
+      if (data == null) {
+        fetch(String('https://www.thanju.com/').concat(item.href))
+          .then((res) => res.text())
+          .then((body) => {
+            const match = body.match(/var\s+cms_player\s*=\s*(\{.*?\});/s)
+            if (match != null) {
+              console.log(JSON.parse(match[1]))
+              const obj = JSON.parse(match[1])
+              new NetCheck().init().saveData('_video_url', item.href, obj['url']) //缓存数据
+              setUrl(obj['url'])
+            }
+          })
+      } else {
+        //设置本地缓存url
+        setUrl(data)
+      }
+    })
   }
   useEffect(() => {
     fetchData()

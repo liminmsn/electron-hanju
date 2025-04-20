@@ -53,7 +53,7 @@
   text-align: center;
 }
 img {
-  background-color: var(--color-text-1);
+  background-color: var(--color-one);
 }
 
 .card_img .title {

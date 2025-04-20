@@ -24,7 +24,7 @@ export default function ZongYi() {
       {siftList.slice(1).map((sift, idx) => {
         return <SiftSeg key={idx} siftList={sift} onChange={onChange} />
       })}
-      <PageArr list={pageList} />
+      <PageArr list={pageList} onChange={onChange} />
       <Loading loding={list.length > 0}>
         <GridView>
           {list.map((item) => {

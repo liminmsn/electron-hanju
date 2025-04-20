@@ -4,16 +4,24 @@
     gap: 2pt;
 }
 .page_list_item{
-    user-select: none;
-    cursor: pointer;
-    padding-inline: 2vw;
+    width: 5vw;
     border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
     background-color: var(--color-one);
+    text-align: center;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 .page_list_item_select{
     position: relative;
     background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--color-two);
     box-sizing:var(--border-show);
+}
+.page_list_item_label{
+    margin: 2px;
+    border-radius: 4px;
 }
 .page_list_fy{
     padding-inline: 6px;

@@ -41,10 +41,11 @@
   margin-top: 2vh;
 }
 .video_detal_list {
-  flex: 0.7;
+  flex: 0.95;
   margin-top: 1vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(auto-fill, 30px);
   gap: 4px;
   padding-bottom: 2vh;
   overflow-y: scroll;

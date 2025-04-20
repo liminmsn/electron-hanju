@@ -1,6 +1,7 @@
 import { GlobalEvents } from '@renderer/core/GlobalEvents'
 import { NetBase } from './base/net_base'
 import { NetApi } from './net_api'
+import { NetCheck } from './base/net_check'
 
 //视频m3u8地址
 export class NetVideoM3u8 extends NetBase {
@@ -12,7 +13,9 @@ export class NetVideoM3u8 extends NetBase {
   }
   start() {
     return new Promise((res: (val: any) => void) => {
-      this.get(NetBase.VideoUrl, NetApi.getURi(this.url)).then((res_) => res(res_))
+      this.get(NetBase.VideoUrl, NetApi.getURi(this.url)).then((res_) => {
+        res(res_)
+      })
     })
   }
 }
@@ -27,7 +30,10 @@ export class NetVideoDetil extends NetBase {
   }
   start() {
     return new Promise<NetVideoDetilItem>((res: (val: NetVideoDetilItem) => void) => {
-      this.get(NetBase.Detil, NetApi.getURi(this.url)).then((res_) => res(res_))
+      this.get(NetBase.Detil, NetApi.getURi(this.url)).then((res_) => {
+        new NetCheck().init().saveData('_detil', this.url, res_) //缓存数据
+        res(res_)
+      })
     })
   }
 }
@@ -73,6 +79,7 @@ export class NetHanJu extends NetBase {
   start() {
     return new Promise((res: (val: VideItem) => void) => {
       this.get(NetBase.Video, NetApi.getURi(NetApi.HANJU)).then((res_: string) => {
+        new NetCheck().init().saveData('_video', NetApi.HANJU, res_) //缓存数据
         this.data = res_
         GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list']) //🔥搜
         GlobalEvents.send('view_sift_list', JSON.parse(this.data)['sift_list']) //筛选
@@ -87,6 +94,7 @@ export class NetDianYin extends NetBase {
   start() {
     return new Promise((res: (val: VidoeList[]) => void) => {
       this.get(NetBase.Video, NetApi.getURi(NetApi.DIANYIN)).then((res_: string) => {
+        new NetCheck().init().saveData('_video', NetApi.DIANYIN, res_) //缓存数据
         this.data = res_
         GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list']) //🔥搜
         GlobalEvents.send('view_sift_list', JSON.parse(this.data)['sift_list']) //筛选
@@ -101,6 +109,7 @@ export class NetZongYi extends NetBase {
   start() {
     return new Promise((res: (val: VidoeList[]) => void) => {
       this.get(NetBase.Video, NetApi.getURi(NetApi.ZONGYI)).then((res_: string) => {
+        new NetCheck().init().saveData('_video', NetApi.ZONGYI, res_) //缓存数据
         this.data = res_
         GlobalEvents.send('titlebar_host_list', JSON.parse(this.data)['host_list']) //🔥搜
         GlobalEvents.send('view_sift_list', JSON.parse(this.data)['sift_list']) //筛选
