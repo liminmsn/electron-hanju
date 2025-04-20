@@ -1,10 +1,10 @@
 import { GlobalEvents } from '@renderer/core/GlobalEvents'
+import { NetCheck } from '@renderer/network/base/net_check'
+import HlsPlyr from '@renderer/view_comm/HlsPlay'
+import { Starring } from '@renderer/network/net'
 import { useEffect, useState } from 'react'
 import { Button } from 'antd'
-import HlsPlyr from '@renderer/view_comm/HlsPlay'
 import './css/videoplay.css'
-import { Starring } from '@renderer/network/net'
-import { NetCheck } from '@renderer/network/base/net_check'
 
 function onClose() {
   GlobalEvents.send('video_play_show', false)

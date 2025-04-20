@@ -1,8 +1,8 @@
+import { GlobalEvents } from '@renderer/core/GlobalEvents'
+import { HostList } from '@renderer/network/net'
 import { IpcRendererEvent } from 'electron'
 import { useEffect, useState } from 'react'
 import './css/titlebar.css'
-import { GlobalEvents } from '@renderer/core/GlobalEvents'
-import { HostList } from '@renderer/network/net'
 
 export default function TitleBar() {
   //更改标题栏的全屏小化按钮

@@ -1,7 +1,7 @@
 import { PageList } from '@renderer/network/net'
-import './css/page_list.css'
 import { NetApi } from '@renderer/network/net_api'
 import { useEffect, useState } from 'react'
+import './css/page_list.css'
 
 interface propType {
   list: PageList[]

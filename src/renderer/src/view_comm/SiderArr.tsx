@@ -1,8 +1,8 @@
+import { GlobalEvents } from '@renderer/core/GlobalEvents'
 import { ReactNode, useEffect, useState } from 'react'
+import { Link } from 'react-router'
 import Sider from 'antd/es/layout/Sider'
 import './css/sliderarr.css'
-import { Link } from 'react-router'
-import { GlobalEvents } from '@renderer/core/GlobalEvents'
 
 export default function SiderArr() {
   const siderStyle: React.CSSProperties = {

@@ -1,10 +1,10 @@
+import { NetVideoDetil, NetVideoDetilItem, Starring, VidoeList } from '@renderer/network/net'
+import { GlobalEvents } from '@renderer/core/GlobalEvents'
+import Loading from '@renderer/components/Loading'
 import React, { useEffect, useState } from 'react'
 import { Button, Segmented } from 'antd'
-import './css/videodetil.css'
-import { GlobalEvents } from '@renderer/core/GlobalEvents'
-import { NetVideoDetil, NetVideoDetilItem, Starring, VidoeList } from '@renderer/network/net'
 import VideoPlay from './VideoPlay'
-import Loading from '@renderer/components/Loading'
+import './css/videodetil.css'
 
 const videoStyle: React.CSSProperties = {
   width: '100%',

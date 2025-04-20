@@ -1,13 +1,13 @@
 import { NetHanJu, PageList, VidoeList } from '@renderer/network/net'
-import { useEffect, useState } from 'react'
 import { GlobalEvents } from '@renderer/core/GlobalEvents'
+import { NetApi } from '@renderer/network/net_api'
 import { SiftList } from '@renderer/network/net'
+import { useEffect, useState } from 'react'
 import CardImg from '@renderer/components/CardImg'
 import GridView from '@renderer/components/GridView'
 import Loading from '@renderer/components/Loading'
 import SiftSeg from '@renderer/view_comm/SiftSeg'
 import PageArr from '@renderer/view_comm/PageArr'
-import { NetApi } from '@renderer/network/net_api'
 ///韩剧
 export default function HanJu(): JSX.Element {
   useEffect(() => {
