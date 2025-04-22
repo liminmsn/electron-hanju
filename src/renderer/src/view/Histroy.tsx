@@ -18,22 +18,12 @@ export default function Histroy() {
         histList.map((item, idx) => {
           return (
             <div key={idx} className="histroy_item">
-              <img
-                src={item.one.bg != null ? item.one.bg.replace('url(', '').replace(')', '') : ''}
-                alt=""
-              />
+              <img src={item.one.bg} alt="" />
               <div className="histroy_item_right">
                 <div className="histroy_item_right_one">
-                  <h2>
-                    {item.one.title}
-                    {item.one.pic?.two}
-                  </h2>
-                  <span>{item.one.pic?.one}</span>
-                  <span>
-                    {item.one.actor != null
-                      ? item.one.actor.map((item) => item.name).join('、')
-                      : ''}
-                  </span>
+                  <h2>{item.one.title}</h2>
+                  <span>类型：{item.one.tag}</span>
+                  <span>演员：{item.one.starring.map((item) => item.label).join('、')}</span>
                   <span>播放集数：{item.two.label}</span>
                   <span>播放进度：{item.two['time']}</span>
                 </div>

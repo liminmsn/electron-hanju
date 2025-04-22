@@ -24,7 +24,7 @@ function openPlay() {
 export default function VideoDetil() {
   GlobalEvents.on('video_play_show', (bol) => setShowVideoPlay(bol))
   GlobalEvents.on('save_history', (video: any) => {
-    new VideoHistroy().init().add(new VideoHistroyItem(item, video))
+    new VideoHistroy().init().add(new VideoHistroyItem(netVideoDetilItem, video))
   })
   const [item, setItem] = useState<VidoeList>(new VidoeList())
 
