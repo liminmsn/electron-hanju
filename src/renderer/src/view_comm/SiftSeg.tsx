@@ -9,7 +9,7 @@ interface propType {
 
 const styleDiv: React.CSSProperties = {
   paddingInline: '5pt',
-  marginBlock: '2pt',
+  marginBottom: '2pt',
   display: 'flex'
 }
 
@@ -42,7 +42,7 @@ export default function SiftSeg({ onChange, siftList }: propType) {
     <div style={styleDiv}>
       <span>{siftList[0].label}</span>&nbsp;&nbsp;
       <Segmented
-        style={{ flex: '1' }}
+        style={{ flex: '1', marginTop: '0px' }}
         size="small"
         options={siftList.slice(1).map((item) => item.label)}
         onChange={(val) => fromUrl(siftList.filter((item) => item.label == val)[0])}

@@ -18,16 +18,23 @@ export default function Histroy() {
         histList.map((item, idx) => {
           return (
             <div key={idx} className="histroy_item">
-              <img src={item.one.bg.replace('url(', '').replace(')', '')} alt="" />
+              <img
+                src={item.one.bg != null ? item.one.bg.replace('url(', '').replace(')', '') : ''}
+                alt=""
+              />
               <div className="histroy_item_right">
                 <div className="histroy_item_right_one">
                   <h2>
                     {item.one.title}
-                    {item.one.pic.two}
+                    {item.one.pic?.two}
                   </h2>
-                  <span>{item.one.pic.one}</span>
-                  <span>{item.one.actor.map((item) => item.name).join('、')}</span>
-                  <span>播放第几集：{item.two.label}</span>
+                  <span>{item.one.pic?.one}</span>
+                  <span>
+                    {item.one.actor != null
+                      ? item.one.actor.map((item) => item.name).join('、')
+                      : ''}
+                  </span>
+                  <span>播放集数：{item.two.label}</span>
                   <span>播放进度：{item.two['time']}</span>
                 </div>
                 <div className="histroy_item_right_two">
@@ -40,7 +47,8 @@ export default function Histroy() {
         })
       ) : (
         <div className="histroy_not_data">
-          <h1>暂无历史记录</h1>
+          <i className="fa-solid fa-clock-rotate-left"></i>
+          <span>暂无观看记录</span>
         </div>
       )}
     </div>

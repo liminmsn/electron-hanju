@@ -11,10 +11,10 @@ export default function SiderArr() {
     borderTopRightRadius: '6pt'
   }
   const keyArr: KeyItem[] = [
-    new KeyItem(<i className="fa-solid fa-circle-play"></i>, '韩剧', '/'),
-    new KeyItem(<i className="fa-solid fa-film"></i>, '电影', '/dy'),
-    new KeyItem(<i className="fa-solid fa-video"></i>, '综艺', '/zy'),
-    new KeyItem(<i className="fa-solid fa-video"></i>, '历史', '/histroy'),
+    new KeyItem(<i className="fa-solid fa-circle-play"></i>, '韩剧频道', '/'),
+    new KeyItem(<i className="fa-solid fa-film"></i>, '电影频道', '/dy'),
+    new KeyItem(<i className="fa-solid fa-video"></i>, '综艺频道', '/zy'),
+    new KeyItem(<i className="fa-solid fa-clock-rotate-left"></i>, '播放历史', '/histroy'),
     new KeyItem(<i className="fa-solid fa-gear"></i>, '设置', '/setting'),
     new KeyItem(<i className="fa-solid fa-circle-info"></i>, '关于', '/about')
   ]

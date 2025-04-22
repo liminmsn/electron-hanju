@@ -14,6 +14,7 @@
   min-height: 20vh;
   max-width: 15vh;
   max-height: 20vh;
+  box-shadow: var(--border-show);
 }
 .histroy_item_right_one {
   flex: 1;
@@ -42,6 +43,14 @@
 .histroy_not_data {
   height: calc(100vh - 37px);
   display: flex;
+  /* flex-direction: column; */
+  font-size: 16pt;
+  gap: 10px;
   justify-content: center;
   align-items: center;
+  user-select: none;
+}
+.histroy_not_data span,
+.histroy_not_data i {
+  text-shadow: var(--border-show);
 }
