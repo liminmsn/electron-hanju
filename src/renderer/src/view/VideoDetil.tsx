@@ -6,6 +6,7 @@ import { Button, Segmented } from 'antd'
 import VideoPlay from './VideoPlay'
 import './css/videodetil.css'
 import { VideoHistroy, VideoHistroyItem } from '@renderer/core/VideoHistroy'
+import { VideoBooks } from '@renderer/core/VideoBooks'
 
 const videoStyle: React.CSSProperties = {
   width: '100%',
@@ -46,14 +47,10 @@ export default function VideoDetil() {
   const [selectYuan, setSelectYuan] = useState(netVideoDetilItem.movieClips[0].title)
   //视频播放
   const [showVideoPlay, setShowVideoPlay] = useState(false)
-  //视频播放
-  function playVideo(item: Starring) {
-    setSelectVideo(item)
-    openPlay()
-  }
   //选中视频
   const [selectVideo, setSelectVideo] = useState<Starring>({ href: '', label: '' })
   const [isLoding, setIsLoding] = useState(false)
+  const [isBook, setIsbook] = useState(new VideoBooks().init().isBook(item))
   useEffect(() => {
     fetchData().then((res) => {
       new NetVideoDetil(res.href).start().then((res_) => {
@@ -64,6 +61,15 @@ export default function VideoDetil() {
       })
     })
   }, [])
+  //视频播放
+  function playVideo(item: Starring) {
+    setSelectVideo(item)
+    openPlay()
+  }
+  //收藏
+  function onBooks() {
+    setIsbook(new VideoBooks().init().book(item))
+  }
   return (
     <div style={videoStyle} className="videoDetil">
       {showVideoPlay ? <VideoPlay item={selectVideo} title={item.title} /> : <></>}
@@ -85,9 +91,19 @@ export default function VideoDetil() {
             <div>更新:{netVideoDetilItem.update}</div>
             <div>标签:{netVideoDetilItem.tag}</div>
             <div>简介:{netVideoDetilItem.disc}</div>
-            <Button style={{ marginTop: '1vh' }} onClick={openPlay}>
-              立即播放
-            </Button>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <Button style={{ marginTop: '1vh' }} onClick={openPlay}>
+                立即播放
+              </Button>
+              <Button style={{ marginTop: '1vh' }} onClick={onBooks}>
+                {isBook ? (
+                  <i className="fa-solid fa-bookmark"></i>
+                ) : (
+                  <i className="fa-regular fa-bookmark"></i>
+                )}
+                收藏
+              </Button>
+            </div>
           </div>
         </div>
         <div className="video_detil_tag">

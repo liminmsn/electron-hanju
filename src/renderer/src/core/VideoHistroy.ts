@@ -32,12 +32,8 @@ export class VideoHistroy {
   del(item: VideoHistroyItem) {
     this.histroy.forEach((itm) => {
       if (itm.one.title == item.one.title) {
-        if (this.histroy.length > 1) {
-          const idx = this.histroy.indexOf(itm)
-          this.histroy = this.histroy.splice(idx, idx + 1)
-        } else {
-          this.histroy = []
-        }
+        const idx = this.histroy.indexOf(itm)
+        this.histroy = this.histroy.splice(idx - 1, idx)
       }
     })
     this.save()
