@@ -31,7 +31,7 @@ export class VideoBooks {
     this.histroy.forEach((itm) => {
       if (itm.title == item.title) {
         const idx = this.histroy.indexOf(itm)
-        this.histroy = this.histroy.splice(idx - 1, idx)
+        this.histroy.splice(idx, 1)
       }
     })
     this.save()

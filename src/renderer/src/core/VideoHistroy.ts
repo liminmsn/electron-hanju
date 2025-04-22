@@ -11,10 +11,10 @@ export class VideoHistroyItem {
 }
 
 export class VideoHistroy {
-  private histroy: VideoHistroyItem[] = []
   private save() {
     localStorage.setItem(VideoHistroy.name, JSON.stringify(this.histroy))
   }
+  histroy: VideoHistroyItem[] = []
   init() {
     const histtroy = localStorage.getItem(VideoHistroy.name)
     if (histtroy == null) {
@@ -33,7 +33,7 @@ export class VideoHistroy {
     this.histroy.forEach((itm) => {
       if (itm.one.title == item.one.title) {
         const idx = this.histroy.indexOf(itm)
-        this.histroy = this.histroy.splice(idx - 1, idx)
+        this.histroy.splice(idx, 1)
       }
     })
     this.save()
