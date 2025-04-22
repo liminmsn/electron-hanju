@@ -12,6 +12,7 @@ import DianYin from './view/DianYin'
 import ZongYi from './view/ZongYi'
 import HanJu from './view/HanJu'
 import About from './view/About'
+import Histroy from './view/Histroy'
 
 const contentStyle: React.CSSProperties = {
   background: 'linear-gradient(var(--color-two), var(--color-one))'
@@ -42,6 +43,7 @@ export default function AppMain() {
               <Route path="/" Component={HanJu}></Route>
               <Route path="/dy" Component={DianYin}></Route>
               <Route path="/zy" Component={ZongYi}></Route>
+              <Route path="/histroy" Component={Histroy}></Route>
               <Route path="/about" Component={About}></Route>
               <Route path="/setting" Component={Setting}></Route>
             </Routes>

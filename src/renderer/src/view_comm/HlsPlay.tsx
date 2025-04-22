@@ -6,6 +6,7 @@ import 'plyr/dist/plyr.css'
 interface Props {
   src: string
   poster?: string
+  call: () => void
 }
 
 export default function HlsPlyr({ src, poster }: Props) {
@@ -32,6 +33,7 @@ export default function HlsPlyr({ src, poster }: Props) {
         console.error('Error:', error)
         player.destroy()
       })
+      // player.currentTime
       return () => {
         player?.destroy()
       }

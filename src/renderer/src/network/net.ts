@@ -13,8 +13,8 @@ export class NetVideoDetil extends NetBase {
   }
   start() {
     return new Promise<NetVideoDetilItem>((res: (val: NetVideoDetilItem) => void) => {
-      new NetCheck().init().getData('_detil', this.url, (data) => {
-        if (data != null) {
+      new NetCheck().init().getData<NetVideoDetilItem>('_detil', this.url, (data) => {
+        if (data != null && data.year.label != String(new Date().getFullYear())) {
           //如果本地有缓存数据，就直接使用
           res(data as any)
         } else {

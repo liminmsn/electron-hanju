@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Segmented } from 'antd'
 import VideoPlay from './VideoPlay'
 import './css/videodetil.css'
+import { VideoHistroy, VideoHistroyItem } from '@renderer/core/VideoHistroy'
 
 const videoStyle: React.CSSProperties = {
   width: '100%',
@@ -21,6 +22,9 @@ function openPlay() {
 
 export default function VideoDetil() {
   GlobalEvents.on('video_play_show', (bol) => setShowVideoPlay(bol))
+  GlobalEvents.on('save_history', (video: any) => {
+    new VideoHistroy().init().add(new VideoHistroyItem(item, video))
+  })
   const [item, setItem] = useState<VidoeList>(new VidoeList())
 
   //从本地读取传参

@@ -19,7 +19,7 @@ export class NetCheck {
     if (key == '_detil') return this._detil
     return new Map()
   }
-  getData(cmd: CMDTYPE, url: string, callback: (data: string) => void) {
+  getData<T>(cmd: CMDTYPE, url: string, callback: (data: T) => void) {
     const map = this.getMap(cmd)
     callback(map[url])
   }
