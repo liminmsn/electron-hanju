@@ -39,11 +39,11 @@ export default function Histroy() {
                 <div className="histroy_item_right_two">
                   <Button onClick={() => ContinuePlay(item)}>
                     <i className="fa-solid fa-circle-play"></i>
-                    继续播放
+                    {/* 继续播放 */}
                   </Button>
                   <Button onClick={() => onDel(item)}>
                     <i className="fa-solid fa-trash"></i>
-                    删除历史
+                    {/* 删除历史 */}
                   </Button>
                 </div>
               </div>
