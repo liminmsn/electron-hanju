@@ -36,11 +36,9 @@ export default function VideoPlay({ item, title }: { item: Starring; title: stri
 
     const video = videoRef.current
     if (video) {
-      setPlayer(
-        new Plyr(video, {
-          controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
-        })
-      )
+      const player = new Plyr(video, {
+        controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen']
+      })
 
       if (Hls.isSupported()) {
         const hls = new Hls()
@@ -49,25 +47,32 @@ export default function VideoPlay({ item, title }: { item: Starring; title: stri
       } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = url
       }
-      player?.once('timeupdate', function (e) {
+
+      player.once('timeupdate', function (e) {
         console.log('Time update:', e)
       })
-      player?.on('error', (error) => {
+      player.once('canplay', () => {
+        if (item.time) {
+          player.currentTime = item.time
+        }
+        player.play()
+      })
+      player.on('error', (error) => {
         console.error('Error:', error)
         player.destroy()
       })
-      // player.currentTime
+      setPlayer(player)
       return () => {
-        player?.destroy()
+        player.destroy()
       }
     }
     return () => null
   }, [url])
-  const [player, setPlayer] = useState<Plyr>()
+  const [player_, setPlayer] = useState<Plyr>()
   function onClose() {
     GlobalEvents.send('save_history', {
       ...item,
-      time: player?.currentTime
+      time: player_?.currentTime
     })
     GlobalEvents.send('video_play_show', false)
   }

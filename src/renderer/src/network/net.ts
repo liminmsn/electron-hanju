@@ -57,6 +57,7 @@ export interface NetVideoDetilItemDirector {
 export interface Starring {
   label: string
   href: string
+  time?: number
 }
 
 export interface movieClipsItem {

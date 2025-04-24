@@ -16,6 +16,7 @@ const videoStyle: React.CSSProperties = {
 
 function onClose() {
   GlobalEvents.send('video_detil_show', false)
+  GlobalEvents.send('update_histroy', false)
 }
 function openPlay() {
   GlobalEvents.send('video_play_show', true)
@@ -24,7 +25,7 @@ function openPlay() {
 export default function VideoDetil() {
   GlobalEvents.on('video_play_show', (bol) => setShowVideoPlay(bol))
   GlobalEvents.on('save_history', (video: any) => {
-    new VideoHistroy().init().add(new VideoHistroyItem(netVideoDetilItem, video))
+    new VideoHistroy().init().add(new VideoHistroyItem(netVideoDetilItem, video, item))
   })
   const [item, setItem] = useState<VidoeList>(new VidoeList())
 
@@ -54,6 +55,14 @@ export default function VideoDetil() {
   useEffect(() => {
     fetchData().then((res) => {
       new NetVideoDetil(res.href).start().then((res_) => {
+        if (continue_play) {
+          setNetVideoDetilItem(continue_play.one)
+          setSelectYuan(res_.movieClips[0].title)
+          setSelectVideo(continue_play.two)
+          setIsLoding(true)
+          openPlay()
+          return
+        }
         setNetVideoDetilItem(res_)
         setSelectYuan(res_.movieClips[0].title)
         setSelectVideo(res_.movieClips[0].list[0])
@@ -70,6 +79,9 @@ export default function VideoDetil() {
   function onBooks() {
     setIsbook(new VideoBooks().init().book(item))
   }
+  //继续播放
+  let continue_play: VideoHistroyItem | null = null
+  GlobalEvents.on('continue_play', (args: VideoHistroyItem) => (continue_play = args))
   return (
     <div style={videoStyle} className="videoDetil">
       {showVideoPlay ? <VideoPlay item={selectVideo} title={item.title} /> : <></>}
@@ -124,7 +136,7 @@ export default function VideoDetil() {
                 return (
                   <div
                     onClick={() => playVideo(item)}
-                    className={`video_detal_list_item ${selectVideo == item ? 'video_detal_list_item_active' : ''}`}
+                    className={`video_detal_list_item ${selectVideo.label == item.label ? 'video_detal_list_item_active' : ''}`}
                     key={item.href}
                   >
                     {item.label}

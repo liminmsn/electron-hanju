@@ -2,15 +2,26 @@ import { VideoHistroy, VideoHistroyItem } from '@renderer/core/VideoHistroy'
 import { useEffect, useState } from 'react'
 import './css/histroy.css'
 import { Button } from 'antd'
+import { GlobalEvents } from '@renderer/core/GlobalEvents'
 
 export default function Histroy() {
   const [histList, setHisList] = useState<VideoHistroyItem[]>([])
   useEffect(() => {
     setHisList(new VideoHistroy().init().histroy)
+    GlobalEvents.on('update_histroy', () => {
+      setHisList(new VideoHistroy().init().histroy)
+    })
   }, [])
   function onDel(item: VideoHistroyItem) {
     new VideoHistroy().init().del(item)
     setHisList(new VideoHistroy().init().histroy)
+  }
+  function ContinuePlay(item: VideoHistroyItem) {
+    GlobalEvents.send('video_detil_show', true)
+    localStorage.setItem('video_detil_args', JSON.stringify(item.three))
+    setTimeout(() => {
+      GlobalEvents.send('continue_play', item)
+    }, 0)
   }
   return (
     <div className="histroy">
@@ -29,7 +40,7 @@ export default function Histroy() {
                 </div>
                 <div className="histroy_item_right_two">
                   <Button onClick={() => onDel(item)}>删除历史</Button>
-                  <Button>继续播放</Button>
+                  <Button onClick={() => ContinuePlay(item)}>继续播放</Button>
                 </div>
               </div>
             </div>

@@ -1,12 +1,14 @@
-import { NetVideoDetilItem, Starring } from '@renderer/network/net'
+import { NetVideoDetilItem, Starring, VidoeList } from '@renderer/network/net'
 
 //扩展视频详情
 export class VideoHistroyItem {
   one: NetVideoDetilItem
   two: Starring
-  constructor(one: NetVideoDetilItem, two: Starring) {
+  three: VidoeList
+  constructor(one: NetVideoDetilItem, two: Starring, three: VidoeList) {
     this.one = one
     this.two = two
+    this.three = three
   }
 }
 
