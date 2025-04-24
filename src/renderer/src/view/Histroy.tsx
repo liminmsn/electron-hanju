@@ -17,11 +17,9 @@ export default function Histroy() {
     setHisList(new VideoHistroy().init().histroy)
   }
   function ContinuePlay(item: VideoHistroyItem) {
+    localStorage.setItem('video_detil_args', JSON.stringify(item.three)) //更新详情加载参数
+    localStorage.setItem('continue_play', JSON.stringify(item)) //更新本地继续播放数据
     GlobalEvents.send('video_detil_show', true)
-    localStorage.setItem('video_detil_args', JSON.stringify(item.three))
-    setTimeout(() => {
-      GlobalEvents.send('continue_play', item)
-    }, 0)
   }
   return (
     <div className="histroy">

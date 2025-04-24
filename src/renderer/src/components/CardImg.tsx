@@ -17,6 +17,8 @@ export default function CardImg({ item, children }: CardProps): JSX.Element {
   }
 
   function onclick() {
+    //删除继续播放参数
+    localStorage.removeItem('continue_play')
     //本地存一个
     localStorage.setItem('video_detil_args', JSON.stringify(item))
     GlobalEvents.send('video_detil_show', true)

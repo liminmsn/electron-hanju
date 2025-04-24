@@ -55,10 +55,12 @@ export default function VideoDetil() {
   useEffect(() => {
     fetchData().then((res) => {
       new NetVideoDetil(res.href).start().then((res_) => {
+        const continue_play = localStorage.getItem('continue_play')
         if (continue_play) {
-          setNetVideoDetilItem(continue_play.one)
+          const obj = JSON.parse(continue_play)
           setSelectYuan(res_.movieClips[0].title)
-          setSelectVideo(continue_play.two)
+          setNetVideoDetilItem(obj.one)
+          setSelectVideo(obj.two)
           setIsLoding(true)
           openPlay()
           return
@@ -79,9 +81,6 @@ export default function VideoDetil() {
   function onBooks() {
     setIsbook(new VideoBooks().init().book(item))
   }
-  //继续播放
-  let continue_play: VideoHistroyItem | null = null
-  GlobalEvents.on('continue_play', (args: VideoHistroyItem) => (continue_play = args))
   return (
     <div style={videoStyle} className="videoDetil">
       {showVideoPlay ? <VideoPlay item={selectVideo} title={item.title} /> : <></>}
