@@ -105,6 +105,7 @@ export default function VideoDetil() {
             <div>简介:{netVideoDetilItem.disc}</div>
             <div style={{ display: 'flex', gap: '10px' }}>
               <Button style={{ marginTop: '1vh' }} onClick={openPlay}>
+                <i className="fa-solid fa-circle-play"></i>
                 立即播放
               </Button>
               <Button style={{ marginTop: '1vh' }} onClick={onBooks}>

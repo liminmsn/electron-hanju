@@ -39,8 +39,14 @@ export default function Histroy() {
                   <span>播放进度：{item.two['time']}</span>
                 </div>
                 <div className="histroy_item_right_two">
-                  <Button onClick={() => onDel(item)}>删除历史</Button>
-                  <Button onClick={() => ContinuePlay(item)}>继续播放</Button>
+                  <Button onClick={() => ContinuePlay(item)}>
+                    <i className="fa-solid fa-circle-play"></i>
+                    继续播放
+                  </Button>
+                  <Button onClick={() => onDel(item)}>
+                    <i className="fa-solid fa-trash"></i>
+                    删除历史
+                  </Button>
                 </div>
               </div>
             </div>
