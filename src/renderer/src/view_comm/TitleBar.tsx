@@ -22,8 +22,16 @@ export default function TitleBar() {
 
   function onKeyDown(ent: any) {
     const e = ent as KeyboardEvent
-    setdown(false)
     e.stopPropagation()
+    if (e.code == 'Enter') {
+      GlobalEvents.send('video_search_show', true)
+      setTimeout(() => {
+        if (e.target instanceof HTMLInputElement) {
+          GlobalEvents.send('set_search_label', e.target.value)
+        }
+      })
+    }
+    // setdown(false)
   }
 
   function onclick(item: any) {

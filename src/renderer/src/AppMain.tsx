@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { GlobalEvents } from './core/GlobalEvents'
 import { Theme, ThemeColor } from './theme/Theme'
 import { Route, Routes } from 'react-router'
@@ -13,6 +13,7 @@ import ZongYi from './view/ZongYi'
 import HanJu from './view/HanJu'
 import About from './view/About'
 import Histroy from './view/Histroy'
+import Search from './view/Search'
 
 const contentStyle: React.CSSProperties = {
   background: 'linear-gradient(var(--color-two), var(--color-one))'
@@ -28,12 +29,13 @@ export default function AppMain() {
   //设置主题色
   Theme.Init(ThemeColor.Green)
   const [show, showVideoDetil] = useState(false)
-  useEffect(() => {
-    GlobalEvents.on('video_detil_show', (bol) => showVideoDetil(bol))
-  }, [])
+  const [show_search, showSearch] = useState(false)
+  GlobalEvents.on('video_detil_show', (bol) => showVideoDetil(bol))
+  GlobalEvents.on('video_search_show', (bol) => showSearch(bol))
   return (
     <App>
       {show ? <VideoDetil /> : <></>}
+      {show_search ? <Search /> : <></>}
       <TitleBar />
       <Layout style={layoutStyle}>
         <SiderArr />

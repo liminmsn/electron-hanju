@@ -3,6 +3,18 @@ import { NetBase } from './base/net_base'
 import { NetApi } from './net_api'
 import { NetCheck } from './base/net_check'
 
+export class NetVideoSearch extends NetBase {
+  label: string
+  data = ''
+  constructor(label: string) {
+    super()
+    this.label = label
+  }
+  start(): Promise<any> {
+    return this.search(this.label)
+  }
+}
+
 //视频详情页
 export class NetVideoDetil extends NetBase {
   public data: string = ''
@@ -42,27 +54,6 @@ export class NetVideoDetilItem {
   static init() {
     return new NetVideoDetilItem()
   }
-}
-
-export interface NetVideoDetilItemYear {
-  label: string
-  href: string
-}
-
-export interface NetVideoDetilItemDirector {
-  label: string
-  href: string
-}
-
-export interface Starring {
-  label: string
-  href: string
-  time?: number
-}
-
-export interface movieClipsItem {
-  title: string
-  list: Starring[]
 }
 
 export class NetHanJu extends NetBase {
@@ -141,4 +132,25 @@ export interface VideItem {
   video_list: VidoeList[]
   host_list: HostList[]
   sift_list: SiftList[][]
+}
+
+export interface NetVideoDetilItemYear {
+  label: string
+  href: string
+}
+
+export interface NetVideoDetilItemDirector {
+  label: string
+  href: string
+}
+
+export interface Starring {
+  label: string
+  href: string
+  time?: number
+}
+
+export interface movieClipsItem {
+  title: string
+  list: Starring[]
 }

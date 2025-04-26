@@ -29,4 +29,8 @@ export abstract class NetBase {
       GlobalEvents.send('vide_page_list', JSON.parse(res_)['page_list'])
     })
   }
+  /**搜索 */
+  async search(label: string) {
+    return await window.electron.ipcRenderer.invoke('post_search', label)
+  }
 }

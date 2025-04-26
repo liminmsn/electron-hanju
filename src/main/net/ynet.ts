@@ -1,5 +1,5 @@
 import { ipcMain, IpcMainInvokeEvent } from 'electron'
-import { get } from 'node:https'
+import { get, request } from 'node:https'
 import { JSDOM } from 'jsdom'
 
 export class YNet {
@@ -11,11 +11,12 @@ export class YNet {
       ipcMain.handle('get_video', this.getVideo.bind(this))
       ipcMain.handle('get_video_url', this.getVideoUrl.bind(this))
       ipcMain.handle('get_detil', this.getDetil.bind(this))
+      ipcMain.handle('post_search', this.getSearch.bind(this))
     } catch (error) {
       console.log('', error)
     }
   }
-  //拼接数据
+  //拼接数据(get)
   private getData(url: string) {
     return new Promise((resole: (val: string) => void, reject) => {
       let body = ''
@@ -26,6 +27,36 @@ export class YNet {
           })
           res.on('end', () => resole(body.toString()))
         })
+        req.end()
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
+  //请求数据(post)
+  private postData(label: string) {
+    const postData_ = new URLSearchParams()
+    postData_.append('wd', label)
+    const options = {
+      hostname: 'www.thanju.com',
+      path: '/index.php?s=vod-search',
+      method: 'POST',
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'content-length': Buffer.byteLength(postData_.toString())
+      }
+    }
+    // 创建一个 FormData 对象，并添加表单数据
+    return new Promise((resolve: (val: string) => void, reject) => {
+      try {
+        const req = request(options, (res) => {
+          let body = ''
+          res.on('data', (chunk: Uint8Array) => {
+            body += chunk.toString()
+          })
+          res.on('end', () => resolve(body.toString()))
+        })
+        req.write(postData_.toString())
         req.end()
       } catch (error) {
         reject(error)
@@ -172,5 +203,28 @@ export class YNet {
       sift_list: siftList,
       page_list: pageList
     })
+  }
+  //搜索数据
+  async getSearch(_e: IpcMainInvokeEvent, label: string) {
+    const res = await this.postData(label)
+    const dom = new JSDOM(res).window.document
+    const list = dom.getElementsByClassName('myui-vodlist__media')[0]
+    if (list.children.length > 0) {
+      const video_list = Array.from(list.children).map((item) => {
+        return {
+          bg: item.children[0].children[0].getAttribute('data-original'),
+          href: item.children[0].children[0].getAttribute('href'),
+          title: item.children[0].children[0].getAttribute('title'),
+          pic: item.children[0].children[0]
+            .getElementsByClassName('pic-tag')[0]
+            .textContent?.replaceAll(' ', ''),
+          director: item.children[1].children[1].textContent?.replaceAll(' ', ''),
+          starring: item.children[1].children[2].textContent?.replaceAll(' ', ''),
+          type: item.children[1].children[3].textContent?.replaceAll(' ', '').replaceAll('\n', '\t')
+        }
+      })
+      return video_list
+    }
+    return []
   }
 }
