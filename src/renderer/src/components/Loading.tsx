@@ -23,7 +23,7 @@ export default function Loading({ loding, children }: ParentComponentProps) {
       ) : (
         <div style={divStyle}>
           <Spin size="large" />
-          <span>加载中。。。</span>
+          <span>加载中...</span>
         </div>
       )}
     </>

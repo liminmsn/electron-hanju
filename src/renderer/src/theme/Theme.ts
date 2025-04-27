@@ -53,9 +53,9 @@ export class ThemeColor {
   }
   static get Purple() {
     const theme_color = new ThemeColor()
-    theme_color.one = '#B2A5FF'
-    theme_color.two = '#493D9E'
-    theme_color.text_1 = '#FFF2AF'
+    theme_color.one = '#410445'
+    theme_color.two = '#A5158C'
+    theme_color.text_1 = '#F6DC43'
     return theme_color
   }
   static get Red() {

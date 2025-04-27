@@ -15,10 +15,10 @@ export default function Setting() {
   }
   const themeArr = {
     薄荷绿: ThemeColor.Green,
-    活力黄: ThemeColor.Yellow,
-    蓝色: ThemeColor.Blue,
-    紫色: ThemeColor.Purple,
-    红色: ThemeColor.Red
+    香蕉黄: ThemeColor.Yellow,
+    天空蓝: ThemeColor.Blue,
+    魅惑紫: ThemeColor.Purple,
+    中国红: ThemeColor.Red
   }
   //初始化idx值
   const index_key = (function () {
