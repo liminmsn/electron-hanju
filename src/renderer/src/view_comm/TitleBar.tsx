@@ -4,41 +4,44 @@ import { IpcRendererEvent } from 'electron'
 import { useEffect, useState } from 'react'
 import './css/titlebar.css'
 
+const btns: string[] = ['fa-minus', 'fa-expand', 'fa-xmark']
+function onitleBtnClick(key: string) {
+  window.electron.ipcRenderer.send('titlebar', key)
+}
+function onKeyDown(ent: any) {
+  const e = ent as KeyboardEvent
+  e.stopPropagation()
+  if (e.code == 'Enter') {
+    GlobalEvents.send('video_search_show', true)
+    setTimeout(() => {
+      if (e.target instanceof HTMLInputElement) {
+        GlobalEvents.send('set_search_label', e.target.value)
+      }
+    })
+  }
+  // setdown(false)
+}
+
+function onclick(item: any) {
+  //本地存一个
+  localStorage.setItem('video_detil_args', JSON.stringify(item))
+  GlobalEvents.send('video_detil_show', true)
+}
+
 export default function TitleBar() {
   //更改标题栏的全屏小化按钮
   const [expand, setExpand] = useState(false)
-  const btns: string[] = ['fa-minus', 'fa-expand', 'fa-xmark']
-  function onitleBtnClick(key: string) {
-    window.electron.ipcRenderer.send('titlebar', key)
-  }
   const [iptLabel, setIptLabel] = useState('...')
   const [hostList, setHostList] = useState<HostList[]>([])
   const [down, setdown] = useState(false)
   useEffect(() => {
     window.electron.ipcRenderer.on('fa-expand', (_e: IpcRendererEvent, bol) => setExpand(bol))
-    GlobalEvents.on('titlebar_ipt_label', (label: string) => setIptLabel(label))
     GlobalEvents.on('titlebar_host_list', (host_list: HostList[]) => setHostList(host_list))
+    GlobalEvents.on('titlebar_ipt_label', (label: string) => setIptLabel(label))
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    GlobalEvents.on('titlebar_ipt_label_close', () => (document.getElementById('ipt').value = ''))
   }, [])
-
-  function onKeyDown(ent: any) {
-    const e = ent as KeyboardEvent
-    e.stopPropagation()
-    if (e.code == 'Enter') {
-      GlobalEvents.send('video_search_show', true)
-      setTimeout(() => {
-        if (e.target instanceof HTMLInputElement) {
-          GlobalEvents.send('set_search_label', e.target.value)
-        }
-      })
-    }
-    // setdown(false)
-  }
-
-  function onclick(item: any) {
-    //本地存一个
-    localStorage.setItem('video_detil_args', JSON.stringify(item))
-    GlobalEvents.send('video_detil_show', true)
-  }
   return (
     <div className="titleBar" style={{ display: 'flex', justifyContent: 'space-between' }}>
       {/* App名称 */}
@@ -50,6 +53,7 @@ export default function TitleBar() {
         <div className="not">
           <i className="fa-solid fa-magnifying-glass"></i>&nbsp;
           <input
+            id="ipt"
             type="text"
             placeholder={String('搜索').concat(iptLabel)}
             onFocus={() => {
