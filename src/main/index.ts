@@ -34,7 +34,7 @@ function createWindow(): void {
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
     //本地通讯网络请求
     new YNet()
     //扩展出去win对象的其它操作
