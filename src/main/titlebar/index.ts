@@ -1,7 +1,7 @@
 import { BrowserWindow, ipcMain, IpcMainEvent } from 'electron'
 
 export class TitleBar {
-  //关闭原生的标题栏
+  //覆盖原生的标题栏事件
   constructor() {
     ipcMain.on('titlebar', this.fun)
   }

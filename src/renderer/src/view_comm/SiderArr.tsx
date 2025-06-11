@@ -15,6 +15,7 @@ export default function SiderArr() {
     new KeyItem(<i className="fa-solid fa-film"></i>, '电影', '/dy'),
     new KeyItem(<i className="fa-solid fa-video"></i>, '综艺', '/zy'),
     new KeyItem(<i className="fa-solid fa-clock-rotate-left"></i>, '历史', '/histroy'),
+    new KeyItem(<i className="fa-solid fa-circle-check"></i>, '订阅', '/pay'),
     new KeyItem(<i className="fa-solid fa-gear"></i>, '设置', '/setting'),
     new KeyItem(<i className="fa-solid fa-circle-info"></i>, '关于', '/about')
   ]

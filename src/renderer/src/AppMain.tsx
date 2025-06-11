@@ -14,6 +14,7 @@ import HanJu from './view/HanJu'
 import About from './view/About'
 import Histroy from './view/Histroy'
 import Search from './view/Search'
+import Pay from './view/Pay'
 
 const contentStyle: React.CSSProperties = {
   background: 'linear-gradient(var(--color-two), var(--color-one))'
@@ -34,7 +35,9 @@ export default function AppMain() {
   GlobalEvents.on('video_search_show', (bol) => showSearch(bol))
   return (
     <App>
+      {/* 详情 */}
       {show ? <VideoDetil /> : <></>}
+      {/* 搜索 */}
       {show_search ? <Search /> : <></>}
       <TitleBar />
       <Layout style={layoutStyle}>
@@ -48,6 +51,7 @@ export default function AppMain() {
               <Route path="/histroy" Component={Histroy}></Route>
               <Route path="/about" Component={About}></Route>
               <Route path="/setting" Component={Setting}></Route>
+              <Route path="/pay" Component={Pay}></Route>
             </Routes>
           </Content>
         </Layout>
