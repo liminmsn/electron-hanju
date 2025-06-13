@@ -15,6 +15,7 @@ const videoStyle: React.CSSProperties = {
 }
 
 function onClose() {
+  localStorage.removeItem('video_detil_args')
   GlobalEvents.send('video_detil_show', false)
   GlobalEvents.send('update_histroy', false)
 }
