@@ -4,6 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { YNet } from './net/ynet'
 import { TitleBar } from './titlebar'
+import { System } from './core/system'
 
 function createWindow(): void {
   // Create the browser window.
@@ -39,6 +40,8 @@ function createWindow(): void {
     new YNet()
     //扩展出去win对象的其它操作
     new TitleBar()
+    //系统对象
+    new System()
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {

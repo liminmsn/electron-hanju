@@ -35,19 +35,21 @@ async function get_premium_list(): Promise<PremiumList> {
 }
 
 export function Pay() {
+  const [deviceId, setDeviceId] = useState<string>('')
   const [payResponse, setPayResponse] = useState<PayResponse | null>(null)
   const [premiumList, setPremiumList] = useState<PremiumList | null>(null)
   const [selectedPayItem, setSelectedPayItem] = useState<Datum | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   useEffect(() => {
+    //获取设备id
+    window.electron.ipcRenderer.invoke('system', 'device_id').then((res) => {
+      setDeviceId(res)
+    })
     //获取付费列表
     get_premium_list().then((data) => {
       console.log('Premium list:', data)
       setPremiumList(data)
     })
-    return () => {
-      console.log('Pay component unmounted')
-    }
   }, [])
   const payCall = (item: PayResponse) => {
     setLoading(false)
@@ -61,7 +63,15 @@ export function Pay() {
   }
   return (
     <div className="pay-container">
-      <h3>支付宝扫码订阅</h3>
+      <div className="pay_premium">
+        <div>
+          <div>设备ID:</div>
+          <span className="device_id">{deviceId}</span>
+        </div>
+        <div>
+          <span>订阅时长:1天</span>
+        </div>
+      </div>
       {premiumList === null ? (
         <span className="loading">加载中...</span>
       ) : premiumList.affectedDocs === 0 ? (
@@ -72,8 +82,12 @@ export function Pay() {
           <li className="pay-item" key={item._id} onClick={() => paySend(item)}>
             <div>{item.dec}</div>
             <div>
-              <span><sup>{item.title}</sup></span><span>{item.price}¥</span>
+              <span>
+                <sup>{item.title}</sup>
+              </span>
+              <span>{item.price}¥</span>
             </div>
+            <span className="pay-item-title">好看韩剧3</span>
           </li>
         ))}
       </ul>
@@ -87,11 +101,21 @@ export function Pay() {
             <span>订单号：{payResponse.trade_no}</span>
             {/* <span>ZPAY订单号：{payResponse.O_id}</span> */}
             <img src={payResponse.img} alt="支付二维码" />
+            <button>查询支付结果</button>
           </div>
         ) : premiumList != null ? (
-          <div>{loading ? '订单创建中...' : '待选择订阅类型'}</div>
+          <div>{loading ? '订单创建中...' : '选择订阅类型'}</div>
         ) : null}
       </div>
+      <p className="pay_ps">
+        支付说明：
+        <br />
+        1.支付宝扫描二维码完成支付
+        <br />
+        2.完成支付后需要
+        <br />
+        3.点击查询结果更新订阅
+      </p>
     </div>
   )
 }

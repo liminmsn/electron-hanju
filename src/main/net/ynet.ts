@@ -4,7 +4,7 @@ import { JSDOM } from 'jsdom'
 
 export class YNet {
   constructor() {
-    console.log('hello Ynet')
+    // console.log('hello Ynet')
     // IPC test
     try {
       ipcMain.on('ping', () => console.log('pong'))

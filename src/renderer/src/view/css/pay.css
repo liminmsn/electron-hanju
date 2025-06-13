@@ -4,36 +4,73 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
+}
+
+.pay_premium {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: var(--color-one);
+  width: 50%;
+  padding: 12px;
+}
+.pay_premium span {
+  font-size: 10pt;
+  word-wrap: break-word;
+}
+.pay_premium span.device_id {
+  font-size: 8pt;
+  /* color: red !important; */
 }
 
 .pay-list {
-  display: flex;
-  gap: 10px;
+  margin-block: 0;
   padding-inline: 10vw;
 }
 .pay-item {
+  margin-inline: 8px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
   user-select: none;
   cursor: pointer;
-  width: 150px;
-  height: 150px;
+  width: 140px;
+  height: 140px;
   background-color: var(--color-one);
   background: linear-gradient(var(--color-two), var(--color-one));
-  border-radius: 2vw;
+  border-radius: 10px;
   box-shadow: var(--border-show);
   flex: 1;
   padding: 10px;
-  /* font-size: 2vw; */
+  overflow: hidden;
+  position: relative;
+  &::after {
+    width: 50%;
+    height: 20px;
+    text-align: center;
+    /* padding-inline: 20px; */
+    padding-block: 2px;
+    transform: rotate(-45deg);
+    background-color: var(--color-two);
+    font-family: 'ZiKuXingQiuFeiYangTi';
+    content: '订阅';
+    display: block;
+    position: absolute;
+    right: -19px;
+    bottom: 4px;
+    background-color: red;
+    filter: grayscale(0.2);
+  }
   &:active {
+    opacity: 0.8;
     transform: scale(0.95);
   }
 }
 .pay-item div {
   color: var(--color-text-1);
-  &:nth-child(1) {
-  }
   &:nth-child(2) {
-    line-height: 3;
     text-align: center;
     font-weight: bold;
     font-size: 20pt;
@@ -48,9 +85,16 @@
   }
 }
 
+.pay-item-title {
+  font-family: 'ZiKuXingQiuFeiYangTi';
+  opacity: 0.4;
+  font-size: 8pt;
+}
+
 .pay-info-container {
   height: 300px;
   max-height: 300px;
+  padding-top: 20px;
   text-align: center;
 }
 .pay-info-container h3 {
@@ -71,4 +115,29 @@
   border: 10px solid var(--color-one);
   border-radius: 20px;
   box-shadow: var(--border-show);
+}
+
+.pay-info button {
+  width: 50%;
+  margin-top: 16px;
+  margin-inline: auto;
+  background-color: var(--color-two);
+  color: var(--color-text-1);
+  font-weight: normal;
+  border: none;
+  border-radius: 10px;
+  box-shadow: var(--border-show);
+  &:active {
+    opacity: 0.8;
+    transform: scale(0.95);
+  }
+}
+
+.pay_ps {
+  position: absolute;
+  right: 3%;
+  bottom: 5%;
+  opacity: 0.2;
+  font-size: 8pt;
+  font-family: 'ZiKuXingQiuFeiYangTi';
 }
