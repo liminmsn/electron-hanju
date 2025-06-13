@@ -10,9 +10,23 @@ interface PayResponse {
   qrcode: string
   img: string
 }
-async function get_pay(call: (item: PayResponse) => void): Promise<void> {
+async function get_pay(
+  deviceId: string,
+  price: string,
+  call: (item: PayResponse) => void
+): Promise<void> {
   const data: PayResponse = await fetch(
-    'https://fc-mp-00fbb6fa-0b8f-41d8-ac0c-122a477de70e.next.bspapp.com/pay'
+    'https://fc-mp-00fbb6fa-0b8f-41d8-ac0c-122a477de70e.next.bspapp.com/pay',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        device_id: deviceId,
+        price: price
+      })
+    }
   ).then((res) => res.json())
   call(data)
 }
@@ -59,7 +73,7 @@ export function Pay() {
     setSelectedPayItem(item)
     setLoading(true)
     setPayResponse(null)
-    get_pay(payCall)
+    get_pay(deviceId, item.price.toString(), payCall)
   }
   return (
     <div className="pay-container">
@@ -79,7 +93,11 @@ export function Pay() {
       ) : null}
       <ul className="pay-list">
         {premiumList?.data.map((item) => (
-          <li className="pay-item" key={item._id} onClick={() => paySend(item)}>
+          <li
+            className={`pay-item ${selectedPayItem === item ? 'pay_item_selected' : ''}`}
+            key={item._id}
+            onClick={() => selectedPayItem !== item && paySend(item)}
+          >
             <div>{item.dec}</div>
             <div>
               <span>
@@ -94,11 +112,12 @@ export function Pay() {
       <div className="pay-info-container">
         {payResponse ? (
           <div className="pay-info">
-            <span>订单生成状态：{payResponse.msg}</span>
+            <span>创建状态：{payResponse.msg}</span>
             <span>
               订阅类型：{selectedPayItem?.title}/{selectedPayItem?.price}¥
             </span>
             <span>订单号：{payResponse.trade_no}</span>
+            <span>价格：{selectedPayItem?.price}¥</span>
             {/* <span>ZPAY订单号：{payResponse.O_id}</span> */}
             <img src={payResponse.img} alt="支付二维码" />
             <button>查询支付结果</button>

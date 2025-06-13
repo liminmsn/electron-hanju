@@ -28,6 +28,11 @@
   margin-block: 0;
   padding-inline: 10vw;
 }
+.pay_item_selected{
+  background-color: var(--color-two);
+  box-shadow: var(--border-show);
+  transform: scale(1.05);
+}
 .pay-item {
   margin-inline: 8px;
   display: inline-flex;
@@ -38,10 +43,8 @@
   cursor: pointer;
   width: 140px;
   height: 140px;
-  background-color: var(--color-one);
   background: linear-gradient(var(--color-two), var(--color-one));
   border-radius: 10px;
-  box-shadow: var(--border-show);
   flex: 1;
   padding: 10px;
   overflow: hidden;
