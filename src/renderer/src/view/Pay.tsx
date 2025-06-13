@@ -12,7 +12,7 @@ interface PayResponse {
 }
 async function get_pay(
   deviceId: string,
-  price: string,
+  item: Datum,
   call: (item: PayResponse) => void
 ): Promise<void> {
   const data: PayResponse = await fetch(
@@ -24,7 +24,8 @@ async function get_pay(
       },
       body: JSON.stringify({
         device_id: deviceId,
-        price: price
+        title: item.title,
+        price: item.price
       })
     }
   ).then((res) => res.json())
@@ -73,7 +74,7 @@ export function Pay() {
     setSelectedPayItem(item)
     setLoading(true)
     setPayResponse(null)
-    get_pay(deviceId, item.price.toString(), payCall)
+    get_pay(deviceId, item, payCall)
   }
   return (
     <div className="pay-container">

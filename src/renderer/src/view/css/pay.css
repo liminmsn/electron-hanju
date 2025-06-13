@@ -121,13 +121,14 @@
 }
 
 .pay-info button {
-  width: 50%;
   margin-top: 16px;
   margin-inline: auto;
+  padding-inline: 10px;
   background-color: var(--color-two);
   color: var(--color-text-1);
   font-weight: normal;
   border: none;
+  cursor: pointer;
   border-radius: 10px;
   box-shadow: var(--border-show);
   &:active {

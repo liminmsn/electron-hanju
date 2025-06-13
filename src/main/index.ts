@@ -7,6 +7,12 @@ import { TitleBar } from './titlebar'
 import { System } from './core/system'
 
 function createWindow(): void {
+  //本地通讯网络请求
+  new YNet()
+  //扩展出去win对象的其它操作
+  new TitleBar()
+  //系统对象
+  new System()
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     minWidth: 900,
@@ -36,12 +42,6 @@ function createWindow(): void {
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
     // mainWindow.webContents.openDevTools()
-    //本地通讯网络请求
-    new YNet()
-    //扩展出去win对象的其它操作
-    new TitleBar()
-    //系统对象
-    new System()
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
