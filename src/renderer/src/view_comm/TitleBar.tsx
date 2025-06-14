@@ -31,13 +31,13 @@ function onclick(item: any) {
 export default function TitleBar() {
   //更改标题栏的全屏小化按钮
   const [expand, setExpand] = useState(false)
-  const [iptLabel, setIptLabel] = useState('...')
+  const [iptLabel, setIptLabel] = useState('想追的剧')
   const [hostList, setHostList] = useState<HostList[]>([])
   const [down, setdown] = useState(false)
   useEffect(() => {
     window.electron.ipcRenderer.on('fa-expand', (_e: IpcRendererEvent, bol) => setExpand(bol))
     GlobalEvents.on('titlebar_host_list', (host_list: HostList[]) => setHostList(host_list))
-    GlobalEvents.on('titlebar_ipt_label', (label: string) => setIptLabel(label))
+    // GlobalEvents.on('titlebar_ipt_label', (label: string) => setIptLabel(label))
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     GlobalEvents.on('titlebar_ipt_label_close', () => (document.getElementById('ipt').value = ''))
@@ -55,7 +55,7 @@ export default function TitleBar() {
           <input
             id="ipt"
             type="text"
-            placeholder={String('搜索').concat(iptLabel)}
+            placeholder={iptLabel}
             onFocus={() => {
               setTimeout(() => {
                 setdown(true)

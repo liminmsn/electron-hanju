@@ -45,7 +45,9 @@
   justify-content: center;
   position: relative;
 }
-
+.host_list{
+  max-width: 616px;
+}
 .drop .not,
 .drop .not_two {
   app-region: none;

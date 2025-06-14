@@ -30,7 +30,7 @@ export default function HanJu(): JSX.Element {
         return <SiftSeg key={idx} siftList={sift} onChange={onChange} />
       })}
       <PageArr list={pageList} onChange={onChange} />
-      <Loading loding={list.length > 0}>
+      <Loading loading={list.length > 0}>
         <GridView>
           {list.map((item) => {
             return <CardImg key={item.title} item={item} />

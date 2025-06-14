@@ -67,7 +67,7 @@ export default function Search() {
           <h1>没有找到相关的视频</h1>
         </div>
       ) : (
-        <Loading loding={histList.length > 0}>
+        <Loading loading={histList.length > 0}>
           {histList.map((item, idx) => {
             return (
               <div key={idx} style={SearchItemStyle} className="histroy_item">
@@ -81,8 +81,8 @@ export default function Search() {
                   <div className="histroy_item_right_two">
                     <Button onClick={() => onPlay(item)}>
                       {/* <i className="fa-solid fa-circle-play"></i> */}
-                      <i className="fa-solid fa-right-to-bracket"></i>
-                      {/* <i className="fa-solid fa-share-from-square"></i> */}
+                      {/* <i className="fa-solid fa-right-to-bracket"></i> */}
+                      <i className="fa-solid fa-expand"></i>
                       {/* 继续播放 */}
                     </Button>
                   </div>

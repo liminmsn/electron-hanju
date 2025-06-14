@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import './css/pay.css'
+import Loading from '@renderer/components/Loading'
 interface PayResponse {
   code: number
   msg: string
@@ -10,26 +11,51 @@ interface PayResponse {
   qrcode: string
   img: string
 }
-async function get_pay(
-  deviceId: string,
-  item: Datum,
-  call: (item: PayResponse) => void
-): Promise<void> {
-  const data: PayResponse = await fetch(
-    'https://fc-mp-00fbb6fa-0b8f-41d8-ac0c-122a477de70e.next.bspapp.com/pay',
-    {
+function get_pay_closure(deviceId: string) {
+  let ok = true
+  return async function (item: Datum, call: (item: PayResponse) => void) {
+    if (!ok) return
+    ok = false
+    const data: PayResponse = await fetch(
+      'https://fc-mp-00fbb6fa-0b8f-41d8-ac0c-122a477de70e.next.bspapp.com/pay',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          device_id: deviceId,
+          title: item.title,
+          price: item.price
+        })
+      }
+    ).then((res) => res.json())
+    call(data)
+    ok = true
+  }
+}
+
+// 查询支付结果（闭包）
+function pay_query_closure(item: PayResponse | null) {
+  let ok = true
+  return async function () {
+    if (!ok || !item) return
+    ok = false
+    //获取设备id
+    const device_id = await window.electron.ipcRenderer.invoke('system', 'device_id')
+    await fetch('https://fc-mp-00fbb6fa-0b8f-41d8-ac0c-122a477de70e.next.bspapp.com/pay_query', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        device_id: deviceId,
-        title: item.title,
-        price: item.price
+        out_trade_no: item.trade_no,
+        device_id: device_id,
+        query_type: '1' // 0:查询支付结果
       })
-    }
-  ).then((res) => res.json())
-  call(data)
+    }).then((res) => res.json())
+    ok = true
+  }
 }
 
 interface PremiumList {
@@ -55,16 +81,15 @@ export function Pay() {
   const [premiumList, setPremiumList] = useState<PremiumList | null>(null)
   const [selectedPayItem, setSelectedPayItem] = useState<Datum | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
+  const get_pay = useCallback(get_pay_closure(deviceId), [deviceId])
+  const pay_query = pay_query_closure(payResponse)
   useEffect(() => {
     //获取设备id
     window.electron.ipcRenderer.invoke('system', 'device_id').then((res) => {
       setDeviceId(res)
     })
     //获取付费列表
-    get_premium_list().then((data) => {
-      console.log('Premium list:', data)
-      setPremiumList(data)
-    })
+    get_premium_list().then((data) => setPremiumList(data))
   }, [])
   const payCall = (item: PayResponse) => {
     setLoading(false)
@@ -74,7 +99,7 @@ export function Pay() {
     setSelectedPayItem(item)
     setLoading(true)
     setPayResponse(null)
-    get_pay(deviceId, item, payCall)
+    get_pay(item, payCall)
   }
   return (
     <div className="pay-container">
@@ -88,7 +113,7 @@ export function Pay() {
         </div>
       </div>
       {premiumList === null ? (
-        <span className="loading">加载中...</span>
+        <Loading loading={false} children={null} />
       ) : premiumList.affectedDocs === 0 ? (
         <span className="loading">暂无付费内容</span>
       ) : null}
@@ -96,14 +121,12 @@ export function Pay() {
         {premiumList?.data.map((item) => (
           <li
             className={`pay-item ${selectedPayItem === item ? 'pay_item_selected' : ''}`}
+            data-day={item.title}
             key={item._id}
             onClick={() => selectedPayItem !== item && paySend(item)}
           >
             <div>{item.dec}</div>
             <div>
-              <span>
-                <sup>{item.title}</sup>
-              </span>
               <span>{item.price}¥</span>
             </div>
             <span className="pay-item-title">好看韩剧3</span>
@@ -121,10 +144,14 @@ export function Pay() {
             <span>价格：{selectedPayItem?.price}¥</span>
             {/* <span>ZPAY订单号：{payResponse.O_id}</span> */}
             <img src={payResponse.img} alt="支付二维码" />
-            <button>查询支付结果</button>
+            <button onClick={() => pay_query()}>查询支付结果</button>
           </div>
         ) : premiumList != null ? (
-          <div>{loading ? '订单创建中...' : '选择订阅类型'}</div>
+          loading ? (
+            <Loading loading={false} children={null} />
+          ) : (
+            <div>选择订阅类型</div>
+          )
         ) : null}
       </div>
       <p className="pay_ps">

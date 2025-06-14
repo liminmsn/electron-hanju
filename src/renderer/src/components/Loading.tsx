@@ -2,10 +2,10 @@ import { Spin } from 'antd'
 import { ReactNode } from 'react'
 
 interface ParentComponentProps {
-  loding: boolean
+  loading: boolean
   children: ReactNode
 }
-export default function Loading({ loding, children }: ParentComponentProps) {
+export default function Loading({ loading, children }: ParentComponentProps) {
   const divStyle: React.CSSProperties = {
     width: '100%',
     height: '80%',
@@ -18,7 +18,7 @@ export default function Loading({ loding, children }: ParentComponentProps) {
   }
   return (
     <>
-      {loding ? (
+      {loading ? (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>{children}</div>
       ) : (
         <div style={divStyle}>

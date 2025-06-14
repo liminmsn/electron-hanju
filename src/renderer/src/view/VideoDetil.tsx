@@ -85,7 +85,7 @@ export default function VideoDetil() {
   return (
     <div style={videoStyle} className="videoDetil">
       {showVideoPlay ? <VideoPlay item={selectVideo} title={item.title} /> : <></>}
-      <Loading loding={isLoding}>
+      <Loading loading={isLoding}>
         <div className="title">
           <Button onClick={onClose}>
             <i className="fa-solid fa-xmark"></i>

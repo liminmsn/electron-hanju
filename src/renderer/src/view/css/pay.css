@@ -9,7 +9,6 @@
 
 .pay_premium {
   margin-top: 20px;
-  margin-bottom: 20px;
   border-radius: 10px;
   background-color: var(--color-one);
   width: 50%;
@@ -27,14 +26,17 @@
 .pay-list {
   margin-block: 0;
   padding-inline: 10vw;
+  text-align: center;
 }
 .pay_item_selected{
   background-color: var(--color-two);
   box-shadow: var(--border-show);
   transform: scale(1.05);
+  filter:contrast(1.5);
 }
 .pay-item {
   margin-inline: 8px;
+  margin-top: 16px;
   display: inline-flex;
   flex-direction: column;
   justify-self: center;
@@ -43,7 +45,7 @@
   cursor: pointer;
   width: 140px;
   height: 140px;
-  background: linear-gradient(var(--color-two), var(--color-one));
+  background: linear-gradient(var(--color-one), var(--color-two));
   border-radius: 10px;
   flex: 1;
   padding: 10px;
@@ -58,7 +60,7 @@
     transform: rotate(-45deg);
     background-color: var(--color-two);
     font-family: 'ZiKuXingQiuFeiYangTi';
-    content: '订阅';
+    content: attr(data-day);
     display: block;
     position: absolute;
     right: -19px;
@@ -73,18 +75,17 @@
 }
 .pay-item div {
   color: var(--color-text-1);
+  &:nth-child(1) {
+    font-family: 'ZiKuXingQiuFeiYangTi';
+    /* font-size: 10pt;
+    margin-top: 5px;
+    text-align: center; */
+  }
   &:nth-child(2) {
     text-align: center;
     font-weight: bold;
     font-size: 20pt;
     margin-top: 10px;
-  }
-}
-
-.pay-item div span {
-  &:nth-child(1) {
-    font-size: 12pt;
-    font-weight: normal;
   }
 }
 
@@ -141,7 +142,7 @@
   position: absolute;
   right: 3%;
   bottom: 5%;
-  opacity: 0.2;
+  opacity: 0.8;
   font-size: 8pt;
   font-family: 'ZiKuXingQiuFeiYangTi';
 }
