@@ -12,6 +12,7 @@ function onKeyDown(ent: any) {
   const e = ent as KeyboardEvent
   e.stopPropagation()
   if (e.code == 'Enter') {
+    localStorage.removeItem('continue_play') //清除上次的详情页
     GlobalEvents.send('video_search_show', true)
     setTimeout(() => {
       if (e.target instanceof HTMLInputElement) {
@@ -23,6 +24,7 @@ function onKeyDown(ent: any) {
 }
 
 function onclick(item: any) {
+  localStorage.removeItem('continue_play') //清除上次的详情页
   //本地存一个
   localStorage.setItem('video_detil_args', JSON.stringify(item))
   GlobalEvents.send('video_detil_show', true)
