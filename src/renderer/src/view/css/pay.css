@@ -116,7 +116,7 @@
   width: 150px;
   height: 150px;
   margin-inline: auto;
-  border: 10px solid var(--color-one);
+  border: 10px solid var(--color-two);
   border-radius: 20px;
   box-shadow: var(--border-show);
 }
