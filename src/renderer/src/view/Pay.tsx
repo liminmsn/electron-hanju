@@ -1,6 +1,18 @@
 import { useCallback, useEffect, useState } from 'react'
 import './css/pay.css'
 import Loading from '@renderer/components/Loading'
+import { YDate } from '@renderer/core/YDate'
+interface PayQuery {
+  code: number
+  message: string
+  data: Data
+}
+
+interface Data {
+  _id: string
+  device_id: string
+  premium_time: number
+}
 interface PayResponse {
   code: number
   msg: string
@@ -21,6 +33,13 @@ interface Datum {
   price: number
   dec: string
   data: PayResponse | undefined
+}
+// 获取价格列表
+async function get_premium_list(): Promise<PremiumList> {
+  const data: PremiumList = await fetch(
+    'https://fc-mp-00fbb6fa-0b8f-41d8-ac0c-122a477de70e.next.bspapp.com/get_preimium_list'
+  ).then((res) => res.json())
+  return data
 }
 // 创建生成二维码请求（闭包）
 function get_pay_closure(deviceId: string) {
@@ -50,72 +69,79 @@ function get_pay_closure(deviceId: string) {
 //查询单支付结果（闭包）
 function pay_query_closure(item: PayResponse | null) {
   let ok = true
-  return async function () {
-    if (!ok || !item) return
+  return async function (callback: (res: any) => void, query_type: '0' | '1' = '0') {
+    if (query_type !== '1') {
+      if (!ok || !item) return
+    }
     ok = false
     //获取设备id
     const device_id = await window.electron.ipcRenderer.invoke('system', 'device_id')
-    await fetch('https://fc-mp-00fbb6fa-0b8f-41d8-ac0c-122a477de70e.next.bspapp.com/pay_query', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        out_trade_no: item.trade_no,
-        device_id: device_id,
-        query_type: '0' // 0:查询支付结果
-      })
-    }).then((res) => res.json())
+    const data = await fetch(
+      'https://fc-mp-00fbb6fa-0b8f-41d8-ac0c-122a477de70e.next.bspapp.com/pay_query',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          out_trade_no: item?.trade_no || '',
+          device_id: device_id,
+          query_type: query_type // 0:查询支付结果
+        })
+      }
+    ).then((res) => res.json())
+    callback(data)
     ok = true
   }
 }
-// 获取价格列表
-async function get_premium_list(): Promise<PremiumList> {
-  const data: PremiumList = await fetch(
-    'https://fc-mp-00fbb6fa-0b8f-41d8-ac0c-122a477de70e.next.bspapp.com/get_preimium_list'
-  ).then((res) => res.json())
-  return data
-}
-
 export function Pay() {
   const [deviceId, setDeviceId] = useState<string>('')
   const [payResponse, setPayResponse] = useState<PayResponse | null>(null)
   const [premiumList, setPremiumList] = useState<PremiumList | null>(null)
   const [selectedPayItem, setSelectedPayItem] = useState<Datum | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
+  const [timeMap, setTimeMap] = useState<string>('---')
   const get_pay = useCallback(get_pay_closure(deviceId), [deviceId])
   const pay_query = pay_query_closure(payResponse)
   useEffect(() => {
-    //获取设备id
-    window.electron.ipcRenderer.invoke('system', 'device_id').then((res) => {
-      setDeviceId(res)
-    })
-    //获取付费列表
+    window.electron.ipcRenderer.invoke('system', 'device_id').then((res) => setDeviceId(res))
     get_premium_list().then((data) => setPremiumList(data))
+    get_pay_premium_state()
   }, [])
-  const payCall = (item: PayResponse) => {
+  // 获取支付二维码数据回调
+  const get_pay_data_call = (item: PayResponse) => {
     setLoading(false)
     setPayResponse(item)
   }
-  const paySend = (item: Datum) => {
+  // 获取支付二维码数据
+  const get_pay_data = (item: Datum) => {
     setLoading(true)
     setPayResponse(null)
     setSelectedPayItem(item)
     if (item.data) {
-      payCall(item.data)
+      get_pay_data_call(item.data)
     } else {
-      get_pay(item, payCall)
+      get_pay(item, get_pay_data_call)
     }
+  }
+  const get_pay_premium_state = () => {
+    pay_query((res: PayQuery) => {
+      if (res.code == 200) {
+        setTimeMap(YDate.formatTimestamp(res.data.premium_time))
+        localStorage.setItem('pay_premium_time', JSON.stringify(res))
+      }
+    }, '1')
   }
   return (
     <div className="pay-container">
       <div className="pay_premium">
         <div>
-          <div>设备ID:</div>
+          设备唯一标识：
           <span className="device_id">{deviceId}</span>
         </div>
         <div>
-          <span>订阅时长:1天</span>
+          订阅到期时间：
+          <span>{timeMap}</span>
         </div>
       </div>
       {premiumList === null ? (
@@ -129,7 +155,7 @@ export function Pay() {
             className={`pay-item ${selectedPayItem === item ? 'pay_item_selected' : ''}`}
             data-day={item.title}
             key={item._id}
-            onClick={() => selectedPayItem !== item && paySend(item)}
+            onClick={() => selectedPayItem !== item && get_pay_data(item)}
           >
             <div>{item.dec}</div>
             <div>
@@ -148,7 +174,15 @@ export function Pay() {
             <span>订阅类型：{selectedPayItem?.title}</span>
             <span>价格：{selectedPayItem?.price}¥</span>
             {/* <span>ZPAY订单号：{payResponse.O_id}</span> */}
-            <button onClick={() => pay_query()}>更新订阅</button>
+            <button
+              onClick={() =>
+                pay_query((res) => {
+                  console.log(res)
+                }, '0')
+              }
+            >
+              更新订阅
+            </button>
           </div>
         ) : premiumList != null ? (
           loading ? (
@@ -159,11 +193,17 @@ export function Pay() {
         ) : null}
       </div>
       <p className="pay_ps">
-        支付说明：
+        订阅说明：
+        <br/>
+        &nbsp;&nbsp;&nbsp;购买多个订阅时间会累加
+        <br/>
+        购买说明：
         <br />
-        1.支付宝扫描码完成支付
+        1.手机支付宝扫描码完成支付
         <br />
-        2.先不要点击切换其它订阅!!!
+        2.先不要点击切换其它订阅!!!<br/>
+        &nbsp;&nbsp;&nbsp;.购买那个就要立即点击更新订阅<br/>
+        &nbsp;&nbsp;&nbsp;.频繁切换极大可能丢失订单号导致无法激活到设备id
         <br />
         3.点击更新订阅
       </p>

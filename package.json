@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "好看韩剧3 - Electron 版",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "头号玩家",
   "homepage": "https://electron-vite.org",
   "scripts": {
     "format": "prettier --write .",
