@@ -2,13 +2,35 @@ import { useCallback, useEffect, useState } from 'react'
 import './css/pay.css'
 import Loading from '@renderer/components/Loading'
 import { YDate } from '@renderer/core/YDate'
-interface PayQuery {
+import { Alert } from '@renderer/components/Alert'
+
+interface PayQueryLoding {
   code: number
   message: string
-  data: Data
+  data: PayQueryLodingData
+}
+interface PayQueryLodingData {
+  code: string
+  msg: string
+  status: string
+  name: string
+  money: string
+  out_trade_no: string
+  trade_no: string
+  type: string
+  param: string
+  addtime: string
+  endtime: string
+  pid: string
+  buyer: string
 }
 
-interface Data {
+export interface PayQuery {
+  code: number
+  message: string
+  data: PayQueryData
+}
+interface PayQueryData {
   _id: string
   device_id: string
   premium_time: number
@@ -67,7 +89,7 @@ function get_pay_closure(deviceId: string) {
   }
 }
 //查询单支付结果（闭包）
-function pay_query_closure(item: PayResponse | null) {
+export function pay_query_closure(item: PayResponse | null) {
   let ok = true
   return async function (callback: (res: any) => void, query_type: '0' | '1' = '0') {
     if (query_type !== '1') {
@@ -124,16 +146,51 @@ export function Pay() {
       get_pay(item, get_pay_data_call)
     }
   }
+  // 查询订阅剩余时间
   const get_pay_premium_state = () => {
     pay_query((res: PayQuery) => {
       if (res.code == 200) {
         setTimeMap(YDate.formatTimestamp(res.data.premium_time))
-        localStorage.setItem('pay_premium_time', JSON.stringify(res))
+        localStorage.setItem('pay_premium_time', JSON.stringify(res.data.premium_time))
       }
     }, '1')
   }
+  const [showAlert, setShowAlert] = useState(false)
+  const [PayQueryData, setPayQueryData] = useState<PayQueryLoding | null>(null)
+  // 查询订阅
+  const get_pay_query = () => {
+    setPayQueryData(null)
+    setShowAlert(true)
+    pay_query((res: PayQueryLoding) => {
+      setPayQueryData(res)
+      if (res.code == 200) {
+        get_pay_premium_state()
+      }
+    }, '0')
+  }
   return (
     <div className="pay-container">
+      <Alert
+        show={showAlert}
+        call={() => setShowAlert(false)}
+        children={
+          PayQueryData != null ? (
+            <div>
+              <h3>{PayQueryData.message}</h3>
+              {PayQueryData.code == 200 ? (
+                <ul className="pay_query_info">
+                  <li>时间：{PayQueryData.data.endtime}</li>
+                  <li>单号：{PayQueryData.data.out_trade_no}</li>
+                  <li>名称：{PayQueryData.data.name}</li>
+                  <li>价格：{PayQueryData.data.money}</li>
+                </ul>
+              ) : null}
+            </div>
+          ) : (
+            <Loading label="查询激活状态中..." loading={false} children={undefined} />
+          )
+        }
+      />
       <div className="pay_premium">
         <div>
           设备唯一标识：
@@ -174,15 +231,7 @@ export function Pay() {
             <span>订阅类型：{selectedPayItem?.title}</span>
             <span>价格：{selectedPayItem?.price}¥</span>
             {/* <span>ZPAY订单号：{payResponse.O_id}</span> */}
-            <button
-              onClick={() =>
-                pay_query((res) => {
-                  console.log(res)
-                }, '0')
-              }
-            >
-              更新订阅
-            </button>
+            <button onClick={get_pay_query}>更新订阅</button>
           </div>
         ) : premiumList != null ? (
           loading ? (
@@ -193,19 +242,22 @@ export function Pay() {
         ) : null}
       </div>
       <p className="pay_ps">
-        订阅说明：
-        <br/>
-        &nbsp;&nbsp;&nbsp;购买多个订阅时间会累加
-        <br/>
         购买说明：
         <br />
         1.手机支付宝扫描码完成支付
         <br />
-        2.先不要点击切换其它订阅!!!<br/>
-        &nbsp;&nbsp;&nbsp;.购买那个就要立即点击更新订阅<br/>
+        2.先不要点击切换其它订阅!!!
+        <br />
+        &nbsp;&nbsp;&nbsp;.购买那个就要立即点击更新订阅
+        <br />
         &nbsp;&nbsp;&nbsp;.频繁切换极大可能丢失订单号导致无法激活到设备id
         <br />
-        3.点击更新订阅
+        3.点击更新订阅 订阅说明：
+        <br />
+        &nbsp;&nbsp;&nbsp;购买多个订阅时间会累加
+        <br />
+        &nbsp;&nbsp;&nbsp;购买完成后还想购买同一订阅,侧边栏切换为(设置)选项再点回(订阅)刷新订单
+        <br />
       </p>
     </div>
   )

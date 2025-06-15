@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GlobalEvents } from './core/GlobalEvents'
 import { Theme, ThemeColor } from './theme/Theme'
 import { Route, Routes } from 'react-router'
@@ -14,7 +14,7 @@ import HanJu from './view/HanJu'
 import About from './view/About'
 import Histroy from './view/Histroy'
 import Search from './view/Search'
-import Pay from './view/Pay'
+import Pay, { pay_query_closure, PayQuery } from './view/Pay'
 
 const contentStyle: React.CSSProperties = {
   background: 'linear-gradient(var(--color-two), var(--color-one))'
@@ -33,6 +33,16 @@ export default function AppMain() {
   const [show_search, showSearch] = useState(false)
   GlobalEvents.on('video_detil_show', (bol) => showVideoDetil(bol))
   GlobalEvents.on('video_search_show', (bol) => showSearch(bol))
+  const pay_query = pay_query_closure(null)
+  useEffect(() => {
+    pay_query((res: PayQuery) => {
+      if (res.code == 200) {
+        localStorage.setItem('pay_premium_time', JSON.stringify(res.data.premium_time))
+      } else {
+        localStorage.setItem('pay_premium_time', JSON.stringify(-1))
+      }
+    }, '1')
+  }, [])
   return (
     <App>
       {/* 详情 */}

@@ -2,10 +2,11 @@ import { Spin } from 'antd'
 import { ReactNode } from 'react'
 
 interface ParentComponentProps {
+  label?: string
   loading: boolean
   children: ReactNode
 }
-export default function Loading({ loading, children }: ParentComponentProps) {
+export default function Loading({ label, loading, children }: ParentComponentProps) {
   const divStyle: React.CSSProperties = {
     width: '100%',
     height: '80%',
@@ -23,7 +24,7 @@ export default function Loading({ loading, children }: ParentComponentProps) {
       ) : (
         <div style={divStyle}>
           <Spin size="large" />
-          <span>加载中...</span>
+          <span>{label || '加载中...'}</span>
         </div>
       )}
     </>

@@ -20,6 +20,7 @@ function onClose() {
   GlobalEvents.send('update_histroy', false)
 }
 function openPlay() {
+  return
   GlobalEvents.send('video_play_show', true)
 }
 

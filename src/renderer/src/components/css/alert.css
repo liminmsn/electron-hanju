@@ -1,0 +1,31 @@
+.alert{
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    position: fixed;
+}
+.alert .card{
+    background-color: var(--color-one);
+}
+.alert .card ul{
+    padding-inline: 20% 0;
+    text-align: left;
+}
+.alert_context{
+    width: 300px;
+    height: 200px;
+}
+.alert_context button{
+    cursor: pointer;
+    border: none;
+    background-color: var(--color-two);
+    box-shadow: var(--border-show);
+    &:active{
+        box-shadow: none;
+    }
+}
