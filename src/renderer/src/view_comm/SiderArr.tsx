@@ -27,10 +27,12 @@ export default function SiderArr() {
     GlobalEvents.send('titlebar_ipt_label', item.label)
   }
   const [, setRefresh] = useState(0)
-  const forceUpdate = () => setRefresh((prev) => prev + 1)
+  const forceUpdate = () => {
+    setRefresh((prev) => prev + 1)
+  }
   useEffect(() => {
+    GlobalEvents.on('slider_arr_update', forceUpdate)
     GlobalEvents.send('titlebar_ipt_label', selectIdx)
-    GlobalEvents.on('slider_arr_update', () => forceUpdate())
   }, [])
   return (
     <div style={{ display: 'flex', background: 'var(--color-two)' }}>

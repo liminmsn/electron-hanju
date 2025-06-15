@@ -165,7 +165,9 @@ export function Pay() {
     pay_query((res: PayQueryLoding) => {
       setPayQueryData(res)
       if (res.code == 200) {
-        GlobalEvents.send('slider_arr_update', 0)
+        setTimeout(() => {
+          GlobalEvents.send('slider_arr_update', 0)
+        }, 1000)
         get_pay_premium_state()
       }
     }, '0')
