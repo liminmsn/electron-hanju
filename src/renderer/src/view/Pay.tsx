@@ -144,10 +144,8 @@ export function Pay() {
           <div className="pay-info">
             <img src={payResponse.img} alt="支付二维码" />
             <span>创建状态：{payResponse.msg}</span>
-            <span>
-              订阅类型：{selectedPayItem?.title}/{selectedPayItem?.price}¥
-            </span>
             <span>订单号：{payResponse.trade_no}</span>
+            <span>订阅类型：{selectedPayItem?.title}</span>
             <span>价格：{selectedPayItem?.price}¥</span>
             {/* <span>ZPAY订单号：{payResponse.O_id}</span> */}
             <button onClick={() => pay_query()}>更新订阅</button>
