@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .videoDetil .title {
   position: absolute;
   right: 4vh;
@@ -39,6 +40,17 @@
 }
 .video_detil_tag {
   margin-top: 2vh;
+  display: flex;
+}
+.video_detil_tag .ps {
+  font-family: 'ZiKuXingQiuFeiYangTi';
+  margin-left: 2vw;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding-inline: 2vw;
+  color: var(--color-two);
+  display: flex;
+  align-items: center;
 }
 .video_detal_list {
   flex: 0.95;

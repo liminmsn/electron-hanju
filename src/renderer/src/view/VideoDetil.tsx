@@ -125,6 +125,7 @@ export default function VideoDetil() {
             onChange={(value) => setSelectYuan(value)}
             value={selectYuan}
           />
+          <div className='ps'>不要轻信视频内的水印广告!</div>
         </div>
         <div className="video_detal_list">
           {(function () {

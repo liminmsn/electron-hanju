@@ -11,6 +11,18 @@ interface PayResponse {
   qrcode: string
   img: string
 }
+interface PremiumList {
+  affectedDocs: number
+  data: Datum[]
+}
+interface Datum {
+  _id: string
+  title: string
+  price: number
+  dec: string
+  data: PayResponse | undefined
+}
+// 创建生成二维码请求（闭包）
 function get_pay_closure(deviceId: string) {
   let ok = true
   return async function (item: Datum, call: (item: PayResponse) => void) {
@@ -31,11 +43,11 @@ function get_pay_closure(deviceId: string) {
       }
     ).then((res) => res.json())
     call(data)
+    item.data = data // 将支付二维码订单数据
     ok = true
   }
 }
-
-// 查询支付结果（闭包）
+//查询单支付结果（闭包）
 function pay_query_closure(item: PayResponse | null) {
   let ok = true
   return async function () {
@@ -51,23 +63,13 @@ function pay_query_closure(item: PayResponse | null) {
       body: JSON.stringify({
         out_trade_no: item.trade_no,
         device_id: device_id,
-        query_type: '1' // 0:查询支付结果
+        query_type: '0' // 0:查询支付结果
       })
     }).then((res) => res.json())
     ok = true
   }
 }
-
-interface PremiumList {
-  affectedDocs: number
-  data: Datum[]
-}
-interface Datum {
-  _id: string
-  title: string
-  price: number
-  dec: string
-}
+// 获取价格列表
 async function get_premium_list(): Promise<PremiumList> {
   const data: PremiumList = await fetch(
     'https://fc-mp-00fbb6fa-0b8f-41d8-ac0c-122a477de70e.next.bspapp.com/get_preimium_list'
@@ -96,10 +98,14 @@ export function Pay() {
     setPayResponse(item)
   }
   const paySend = (item: Datum) => {
-    setSelectedPayItem(item)
     setLoading(true)
     setPayResponse(null)
-    get_pay(item, payCall)
+    setSelectedPayItem(item)
+    if (item.data) {
+      payCall(item.data)
+    } else {
+      get_pay(item, payCall)
+    }
   }
   return (
     <div className="pay-container">
