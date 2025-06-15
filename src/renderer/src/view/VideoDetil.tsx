@@ -7,6 +7,8 @@ import VideoPlay from './VideoPlay'
 import './css/videodetil.css'
 import { VideoHistroy, VideoHistroyItem } from '@renderer/core/VideoHistroy'
 import { VideoBooks } from '@renderer/core/VideoBooks'
+import { Alert } from '@renderer/components/Alert'
+import { YDate } from '@renderer/core/YDate'
 
 const videoStyle: React.CSSProperties = {
   width: '100%',
@@ -20,7 +22,6 @@ function onClose() {
   GlobalEvents.send('update_histroy', false)
 }
 function openPlay() {
-  return
   GlobalEvents.send('video_play_show', true)
 }
 
@@ -64,7 +65,7 @@ export default function VideoDetil() {
           setNetVideoDetilItem(obj.one)
           setSelectVideo(obj.two)
           setIsLoding(true)
-          openPlay()
+          open_play()
           return
         }
         setNetVideoDetilItem(res_)
@@ -77,14 +78,38 @@ export default function VideoDetil() {
   //视频播放
   function playVideo(item: Starring) {
     setSelectVideo(item)
-    openPlay()
+    open_play()
+  }
+  //检查是否有效再打开播放
+  function open_play() {
+    if (YDate.isValid()) {
+      openPlay()
+    } else {
+      setShowAlert(true)
+    }
   }
   //收藏
   function onBooks() {
     setIsbook(new VideoBooks().init().book(item))
   }
+  //关闭弹窗
+  const [showAlert, setShowAlert] = useState(false)
+  function onCloseAlert() {
+    setShowAlert(false)
+  }
   return (
     <div style={videoStyle} className="videoDetil">
+      <Alert
+        show={showAlert}
+        children={
+          <div className="box">
+            <h4>订阅时间无效</h4>
+            <h5>没有订阅，首页左边侧栏订阅里面订阅权益时长</h5>
+            <h5>如果是清除了缓存重启程序即可</h5>
+          </div>
+        }
+        call={onCloseAlert}
+      />
       {showVideoPlay ? <VideoPlay item={selectVideo} title={item.title} /> : <></>}
       <Loading loading={isLoding}>
         <div className="title">
@@ -105,7 +130,7 @@ export default function VideoDetil() {
             <div>标签:{netVideoDetilItem.tag}</div>
             <div>简介:{netVideoDetilItem.disc}</div>
             <div style={{ display: 'flex', gap: '10px' }}>
-              <Button style={{ marginTop: '1vh' }} onClick={openPlay}>
+              <Button style={{ marginTop: '1vh' }} onClick={open_play}>
                 <i className="fa-solid fa-circle-play"></i>
                 立即播放
               </Button>
@@ -126,7 +151,7 @@ export default function VideoDetil() {
             onChange={(value) => setSelectYuan(value)}
             value={selectYuan}
           />
-          <div className='ps'>视频内的水印广告与本程序无关，慎重考虑是否相信！</div>
+          <div className="ps">视频内的水印广告与本程序无关，慎重考虑是否相信！</div>
         </div>
         <div className="video_detal_list">
           {(function () {

@@ -21,6 +21,7 @@
     height: 200px;
 }
 .alert_context button{
+    padding: 4px 8px;
     cursor: pointer;
     border: none;
     background-color: var(--color-two);

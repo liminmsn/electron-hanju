@@ -10,6 +10,26 @@
   flex-direction: column;
 }
 
+.videoDetil .card {
+  width: 30vw;
+  padding: 2vw;
+}
+.videoDetil .alert_context {
+  width: inherit !important;
+  height: 80%;
+  text-align: right;
+}
+.videoDetil .box {
+  margin-bottom: 20px;
+  text-align: left;
+}
+.videoDetil h4 {
+  margin-block: 1px;
+}
+.videoDetil h5 {
+  margin-block: 2px 0;
+}
+
 .videoDetil .title {
   position: absolute;
   right: 4vh;
