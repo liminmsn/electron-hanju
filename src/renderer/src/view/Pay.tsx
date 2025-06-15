@@ -3,6 +3,7 @@ import './css/pay.css'
 import Loading from '@renderer/components/Loading'
 import { YDate } from '@renderer/core/YDate'
 import { Alert } from '@renderer/components/Alert'
+import { GlobalEvents } from '@renderer/core/GlobalEvents'
 
 interface PayQueryLoding {
   code: number
@@ -164,6 +165,7 @@ export function Pay() {
     pay_query((res: PayQueryLoding) => {
       setPayQueryData(res)
       if (res.code == 200) {
+        GlobalEvents.send('slider_arr_update', 0)
         get_pay_premium_state()
       }
     }, '0')
@@ -252,7 +254,9 @@ export function Pay() {
         <br />
         &nbsp;&nbsp;&nbsp;.频繁切换极大可能丢失订单号导致无法激活到设备id
         <br />
-        3.点击更新订阅 订阅说明：
+        3.点击更新订阅
+        <br />
+        订阅说明：
         <br />
         &nbsp;&nbsp;&nbsp;购买多个订阅时间会累加
         <br />

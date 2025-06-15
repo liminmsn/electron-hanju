@@ -3,6 +3,7 @@ import { ReactNode, useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import Sider from 'antd/es/layout/Sider'
 import './css/sliderarr.css'
+import { YDate } from '@renderer/core/YDate'
 
 export default function SiderArr() {
   const siderStyle: React.CSSProperties = {
@@ -17,7 +18,7 @@ export default function SiderArr() {
     new KeyItem(<i className="fa-solid fa-clock-rotate-left"></i>, '历史', '/histroy'),
     new KeyItem(<i className="fa-solid fa-gear"></i>, '设置', '/setting'),
     // new KeyItem(<i className="fa-solid fa-circle-info"></i>, '关于', '/about'),
-    new KeyItem(<i className="fa-solid fa-circle-check"></i>, '订阅', '/pay'),
+    new KeyItem(<i className="fa-solid fa-circle-check"></i>, '订阅', '/pay')
   ]
   const [selectIdx, setSelectIdx] = useState(keyArr[0].label)
   //打开路由
@@ -25,8 +26,11 @@ export default function SiderArr() {
     setSelectIdx(item.label)
     GlobalEvents.send('titlebar_ipt_label', item.label)
   }
+  const [, setRefresh] = useState(0)
+  const forceUpdate = () => setRefresh((prev) => prev + 1)
   useEffect(() => {
     GlobalEvents.send('titlebar_ipt_label', selectIdx)
+    GlobalEvents.on('slider_arr_update', () => forceUpdate())
   }, [])
   return (
     <div style={{ display: 'flex', background: 'var(--color-two)' }}>
@@ -44,6 +48,7 @@ export default function SiderArr() {
             </Link>
           )
         })}
+        <div className="valid_time">{YDate.getValidTime()}</div>
       </Sider>
     </div>
   )

@@ -40,3 +40,20 @@
     transform: scale(1);
   }
 }
+
+.valid_time {
+  text-align: center;
+  overflow: hidden;
+  position: absolute;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: var(--color-one);
+  box-shadow: var(--border-show) inset;
+  padding-inline: 10px;
+  padding-block: 2px;
+  max-width: 80%;
+  width: 80%;
+  bottom: 49px;
+  left: 10px;
+}
