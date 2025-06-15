@@ -142,6 +142,7 @@ export function Pay() {
       <div className="pay-info-container">
         {payResponse ? (
           <div className="pay-info">
+            <img src={payResponse.img} alt="支付二维码" />
             <span>创建状态：{payResponse.msg}</span>
             <span>
               订阅类型：{selectedPayItem?.title}/{selectedPayItem?.price}¥
@@ -149,8 +150,7 @@ export function Pay() {
             <span>订单号：{payResponse.trade_no}</span>
             <span>价格：{selectedPayItem?.price}¥</span>
             {/* <span>ZPAY订单号：{payResponse.O_id}</span> */}
-            <img src={payResponse.img} alt="支付二维码" />
-            <button onClick={() => pay_query()}>查询支付结果</button>
+            <button onClick={() => pay_query()}>更新订阅</button>
           </div>
         ) : premiumList != null ? (
           loading ? (
@@ -163,11 +163,11 @@ export function Pay() {
       <p className="pay_ps">
         支付说明：
         <br />
-        1.支付宝扫描二维码完成支付
+        1.支付宝扫描码完成支付
         <br />
-        2.完成支付后需要
+        2.先不要点击切换其它订阅!!!
         <br />
-        3.点击查询结果更新订阅
+        3.点击更新订阅
       </p>
     </div>
   )
