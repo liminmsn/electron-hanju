@@ -22,12 +22,12 @@ body {
 :root {
   --plyr-color-main: var(--color-two);
   --plyr-range-fill-background: var(var(--color-text-1));
-  --color-one: #328e6e;
-  --color-two: #67ae6e;
-  --color-text-1: #e1eebc;
+  --color-one: #FFCF50;
+  --color-two: #A4B465;
+  --color-text-1: black;
   --border-show: 1px 1px 2pt #0000001f;
   --border-show-inset: 1px 1px 2pt #0000001f inset;
-  --color-opacity-02: #90c67c;
+  --color-opacity-02: black;
 
    /* WebKit浏览器 */
   ::-webkit-scrollbar {

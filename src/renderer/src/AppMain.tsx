@@ -28,7 +28,7 @@ const layoutStyle: React.CSSProperties = {
 
 export default function AppMain() {
   //设置主题色
-  Theme.Init(ThemeColor.Green)
+  Theme.Init(ThemeColor.Yellow)
   const [show, showVideoDetil] = useState(false)
   const [show_search, showSearch] = useState(false)
   GlobalEvents.on('video_detil_show', (bol) => showVideoDetil(bol))

@@ -1,5 +1,14 @@
-appId: com.electron.app
-productName: electron-hanju
+appId: com.yzt.haokanhanju3
+productName: 好看韩剧3
+copyright: Copyright © 2025 杨再涛
+appx:
+  applicationId: com.yzt.haokanhanju3
+  displayName: 好看韩剧3
+  publisherDisplayName: 杨再涛
+  publisher: CN=751A5618-6306-4BA3-ACC8-A7A9BD0A0D7A
+  identityName: 4CB2B2AD.3
+  languages:
+    - zh-CN
 directories:
   buildResources: build
 files:
@@ -12,7 +21,10 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: electron-hanju
+  # executableName: "好看韩剧3"
+  target: appx
+  defaultArch: x64
+  icon: build/icon.png
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
