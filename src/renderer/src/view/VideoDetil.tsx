@@ -118,7 +118,7 @@ export default function VideoDetil() {
           </Button>
         </div>
         <div className="center">
-          <img src={netVideoDetilItem.bg} />
+          <img src={`https:${netVideoDetilItem.bg}`} />
           <div className="right">
             <div>{netVideoDetilItem.title}</div>
             <div>评分:{netVideoDetilItem.pic}</div>

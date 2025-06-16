@@ -29,7 +29,7 @@ export default function CardImg({ item, children }: CardProps): JSX.Element {
       <div className="card_img_card">
         <span className="card_img_one">{item.pic.one}</span>
         <span className="card_img_two">{item.pic.two}</span>
-        <img style={imgStyle} src={item.bg.replace('url(', '').replace(')', '')} />
+        <img style={imgStyle} src={`https:${item.bg.replace('url(', '').replace(')', '').replaceAll(' ','')}`} />
       </div>
       <div className="title">{item.title}</div>
       {item.actor.map((item_) => {

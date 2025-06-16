@@ -27,7 +27,7 @@ export default function Histroy() {
         histList.map((item, idx) => {
           return (
             <div key={idx} className="histroy_item">
-              <img src={item.one.bg} alt="" />
+              <img src={`https:${item.one.bg}`} alt="" />
               <div className="histroy_item_right">
                 <div className="histroy_item_right_one">
                   <h2>{item.one.title}</h2>

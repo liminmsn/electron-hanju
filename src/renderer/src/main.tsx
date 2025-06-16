@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { HashRouter, Route, Routes } from 'react-router'
 import { ConfigProvider } from 'antd'
 import ReactDOM from 'react-dom/client'
 import App from './AppMain'
@@ -7,10 +7,10 @@ import '@renderer/assets/base.css'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <ConfigProvider>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="*" element={<App />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </ConfigProvider>
 )

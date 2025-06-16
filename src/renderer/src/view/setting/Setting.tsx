@@ -6,10 +6,19 @@ const labelStyle: React.CSSProperties = {
   fontFamily: 'ZiKuXingQiuFeiYangTi',
   textShadow: 'var(--border-show)',
   display: 'inline-block',
-  width: '6vw'
+  // backgroundColor:'red',
+  textAlign: 'left',
+  paddingLeft: '10px',
+  width: '100px'
+}
+const boxStyle: React.CSSProperties = {
+  marginBottom: '10px'
 }
 
 export default function Setting() {
+  function resetTheme() {
+    setCssProperty('香蕉黄')
+  }
   function setCssProperty(key: string) {
     return new Theme(themeArr[key])
   }
@@ -33,9 +42,9 @@ export default function Setting() {
     return Object.keys(themeArr)[0]
   })()
   return (
-    <div style={{ paddingLeft: '2vh', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div>
-        <span style={labelStyle}>主题颜色</span>&nbsp;
+        <span style={labelStyle}>主题颜色</span>
         <Segmented
           defaultValue={index_key}
           options={Object.keys(themeArr)}
@@ -43,9 +52,16 @@ export default function Setting() {
         />
       </div>
       <div style={{ height: '8pt' }}></div>
-      <div>
-        <span style={labelStyle}>储存</span>&nbsp;
-        <Button>清空缓存</Button>
+      <div style={boxStyle}>
+        <span style={labelStyle}>主题缓存</span>
+        <Button onClick={() => { localStorage.removeItem('Theme'), resetTheme() }}>重置</Button>
+      </div>
+      <div style={boxStyle}>
+        <span style={labelStyle}>播放历史缓存</span>
+        <Button onClick={() => localStorage.removeItem('VideoHistroy')}>清空</Button></div>
+      <div style={boxStyle}>
+        <span style={labelStyle}>网路请求缓存</span>
+        <Button onClick={() => localStorage.removeItem('NetCheck')}>清空</Button>
       </div>
     </div>
   )

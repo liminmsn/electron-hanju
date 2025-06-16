@@ -41,6 +41,9 @@ export default function AppMain() {
       } else {
         localStorage.setItem('pay_premium_time', JSON.stringify(-1))
       }
+      setTimeout(() => {
+        GlobalEvents.send('slider_arr_update', 0)
+      }, 1000)
     }, '1')
   }, [])
   return (

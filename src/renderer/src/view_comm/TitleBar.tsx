@@ -33,7 +33,7 @@ function onclick(item: any) {
 export default function TitleBar() {
   //更改标题栏的全屏小化按钮
   const [expand, setExpand] = useState(false)
-  const [iptLabel, setIptLabel] = useState('想追的剧')
+  const [iptLabel] = useState('想追的剧')
   const [hostList, setHostList] = useState<HostList[]>([])
   const [down, setdown] = useState(false)
   useEffect(() => {
