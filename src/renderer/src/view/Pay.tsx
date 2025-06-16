@@ -130,6 +130,9 @@ export function Pay() {
     window.electron.ipcRenderer.invoke('system', 'device_id').then((res) => setDeviceId(res))
     get_premium_list().then((data) => setPremiumList(data))
     get_pay_premium_state()
+    setTimeout(() => {
+      GlobalEvents.send('slider_arr_update', 0)
+    }, 1000)
   }, [])
   // 获取支付二维码数据回调
   const get_pay_data_call = (item: PayResponse) => {
