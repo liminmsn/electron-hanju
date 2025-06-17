@@ -2,7 +2,21 @@ import { BrowserWindow, ipcMain, IpcMainEvent } from 'electron'
 
 export class TitleBar {
   //覆盖原生的标题栏事件
-  constructor() {
+  constructor(mainWindow: BrowserWindow) {
+    mainWindow.on('maximize', () => {
+      // 窗口最大化事件
+      mainWindow.webContents.send('fa-expand', true)
+    })
+
+    mainWindow.on('unmaximize', () => {
+      // 窗口取消最大化事件
+      mainWindow.webContents.send('fa-expand', false)
+    })
+
+    mainWindow.on('ready-to-show', () => {
+      mainWindow.show()
+      // mainWindow.webContents.openDevTools()
+    })
     ipcMain.on('titlebar', this.fun)
   }
   fun(_e: IpcMainEvent, args: string) {
