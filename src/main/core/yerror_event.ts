@@ -9,6 +9,7 @@ export class YErrorEvent {
         });
     }
     showDialog(error: any) {
+        this._win
         setTimeout(() => {
             dialog.showMessageBox({
                 type: 'warning',
