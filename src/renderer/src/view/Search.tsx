@@ -71,7 +71,7 @@ export default function Search() {
           {histList.map((item, idx) => {
             return (
               <div key={idx} style={SearchItemStyle} className="histroy_item">
-                <img src={item.bg} alt="" />
+                <img src={`https:${item.bg}`} alt="" />
                 <div className="histroy_item_right">
                   <div className="histroy_item_right_one">
                     <h2>{item.title}</h2>
